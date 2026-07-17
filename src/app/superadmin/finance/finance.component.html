@@ -1,0 +1,44 @@
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon"></div>
+      <div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Super Admin (S-OS)</div></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Platform</div>
+      <nav class="sidebar-nav">
+        <a href="/superadmin/dashboard" class="sidebar-link"><span class="nav-icon">🌐</span> Global Metrics</a>
+        <a href="/superadmin/finance" class="sidebar-link active"><span class="nav-icon">💰</span> Financial Control</a>
+        <a href="/superadmin/settings" class="sidebar-link"><span class="nav-icon">⚙️</span> System Config</a>
+      </nav>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left"><h1 class="topbar-title">Financial Control Center</h1></div>
+    </header>
+
+    <div class="page-content">
+      <div class="card" style="padding:0; margin-bottom: 24px;">
+        <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);display:flex;gap:16px;align-items:center;">
+          <h3 style="margin:0;">Pending Company Payments</h3>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr><th>Invoice ID</th><th>Company</th><th>Amount</th><th>Due Date</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>INV-2026-089</td>
+              <td>TechCorp India</td>
+              <td>₹4,50,000</td>
+              <td>Oct 15, 2026</td>
+              <td><span class="badge badge-amber">Overdue</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>

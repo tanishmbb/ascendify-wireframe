@@ -16,9 +16,9 @@ export const routes: Routes = [
 
   { path: 'stakeholder/dashboard', loadComponent: () => import('./stakeholder/dashboard/dashboard.component').then(m => m.DashboardComponent) },
 
-  { path: 'super-admin/dashboard', loadComponent: () => import('./super-admin/dashboard/dashboard.component').then(m => m.DashboardComponent) },
-  { path: 'super-admin/finance', loadComponent: () => import('./super-admin/finance/finance.component').then(m => m.FinanceComponent) },
-  { path: 'super-admin/settings', loadComponent: () => import('./super-admin/settings/settings.component').then(m => m.SettingsComponent) },
+  { path: 'superadmin/dashboard', loadComponent: () => import('./superadmin/dashboard/dashboard.component').then(m => m.DashboardComponent) },
+  { path: 'superadmin/finance', loadComponent: () => import('./superadmin/finance/finance.component').then(m => m.FinanceComponent) },
+  { path: 'superadmin/settings', loadComponent: () => import('./superadmin/settings/settings.component').then(m => m.SettingsComponent) },
   
   { path: 'college/analytics', loadComponent: () => import('./college/analytics/analytics.component').then(m => m.AnalyticsComponent) },
   { path: 'college/bootcamps', loadComponent: () => import('./college/bootcamps/bootcamps.component').then(m => m.BootcampsComponent) },

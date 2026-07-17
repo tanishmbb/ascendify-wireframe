@@ -1,0 +1,33 @@
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon"></div>
+      <div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Super Admin (S-OS)</div></div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Platform</div>
+      <nav class="sidebar-nav">
+        <a href="/superadmin/dashboard" class="sidebar-link"><span class="nav-icon">🌐</span> Global Metrics</a>
+        <a href="/superadmin/finance" class="sidebar-link"><span class="nav-icon">💰</span> Financial Control</a>
+        <a href="/superadmin/settings" class="sidebar-link active"><span class="nav-icon">⚙️</span> System Config</a>
+      </nav>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left"><h1 class="topbar-title">System Configuration</h1></div>
+    </header>
+
+    <div class="page-content">
+      <div class="card animate-in">
+        <h3 style="margin-bottom: 16px;">Algorithm Tuning</h3>
+        <p style="font-size:13px; color:var(--text-secondary); margin-bottom:24px;">Adjust weights for the Pathfinder/Trailblazer placement ranking algorithm.</p>
+        <div class="form-group">
+          <label class="form-label">XP Weight (40%)</label>
+          <input type="range" class="w-full" min="0" max="100" value="40">
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
