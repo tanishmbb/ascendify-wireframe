@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify College — Dashboard</title>
+  
+  <style>
+    .college-sidebar { background: var(--bg-card); border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
+    .skill-gap-card { background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px; }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="college-sidebar">
+      <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">College / Placement OS</div></div></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Overview</div>
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="sidebar-link active"><span class="nav-icon">📊</span> Dashboard</a>
+          <a href="students.html" class="sidebar-link"><span class="nav-icon">🎓</span> Students</a>
+          <a href="college-analytics.html" class="sidebar-link"><span class="nav-icon">📈</span> Analytics</a>
+        </nav>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Operations</div>
+        <nav class="sidebar-nav">
+          <a href="bootcamps.html" class="sidebar-link"><span class="nav-icon">🛠️</span> Bootcamps</a>
+          <a href="events.html" class="sidebar-link"><span class="nav-icon">📅</span> Events & QR</a>
+          <a href="panels.html" class="sidebar-link"><span class="nav-icon">⚖️</span> Panel Config</a>
+        </nav>
+      </div>
+      <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">MR</div><div class="user-info"><div class="user-name">Malla Reddy Univ</div><div class="user-role">Placement Cell</div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><h1 class="topbar-title">College Dashboard</h1></div>
+        <div class="topbar-right">
+          <button class="btn btn-primary btn-sm">Generate Export Report</button>
+          <div class="topbar-icon-btn">🔔</div>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <!-- Key Metrics -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:var(--space-xl);">
+          <div class="stat-card animate-in"><div class="stat-label">Active Students</div><div class="stat-value text-cyan">2,481</div><div class="stat-trend up">92% adoption rate</div></div>
+          <div class="stat-card animate-in" style="animation-delay:50ms;"><div class="stat-label">Avg Skill Score</div><div class="stat-value">1,245</div><div class="stat-trend up">↑ 4.2% this month</div></div>
+          <div class="stat-card animate-in" style="animation-delay:100ms;"><div class="stat-label">Verified Actions</div><div class="stat-value">18.4K</div><div class="stat-trend">Last 30 days</div></div>
+          <div class="stat-card animate-in" style="animation-delay:150ms;"><div class="stat-label">Recruiter Views</div><div class="stat-value text-pathfinder">1,142</div><div class="stat-trend up">↑ 12% vs last month</div></div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:var(--space-xl);">
+          <!-- Skill Heatmap by Branch -->
+          <div class="card animate-in">
+            <div class="card-header"><div class="card-title">Skill Heatmap by Branch</div><span style="font-size:12px;color:var(--text-muted);">Avg Elo per domain</span></div>
+            <table class="data-table" style="text-align:center;">
+              <thead><tr><th style="text-align:left;">Branch</th><th>Tech Dev</th><th>Logic & DS</th><th>AI/DS</th><th>Hardware</th><th>UI/UX</th></tr></thead>
+              <tbody>
+                <tr><td style="text-align:left;font-weight:600;">CSE</td><td><span class="badge badge-green">1450</span></td><td><span class="badge badge-green">1480</span></td><td><span class="badge badge-cyan">1320</span></td><td><span class="badge badge-trailblazer">980</span></td><td><span class="badge badge-amber">1120</span></td></tr>
+                <tr><td style="text-align:left;font-weight:600;">IT</td><td><span class="badge badge-cyan">1380</span></td><td><span class="badge badge-cyan">1350</span></td><td><span class="badge badge-amber">1210</span></td><td><span class="badge badge-trailblazer">950</span></td><td><span class="badge badge-green">1280</span></td></tr>
+                <tr><td style="text-align:left;font-weight:600;">ECE</td><td><span class="badge badge-amber">1150</span></td><td><span class="badge badge-amber">1180</span></td><td><span class="badge badge-cyan">1290</span></td><td><span class="badge badge-green">1420</span></td><td><span class="badge badge-trailblazer">1010</span></td></tr>
+                <tr><td style="text-align:left;font-weight:600;">MECH</td><td><span class="badge badge-trailblazer">920</span></td><td><span class="badge badge-trailblazer">950</span></td><td><span class="badge badge-trailblazer">1050</span></td><td><span class="badge badge-amber">1180</span></td><td><span class="badge badge-trailblazer">940</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Bootcamp Pulse -->
+          <div class="card animate-in" style="animation-delay:50ms;">
+            <div class="card-header"><div class="card-title">Bootcamp Pulse</div></div>
+            <div style="margin-bottom:16px;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:13px;">Week 13 Submissions</span><span class="font-mono text-cyan">42%</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:42%;"></div></div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">184 / 438 expected</div>
+            </div>
+            <div style="margin-bottom:16px;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:13px;">Avg Panel Score</span><span class="font-mono text-green">74.2</span></div>
+              <div class="progress-bar"><div class="progress-fill green" style="width:74%;"></div></div>
+            </div>
+            <div style="padding:12px;background:var(--bg-elevated);border-radius:var(--radius-md);">
+              <div style="font-size:13px;font-weight:600;margin-bottom:4px;">⚠️ Low Submission Alert</div>
+              <div style="font-size:11px;color:var(--text-secondary);">3rd Year IT has only 12% submission rate for the upcoming bootcamp.</div>
+              <button class="btn btn-outline btn-sm" style="margin-top:8px;font-size:10px;">Send Reminder</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Student Tier Distribution -->
+        <div class="skill-gap-card animate-in" style="animation-delay:100ms;">
+          <h3 style="margin-bottom:16px;">Tier Distribution (Overall)</h3>
+          <div style="display:flex;gap:4px;height:40px;border-radius:var(--radius-md);overflow:hidden;margin-bottom:16px;">
+            <div style="width:5%;background:var(--accent-pathfinder);display:flex;align-items:center;justify-content:center;color:#0A0F1E;font-size:11px;font-weight:700;" title="Pathfinder (Top 5%)">5%</div>
+            <div style="width:15%;background:var(--accent-trailblazer);display:flex;align-items:center;justify-content:center;color:#0A0F1E;font-size:11px;font-weight:700;" title="Trailblazer (Next 15%)">15%</div>
+            <div style="width:50%;background:#CD7F32;display:flex;align-items:center;justify-content:center;color:#0A0F1E;font-size:11px;font-weight:700;" title="Builder (Middle 50%)">50%</div>
+            <div style="width:30%;background:rgba(0,212,255,0.2);display:flex;align-items:center;justify-content:center;color:var(--text-primary);font-size:11px;font-weight:700;" title="Launcher (Bottom 30%)">30%</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);">
+            <span>⭐ Pathfinder (124)</span><span>⭐ Trailblazer (372)</span><span>⬡ Builder (1,240)</span><span>◇ Launcher (745)</span>
+          </div>
+        </div>
+
+      <!-- System Alerts -->
+        <div class="card animate-in" style="animation-delay:150ms; margin-bottom: 24px;">
+          <div class="card-header"><div class="card-title">System Alerts & Recommendations</div></div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="padding:12px;border-left:3px solid var(--accent-red);background:rgba(239,68,68,0.05);border-radius:0 var(--radius-md) var(--radius-md) 0;">
+              <div style="font-size:13px;font-weight:600;color:var(--accent-red);">Fraud Detection Alert</div>
+              <div style="font-size:12px;color:var(--text-secondary);">3 certificates uploaded by 2nd Year ECE students were flagged for duplication. Requires admin review.</div>
+            </div>
+            <div style="padding:12px;border-left:3px solid var(--accent-amber);background:rgba(245,158,11,0.05);border-radius:0 var(--radius-md) var(--radius-md) 0;">
+              <div style="font-size:13px;font-weight:600;color:var(--accent-amber);">Skill Gap Warning</div>
+              <div style="font-size:12px;color:var(--text-secondary);">AI/DS domain average in 3rd Year CSE is 12% below regional benchmark. Recommend scheduling a workshop.</div>
+            </div>
+            <div style="padding:12px;border-left:3px solid var(--accent-green);background:rgba(16,185,129,0.05);border-radius:0 var(--radius-md) var(--radius-md) 0;">
+              <div style="font-size:13px;font-weight:600;color:var(--accent-green);">Recruiter Activity</div>
+              <div style="font-size:12px;color:var(--text-secondary);">TechCorp India and 4 other companies viewed student profiles today.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Placement Reports -->
+        <div class="card animate-in" style="animation-delay:200ms;">
+          <div class="card-header">
+            <div class="card-title">Placement & Internship Reports</div>
+            <button class="btn btn-outline btn-sm">View All Data</button>
+          </div>
+          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;">
+            <div style="padding:16px; background:var(--bg-elevated); border-radius:var(--radius-md);">
+              <div style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">Offers This Month</div>
+              <div style="font-size:32px; font-weight:800; color:var(--text-primary); font-family:monospace;">142</div>
+              <div style="font-size:12px; color:var(--accent-green); margin-top:4px;">↑ 18% vs Last Month</div>
+            </div>
+            <div style="padding:16px; background:var(--bg-elevated); border-radius:var(--radius-md);">
+              <div style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">Highest CTC</div>
+              <div style="font-size:32px; font-weight:800; color:var(--text-primary); font-family:monospace;">48L</div>
+              <div style="font-size:12px; color:var(--text-secondary); margin-top:4px;">Software Dev @ Meta</div>
+            </div>
+            <div style="padding:16px; background:var(--bg-elevated); border-radius:var(--radius-md);">
+              <div style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">Avg. CTC</div>
+              <div style="font-size:32px; font-weight:800; color:var(--text-primary); font-family:monospace;">8.5L</div>
+              <div style="font-size:12px; color:var(--accent-green); margin-top:4px;">↑ 5% vs Last Year</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</body>
+</html>

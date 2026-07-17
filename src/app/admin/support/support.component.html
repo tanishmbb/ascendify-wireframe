@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify Admin — Support Tickets</title>
+  
+  <style>
+    .admin-sidebar { background: #0F172A; border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <aside class="admin-sidebar" style="background:#0F172A;">
+    <div class="sidebar-logo"><div><div class="logo-text" style="color:var(--accent-cyan);">ASCENDIFY</div><div class="logo-sub">Employee Operations</div></div></div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Core Ops</div>
+      <nav class="sidebar-nav">
+        <a href="/admin/dashboard" class="sidebar-link"><span class="nav-icon">📊</span> Overview</a>
+        <a href="/admin/colleges" class="sidebar-link"><span class="nav-icon">🏛️</span> College Approvals</a>
+        <a href="/admin/companies" class="sidebar-link"><span class="nav-icon">🏢</span> Company Verification</a>
+      </nav>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Content & Trust</div>
+      <nav class="sidebar-nav">
+        <a href="/admin/content" class="sidebar-link"><span class="nav-icon">📝</span> Content Moderation</a>
+        <a href="/admin/fraud" class="sidebar-link"><span class="nav-icon">🛡️</span> Fraud Reports</a>
+        <a href="/admin/support" class="sidebar-link active"><span class="nav-icon">🎫</span> Support Tickets</a>
+      </nav>
+    </div>
+    <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">EO</div><div class="user-info"><div class="user-name">Riya Singh</div><div class="user-role">Operations Lead</div></div></div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left"><h1 class="topbar-title">Support Tickets</h1></div>
+      <div class="topbar-right">
+        <div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div style="display:grid; grid-template-columns: 350px 1fr; gap: 24px; height: calc(100vh - 120px);">
+        
+        <!-- Ticket List -->
+        <div class="card" style="padding:0; display:flex; flex-direction:column;">
+          <div style="padding:16px; border-bottom:1px solid var(--border-default);">
+            <div class="topbar-search" style="width:100%;"><span class="search-icon">🔍</span><input placeholder="Search tickets..."></div>
+          </div>
+          
+          <div style="flex:1; overflow-y:auto;">
+            <div style="padding:16px; border-bottom:1px solid var(--border-default); cursor:pointer; background:rgba(0,212,255,0.05); border-left:3px solid var(--accent-cyan);">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <span style="font-size:13px; font-weight:600;">Issue with Watchlist</span>
+                <span style="font-size:11px; color:var(--text-muted);">2h ago</span>
+              </div>
+              <div style="font-size:12px; color:var(--text-secondary); margin-bottom:8px;">TechCorp India · Recruiter Portal</div>
+              <span class="badge badge-red">High Priority</span>
+            </div>
+
+            <div style="padding:16px; border-bottom:1px solid var(--border-default); cursor:pointer;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+                <span style="font-size:13px; font-weight:600;">Name Update Request</span>
+                <span style="font-size:11px; color:var(--text-muted);">4h ago</span>
+              </div>
+              <div style="font-size:12px; color:var(--text-secondary); margin-bottom:8px;">Student #8421 · Profile Settings</div>
+              <span class="badge badge-amber">Medium</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ticket View -->
+        <div class="card" style="display:flex; flex-direction:column; padding:0;">
+          <div style="padding:24px; border-bottom:1px solid var(--border-default);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <div>
+                <h2>Issue with Watchlist</h2>
+                <div style="font-size:13px; color:var(--text-secondary); margin-top:4px;">Ticket #4892 · Opened by Priya from TechCorp India</div>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button class="btn btn-outline btn-sm">Assign to me</button>
+                <select class="form-select" style="width:auto; padding:4px 8px;"><option>Status: Open</option><option>Resolved</option></select>
+              </div>
+            </div>
+          </div>
+          
+          <div style="flex:1; padding:24px; overflow-y:auto; display:flex; flex-direction:column; gap:20px;">
+            <div style="display:flex; gap:16px;">
+              <div class="avatar">PS</div>
+              <div style="background:var(--bg-elevated); padding:16px; border-radius:var(--radius-md); border:1px solid var(--border-default); flex:1;">
+                <div style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">Priya Sharma (TechCorp) · 2 hours ago</div>
+                <div style="font-size:14px; line-height:1.5;">Hi Team, I am unable to add students to my watchlist. Every time I click the button it says "Server Error". Please resolve this as we have a hiring drive tomorrow.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding:24px; border-top:1px solid var(--border-default); background:var(--bg-elevated);">
+            <textarea class="form-input" style="width:100%; height:80px; resize:none; margin-bottom:12px;" placeholder="Type your reply..."></textarea>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div style="display:flex; gap:8px;">
+                <button class="btn btn-ghost btn-sm">📎 Attach</button>
+                <button class="btn btn-ghost btn-sm">📚 Macros</button>
+              </div>
+              <button class="btn btn-primary">Send Reply</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify Admin — Content Moderation</title>
+  
+  <style>
+    .admin-sidebar { background: #0F172A; border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <aside class="admin-sidebar" style="background:#0F172A;">
+    <div class="sidebar-logo"><div><div class="logo-text" style="color:var(--accent-cyan);">ASCENDIFY</div><div class="logo-sub">Employee Operations</div></div></div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Core Ops</div>
+      <nav class="sidebar-nav">
+        <a href="/admin/dashboard" class="sidebar-link"><span class="nav-icon">📊</span> Overview</a>
+        <a href="/admin/colleges" class="sidebar-link"><span class="nav-icon">🏛️</span> College Approvals</a>
+        <a href="/admin/companies" class="sidebar-link"><span class="nav-icon">🏢</span> Company Verification</a>
+      </nav>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Content & Trust</div>
+      <nav class="sidebar-nav">
+        <a href="/admin/content" class="sidebar-link active"><span class="nav-icon">📝</span> Content Moderation</a>
+        <a href="/admin/fraud" class="sidebar-link"><span class="nav-icon">🛡️</span> Fraud Reports</a>
+        <a href="/admin/support" class="sidebar-link"><span class="nav-icon">🎫</span> Support Tickets</a>
+      </nav>
+    </div>
+    <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">EO</div><div class="user-info"><div class="user-name">Riya Singh</div><div class="user-role">Operations Lead</div></div></div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left"><h1 class="topbar-title">Content Moderation</h1></div>
+      <div class="topbar-right">
+        <div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="tabs" style="margin-bottom: 24px;">
+        <div class="tab active">Reported Posts</div>
+        <div class="tab">Problem Bank Review</div>
+        <div class="tab">Arena Comments</div>
+      </div>
+
+      <div class="card" style="padding:0;">
+        <table class="data-table">
+          <thead>
+            <tr><th>Reported Content</th><th>Author</th><th>Reason Flagged</th><th>Severity</th><th>Actions</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div style="font-weight:600; font-size:13px; margin-bottom:4px;">"Can someone just give me the answer for the TechCorp Screening?"</div>
+                <div style="font-size:11px; color:var(--text-muted);">Posted in Help Requests (Tech Dev)</div>
+              </td>
+              <td><div class="avatar avatar-sm" style="display:inline-flex; vertical-align:middle; margin-right:8px;">SR</div><span style="font-size:12px;">Student #4021</span></td>
+              <td>Academic Dishonesty (Auto-flagged)</td>
+              <td><span class="badge badge-red">High</span></td>
+              <td>
+                <button class="btn btn-outline btn-sm">Take Action</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div style="font-weight:600; font-size:13px; margin-bottom:4px;">"The questions in this bootcamp are completely wrong."</div>
+                <div style="font-size:11px; color:var(--text-muted);">Posted in Bootcamp Q&A</div>
+              </td>
+              <td><div class="avatar avatar-sm" style="display:inline-flex; vertical-align:middle; margin-right:8px;">AK</div><span style="font-size:12px;">Student #1982</span></td>
+              <td>User Reported (Spam)</td>
+              <td><span class="badge badge-amber">Medium</span></td>
+              <td>
+                <button class="btn btn-outline btn-sm">Take Action</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

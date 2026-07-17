@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify Hire — Bounty Board</title>
+  
+  <style>
+    .bounty-card { background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 24px; transition: all 0.3s; }
+    .bounty-card:hover { border-color: rgba(0,212,255,0.2); }
+    .bounty-status { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: var(--radius-full); font-size: 11px; font-weight: 600; }
+    .bounty-status.open { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+    .bounty-status.review { background: rgba(245,158,11,0.15); color: var(--accent-amber); }
+    .bounty-status.closed { background: rgba(148,163,184,0.15); color: var(--accent-trailblazer); }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Hire · Recruiter Portal</div></div></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Recruiting</div>
+        <nav class="sidebar-nav">
+          <a href="talent-search.html" class="sidebar-link"><span class="nav-icon">🔍</span> Search Talent</a>
+          <a href="spotlight.html" class="sidebar-link"><span class="nav-icon">⭐</span> Talent Spotlight</a>
+          <a href="bounty.html" class="sidebar-link active"><span class="nav-icon">💰</span> Bounty Board</a>
+          <a href="screening-setup.html" class="sidebar-link"><span class="nav-icon">📝</span> Screening</a>
+          <a href="screening-results.html" class="sidebar-link"><span class="nav-icon">📊</span> Results</a>
+        </nav>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Management</div><nav class="sidebar-nav"><a href="analytics.html" class="sidebar-link"><span class="nav-icon">📈</span> Analytics</a></nav></div>
+      <div class="sidebar-user"><div class="user-avatar" style="background:var(--gradient-pathfinder);">TC</div><div class="user-info"><div class="user-name">TechCorp India</div><div class="user-role">Pro Plan</div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><h1 class="topbar-title">Bounty Board</h1><span style="font-size:13px;color:var(--text-muted);">Micro-Internships</span></div>
+        <div class="topbar-right"><button class="btn btn-primary btn-sm">+ Post a Bounty</button></div>
+      </header>
+
+      <div class="page-content">
+        <div class="tabs" style="margin-bottom:var(--space-lg);">
+          <div class="tab active">My Bounties (3)</div>
+          <div class="tab">Applicants</div>
+          <div class="tab">Submissions</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:var(--space-xl);">
+          <div class="bounty-card animate-in">
+            <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+              <div style="display:flex;gap:8px;align-items:center;"><span class="domain-tag">💻 Tech Dev</span><span class="bounty-status open">● Open</span></div>
+              <span style="font-size:12px;color:var(--text-muted);">5 days left</span>
+            </div>
+            <h4 style="font-size:18px;margin-bottom:8px;">Build a REST API for Inventory Management</h4>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;">Create a Node.js/Express API with PostgreSQL — CRUD operations for products, categories, and stock levels. Swagger docs required.</p>
+            <div style="display:flex;gap:16px;margin-bottom:14px;">
+              <div><span style="font-size:12px;color:var(--text-muted);">Compensation:</span> <span class="font-mono text-pathfinder">₹5,000</span></div>
+              <div><span style="font-size:12px;color:var(--text-muted);">Seats:</span> <span class="font-mono">3</span></div>
+              <div><span style="font-size:12px;color:var(--text-muted);">Applicants:</span> <span class="font-mono text-cyan">12</span></div>
+            </div>
+            <div style="display:flex;gap:8px;"><button class="btn btn-outline btn-sm">View Applicants (12)</button><button class="btn btn-ghost btn-sm">Edit</button></div>
+          </div>
+
+          <div class="bounty-card animate-in" style="animation-delay:50ms;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+              <div style="display:flex;gap:8px;align-items:center;"><span class="domain-tag">🎨 UI/UX</span><span class="bounty-status review">● In Review</span></div>
+              <span style="font-size:12px;color:var(--text-muted);">Deadline passed</span>
+            </div>
+            <h4 style="font-size:18px;margin-bottom:8px;">Redesign Company Landing Page</h4>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;">Design a modern, responsive landing page in Figma. Must include hero, features section, pricing, and contact form.</p>
+            <div style="display:flex;gap:16px;margin-bottom:14px;">
+              <div><span style="font-size:12px;color:var(--text-muted);">Compensation:</span> <span class="font-mono text-pathfinder">₹3,000 + 200 XP</span></div>
+              <div><span style="font-size:12px;color:var(--text-muted);">Submissions:</span> <span class="font-mono text-cyan">5</span></div>
+            </div>
+            <div style="display:flex;gap:8px;"><button class="btn btn-primary btn-sm">Review Submissions (5)</button></div>
+          </div>
+
+          <div class="bounty-card animate-in" style="animation-delay:100ms;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+              <div style="display:flex;gap:8px;align-items:center;"><span class="domain-tag">🤖 AI/DS</span><span class="bounty-status closed">● Closed</span></div>
+              <span style="font-size:12px;color:var(--text-muted);">Completed</span>
+            </div>
+            <h4 style="font-size:18px;margin-bottom:8px;">Build a Chatbot FAQ System</h4>
+            <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;">NLP-based chatbot for customer support FAQs. Must handle 50+ question variations with >85% accuracy.</p>
+            <div style="display:flex;gap:16px;margin-bottom:14px;">
+              <div><span style="font-size:12px;color:var(--text-muted);">Compensation:</span> <span class="font-mono text-pathfinder">₹8,000</span></div>
+              <div><span style="font-size:12px;color:var(--text-muted);">Winner:</span> <span class="font-mono text-green">Anika Kapoor</span></div>
+            </div>
+            <div><button class="btn btn-ghost btn-sm">View Results</button></div>
+          </div>
+        </div>
+
+        <!-- Post Bounty Form -->
+        <div class="card" style="max-width:600px;">
+          <h3 style="margin-bottom:20px;">Post New Bounty</h3>
+          <div class="form-group"><label class="form-label">Title</label><input class="form-input" placeholder="e.g. Build a REST API for..."></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="form-group"><label class="form-label">Domain</label><select class="form-select"><option>💻 Tech Dev</option><option>🤖 AI/DS</option><option>🎨 UI/UX</option></select></div>
+            <div class="form-group"><label class="form-label">Compensation</label><input class="form-input" placeholder="₹5,000 or XP bonus"></div>
+          </div>
+          <div class="form-group"><label class="form-label">Description</label><textarea class="form-textarea" placeholder="Describe the task, deliverable format, and requirements..."></textarea></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="form-group"><label class="form-label">Deadline</label><input class="form-input" type="date"></div>
+            <div class="form-group"><label class="form-label">Seats</label><input class="form-input" type="number" value="3"></div>
+          </div>
+          <button class="btn btn-primary">Publish Bounty →</button>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify — Mentorship</title>
+  
+  <style>
+    .help-request { background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 12px; transition: all 0.2s; }
+    .help-request:hover { border-color: rgba(0,212,255,0.2); }
+    .buddy-match { background: linear-gradient(135deg, rgba(139,92,246,0.06), rgba(0,212,255,0.04)); border: 1px solid rgba(139,92,246,0.2); border-radius: var(--radius-xl); padding: 28px; margin-bottom: 16px; }
+    .skill-swap { display: flex; align-items: center; gap: 16px; justify-content: center; margin: 20px 0; }
+    .skill-swap .arrow { font-size: 24px; color: var(--accent-purple); }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Student · S-OS</div></div></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Main</div>
+        <nav class="sidebar-nav">
+          <a href="home.html" class="sidebar-link"><span class="nav-icon">🏠</span> The Pulse</a>
+          <a href="profile.html" class="sidebar-link"><span class="nav-icon">👤</span> My Profile</a>
+          <a href="leaderboard.html" class="sidebar-link"><span class="nav-icon">🏆</span> Leaderboard</a>
+          <a href="quests.html" class="sidebar-link"><span class="nav-icon">⚡</span> Quests</a>
+          <a href="bootcamp.html" class="sidebar-link"><span class="nav-icon">🛠️</span> Bootcamp</a>
+        </nav>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Social</div><nav class="sidebar-nav"><a href="duels.html" class="sidebar-link"><span class="nav-icon">⚔️</span> Duels</a><a href="mentorship.html" class="sidebar-link active"><span class="nav-icon">🤝</span> Mentorship</a></nav></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Account</div><nav class="sidebar-nav"><a href="settings.html" class="sidebar-link"><span class="nav-icon">⚙️</span> Settings</a></nav></div>
+      <div class="sidebar-user"><div class="user-avatar">RK</div><div class="user-info"><div class="user-name">Rahul Kumar</div><div class="user-role">CSE · 3rd Year</div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><h1 class="topbar-title">Mentorship & Collaboration</h1></div>
+        <div class="topbar-right"><button class="btn btn-primary btn-sm">📢 Post Help Request</button><div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div></div>
+      </header>
+
+      <div class="page-content">
+        <div style="display:grid;grid-template-columns:1fr 380px;gap:24px;">
+          <div>
+            <!-- ═══ STUDY BUDDY MATCH ═══ -->
+            <div class="buddy-match animate-in">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+                <span style="font-size:20px;">🧬</span>
+                <h3 style="font-size:18px;">Study Buddy Match</h3>
+                <span class="badge badge-purple">AI-Matched</span>
+              </div>
+              <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;">Based on your strengths and weaknesses, we found a perfect skill-swap partner:</p>
+              <div class="skill-swap">
+                <div style="text-align:center;">
+                  <div class="avatar avatar-lg" style="margin:0 auto 8px;border-color:var(--accent-cyan);">RK</div>
+                  <div style="font-size:14px;font-weight:600;">You</div>
+                  <div style="font-size:12px;color:var(--accent-green);margin-top:4px;">Strong: 💻 Tech Dev</div>
+                  <div style="font-size:12px;color:var(--accent-red);">Weak: 🎨 UI/UX</div>
+                </div>
+                <div class="arrow">⇄</div>
+                <div style="text-align:center;">
+                  <div class="avatar avatar-lg" style="margin:0 auto 8px;border-color:var(--accent-purple);">NR</div>
+                  <div style="font-size:14px;font-weight:600;">Neha Rao</div>
+                  <div style="font-size:12px;color:var(--accent-green);margin-top:4px;">Strong: 🎨 UI/UX</div>
+                  <div style="font-size:12px;color:var(--accent-red);">Weak: 💻 Tech Dev</div>
+                </div>
+              </div>
+              <div style="text-align:center;"><button class="btn btn-primary btn-sm">Send Skill-Swap Request →</button></div>
+            </div>
+
+            <!-- ═══ HELP REQUESTS ═══ -->
+            <h3 style="margin-bottom:16px;">Help Requests <span style="font-size:13px;color:var(--text-muted);">— visible to higher-tier students in each domain</span></h3>
+
+            <div class="tabs" style="margin-bottom:16px;">
+              <div class="tab active">All Domains</div>
+              <div class="tab">💻 Tech Dev</div>
+              <div class="tab">🧠 Logic & DS</div>
+              <div class="tab">🤖 AI/DS</div>
+              <div class="tab">🎨 UI/UX</div>
+            </div>
+
+            <div class="help-request animate-in">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+                <div style="display:flex;gap:12px;">
+                  <div class="avatar avatar-sm">KR</div>
+                  <div>
+                    <div style="font-size:14px;font-weight:600;">Kiran Reddy <span class="tier-badge tier-launcher" style="font-size:9px;padding:1px 6px;">Launcher</span></div>
+                    <div style="font-size:12px;color:var(--text-muted);">CSE · 1st Year</div>
+                  </div>
+                </div>
+                <span class="domain-tag" style="font-size:11px;">💻 Tech Dev</span>
+              </div>
+              <p style="font-size:14px;margin-bottom:10px;">How do I connect a React frontend to an Express API? Getting CORS errors and can't figure out the proxy setup.</p>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <button class="btn btn-primary btn-sm">Help This Student</button>
+                <span style="font-size:12px;color:var(--text-muted);">Posted 30 min ago · 0 responses</span>
+              </div>
+            </div>
+
+            <div class="help-request animate-in" style="animation-delay:50ms;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+                <div style="display:flex;gap:12px;">
+                  <div class="avatar avatar-sm">TA</div>
+                  <div>
+                    <div style="font-size:14px;font-weight:600;">Tanvi Agrawal <span class="tier-badge tier-builder" style="font-size:9px;padding:1px 6px;">Builder</span></div>
+                    <div style="font-size:12px;color:var(--text-muted);">IT · 2nd Year</div>
+                  </div>
+                </div>
+                <span class="domain-tag" style="font-size:11px;">🤖 AI/DS</span>
+              </div>
+              <p style="font-size:14px;margin-bottom:10px;">Can someone explain gradient descent intuitively? The math makes sense but I'm struggling with the concept.</p>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <button class="btn btn-outline btn-sm">Help This Student</button>
+                <span style="font-size:12px;color:var(--text-muted);">Posted 1 hour ago · 2 responses</span>
+              </div>
+            </div>
+
+            <div class="help-request animate-in" style="animation-delay:100ms;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+                <div style="display:flex;gap:12px;">
+                  <div class="avatar avatar-sm">AG</div>
+                  <div>
+                    <div style="font-size:14px;font-weight:600;">Arjun Gupta <span class="tier-badge tier-trailblazer" style="font-size:9px;padding:1px 6px;">Trailblazer</span></div>
+                    <div style="font-size:12px;color:var(--text-muted);">MECH · 3rd Year</div>
+                  </div>
+                </div>
+                <span class="domain-tag" style="font-size:11px;">🔧 Hardware</span>
+              </div>
+              <p style="font-size:14px;margin-bottom:10px;">Working on an Arduino-based smart irrigation system for the bootcamp. Need help with moisture sensor calibration — anyone done this before?</p>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <button class="btn btn-outline btn-sm">Help This Student</button>
+                <span style="font-size:12px;color:var(--text-muted);">Posted 3 hours ago · 1 response</span>
+                <span class="badge badge-green" style="font-size:10px;">✓ Resolved</span>
+              </div>
+            </div>
+
+            <!-- ═══ MY MENTEES ═══ -->
+            <h3 style="margin-top:var(--space-xl);margin-bottom:16px;">My Mentorship Activity</h3>
+            <div class="card">
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;">
+                <div style="text-align:center;padding:16px;background:var(--bg-elevated);border-radius:var(--radius-md);">
+                  <div class="font-mono" style="font-size:24px;color:var(--accent-green);">12</div>
+                  <div style="font-size:12px;color:var(--text-muted);">Peers Helped</div>
+                </div>
+                <div style="text-align:center;padding:16px;background:var(--bg-elevated);border-radius:var(--radius-md);">
+                  <div class="font-mono" style="font-size:24px;color:var(--accent-pathfinder);">480</div>
+                  <div style="font-size:12px;color:var(--text-muted);">Impact XP</div>
+                </div>
+                <div style="text-align:center;padding:16px;background:var(--bg-elevated);border-radius:var(--radius-md);">
+                  <div class="font-mono" style="font-size:24px;color:var(--accent-cyan);">#8</div>
+                  <div style="font-size:12px;color:var(--text-muted);">Helper Rank</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ RIGHT COLUMN ═══ -->
+          <div>
+            <!-- Helper Leaderboard -->
+            <div class="card animate-in" style="margin-bottom:16px;">
+              <div class="card-header">
+                <div class="card-title">🏅 Helper Leaderboard</div>
+                <span style="font-size:12px;color:var(--text-muted);">Visible to recruiters</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div style="display:flex;align-items:center;gap:10px;padding:10px;background:rgba(245,166,35,0.05);border-radius:var(--radius-md);">
+                  <span class="font-mono" style="color:var(--accent-pathfinder);width:24px;text-align:center;">1</span>
+                  <div class="avatar avatar-sm" style="border-color:var(--accent-pathfinder);">AK</div>
+                  <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Anika Kapoor</div></div>
+                  <span class="font-mono" style="font-size:13px;color:var(--accent-pathfinder);">820 XP</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:10px;">
+                  <span class="font-mono" style="color:var(--accent-trailblazer);width:24px;text-align:center;">2</span>
+                  <div class="avatar avatar-sm">SP</div>
+                  <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Siddharth Patel</div></div>
+                  <span class="font-mono" style="font-size:13px;">710 XP</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;padding:10px;">
+                  <span class="font-mono" style="color:#CD7F32;width:24px;text-align:center;">3</span>
+                  <div class="avatar avatar-sm">MN</div>
+                  <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Meera Nair</div></div>
+                  <span class="font-mono" style="font-size:13px;">680 XP</span>
+                </div>
+                <div class="divider" style="margin:4px 0;"></div>
+                <div style="display:flex;align-items:center;gap:10px;padding:10px;background:rgba(0,212,255,0.05);border-radius:var(--radius-md);border:1px solid rgba(0,212,255,0.15);">
+                  <span class="font-mono" style="color:var(--accent-cyan);width:24px;text-align:center;">8</span>
+                  <div class="avatar avatar-sm" style="border-color:var(--accent-cyan);">RK</div>
+                  <div style="flex:1;"><div style="font-size:13px;font-weight:600;">You</div></div>
+                  <span class="font-mono" style="font-size:13px;color:var(--accent-cyan);">480 XP</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Workshops -->
+            <div class="card animate-in" style="animation-delay:50ms;">
+              <div class="card-header">
+                <div class="card-title">🎓 Workshops</div>
+                <span class="badge badge-purple" style="font-size:10px;">Phase 2</span>
+              </div>
+              <div style="padding:16px;background:var(--bg-elevated);border-radius:var(--radius-md);margin-bottom:10px;">
+                <div style="font-size:14px;font-weight:600;margin-bottom:4px;">API Design Best Practices</div>
+                <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">By Siddharth Patel · Saturday 3:00 PM · 💻 Tech Dev</div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:12px;color:var(--text-secondary);">12 attending</span>
+                  <button class="btn btn-outline btn-sm" style="font-size:11px;padding:4px 10px;">Register</button>
+                </div>
+              </div>
+              <div style="padding:16px;background:var(--bg-elevated);border-radius:var(--radius-md);">
+                <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Intro to Figma for Developers</div>
+                <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">By Neha Rao · Next Wednesday · 🎨 UI/UX</div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:12px;color:var(--text-secondary);">8 attending</span>
+                  <button class="btn btn-outline btn-sm" style="font-size:11px;padding:4px 10px;">Register</button>
+                </div>
+              </div>
+              <button class="btn btn-outline btn-sm w-full" style="margin-top:12px;">+ Host a Workshop</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

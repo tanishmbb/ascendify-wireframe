@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify Hire — Screening Results</title>
+  
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Hire · Recruiter Portal</div></div></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Recruiting</div>
+        <nav class="sidebar-nav">
+          <a href="talent-search.html" class="sidebar-link"><span class="nav-icon">🔍</span> Search Talent</a>
+          <a href="spotlight.html" class="sidebar-link"><span class="nav-icon">⭐</span> Talent Spotlight</a>
+          <a href="bounty.html" class="sidebar-link"><span class="nav-icon">💰</span> Bounty Board</a>
+          <a href="screening-setup.html" class="sidebar-link"><span class="nav-icon">📝</span> Screening</a>
+          <a href="screening-results.html" class="sidebar-link active"><span class="nav-icon">📊</span> Results</a>
+        </nav>
+      </div>
+      <div class="sidebar-user"><div class="user-avatar" style="background:var(--gradient-pathfinder);">TC</div><div class="user-info"><div class="user-name">TechCorp India</div><div class="user-role">Pro Plan</div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><h1 class="topbar-title">Screening Results</h1></div>
+        <div class="topbar-right">
+          <select class="form-select" style="width:auto;font-size:13px;padding:7px 32px 7px 12px;">
+            <option>SDE Intern Round 1 — Backend</option>
+            <option>Frontend Challenge — July 2026</option>
+            <option>ML Engineer Screen</option>
+          </select>
+          <button class="btn btn-outline btn-sm">📥 Export CSV</button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <!-- Summary Stats -->
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:var(--space-xl);">
+          <div class="stat-card animate-in"><div class="stat-label">Invited</div><div class="stat-value">24</div></div>
+          <div class="stat-card animate-in" style="animation-delay:50ms;"><div class="stat-label">Attempted</div><div class="stat-value">21</div></div>
+          <div class="stat-card animate-in" style="animation-delay:100ms;"><div class="stat-label">Passed</div><div class="stat-value" style="color:var(--accent-green);">14</div></div>
+          <div class="stat-card animate-in" style="animation-delay:150ms;"><div class="stat-label">Avg Score</div><div class="stat-value text-cyan">73.2</div></div>
+          <div class="stat-card animate-in" style="animation-delay:200ms;"><div class="stat-label">Avg Time</div><div class="stat-value">22m</div></div>
+        </div>
+
+        <!-- Results Table -->
+        <div class="card" style="padding:0;">
+          <div style="padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border-default);">
+            <div class="pill-tabs">
+              <div class="pill-tab active">All (21)</div>
+              <div class="pill-tab">Passed (14)</div>
+              <div class="pill-tab">Failed (5)</div>
+              <div class="pill-tab">Flagged (2)</div>
+            </div>
+            <div class="topbar-search" style="min-width:200px;"><span class="search-icon">🔍</span><input placeholder="Search student..."></div>
+          </div>
+          <table class="data-table">
+            <thead><tr><th>Rank</th><th>Student</th><th>Score</th><th>Time</th><th>Problems</th><th>Proctoring</th><th>Tier</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="font-mono" style="color:var(--accent-pathfinder);">1</td>
+                <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm" style="border-color:var(--accent-pathfinder);">AK</div>Anika Kapoor</div></td>
+                <td class="font-mono" style="color:var(--accent-green);">96/100</td>
+                <td class="font-mono">18m</td>
+                <td>3/3 <span style="font-size:10px;color:var(--accent-green);">✓</span></td>
+                <td><span class="badge badge-green" style="font-size:10px;">Clean</span></td>
+                <td><span class="tier-badge tier-pathfinder" style="font-size:10px;">⭐</span></td>
+                <td><button class="btn btn-pathfinder btn-sm" style="font-size:11px;padding:4px 10px;">Shortlist</button></td>
+              </tr>
+              <tr>
+                <td class="font-mono" style="color:var(--accent-trailblazer);">2</td>
+                <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">SP</div>Siddharth Patel</div></td>
+                <td class="font-mono" style="color:var(--accent-green);">91/100</td>
+                <td class="font-mono">22m</td>
+                <td>3/3 <span style="font-size:10px;color:var(--accent-green);">✓</span></td>
+                <td><span class="badge badge-green" style="font-size:10px;">Clean</span></td>
+                <td><span class="tier-badge tier-pathfinder" style="font-size:10px;">⭐</span></td>
+                <td><button class="btn btn-pathfinder btn-sm" style="font-size:11px;padding:4px 10px;">Shortlist</button></td>
+              </tr>
+              <tr>
+                <td class="font-mono">3</td>
+                <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">RK</div>Rahul Kumar</div></td>
+                <td class="font-mono" style="color:var(--accent-green);">85/100</td>
+                <td class="font-mono">26m</td>
+                <td>3/3 <span style="font-size:10px;color:var(--accent-green);">✓</span></td>
+                <td><span class="badge badge-green" style="font-size:10px;">Clean</span></td>
+                <td><span class="tier-badge tier-trailblazer" style="font-size:10px;">⭐</span></td>
+                <td><button class="btn btn-outline btn-sm" style="font-size:11px;padding:4px 10px;">Review</button></td>
+              </tr>
+              <tr>
+                <td class="font-mono">4</td>
+                <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">NR</div>Neha Rao</div></td>
+                <td class="font-mono" style="color:var(--accent-green);">82/100</td>
+                <td class="font-mono">29m</td>
+                <td>3/3 <span style="font-size:10px;color:var(--accent-green);">✓</span></td>
+                <td><span class="badge badge-green" style="font-size:10px;">Clean</span></td>
+                <td><span class="tier-badge tier-trailblazer" style="font-size:10px;">⭐</span></td>
+                <td><button class="btn btn-outline btn-sm" style="font-size:11px;padding:4px 10px;">Review</button></td>
+              </tr>
+              <tr>
+                <td class="font-mono">5</td>
+                <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">VS</div>Vikram Singh</div></td>
+                <td class="font-mono" style="color:var(--accent-green);">78/100</td>
+                <td class="font-mono">30m</td>
+                <td>2/3</td>
+                <td><span class="badge badge-green" style="font-size:10px;">Clean</span></td>
+                <td><span class="tier-badge tier-pathfinder" style="font-size:10px;">⭐</span></td>
+                <td><button class="btn btn-outline btn-sm" style="font-size:11px;padding:4px 10px;">Review</button></td>
+              </tr>
+              <tr style="opacity:0.7;">
+                <td class="font-mono">6</td>
+                <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">KR</div>Kiran Reddy</div></td>
+                <td class="font-mono" style="color:var(--accent-amber);">62/100</td>
+                <td class="font-mono">30m</td>
+                <td>2/3</td>
+                <td><span class="badge badge-amber" style="font-size:10px;">⚠️ Tab Switch ×2</span></td>
+                <td><span class="tier-badge tier-launcher" style="font-size:10px;">◇</span></td>
+                <td><button class="btn btn-ghost btn-sm" style="font-size:11px;padding:4px 10px;">Flagged</button></td>
+              </tr>
+              <tr style="opacity:0.5;">
+                <td class="font-mono">7</td>
+                <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">AG</div>Arjun Gupta</div></td>
+                <td class="font-mono" style="color:var(--accent-red);">45/100</td>
+                <td class="font-mono">30m</td>
+                <td>1/3</td>
+                <td><span class="badge badge-green" style="font-size:10px;">Clean</span></td>
+                <td><span class="tier-badge tier-builder" style="font-size:10px;">⬡</span></td>
+                <td><span style="font-size:11px;color:var(--accent-red);">Failed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

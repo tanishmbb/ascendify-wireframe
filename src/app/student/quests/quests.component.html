@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify — Quests</title>
+  
+  <style>
+    .quest-active {
+      background: var(--bg-card); border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg); padding: 20px; position: relative;
+      overflow: hidden; transition: all 0.3s; margin-bottom: 12px;
+    }
+    .quest-active::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+    .quest-active.daily::before { background: var(--accent-cyan); }
+    .quest-active.weekly::before { background: var(--accent-pathfinder); }
+    .quest-active:hover { border-color: rgba(0,212,255,0.2); }
+    .quest-lib-card {
+      background: var(--bg-card); border: 1px solid var(--border-default);
+      border-radius: var(--radius-md); padding: 16px; transition: all 0.2s;
+      cursor: pointer;
+    }
+    .quest-lib-card:hover { border-color: rgba(0,212,255,0.2); transform: translateY(-1px); }
+    .confetti-overlay {
+      position: fixed; inset: 0; z-index: 999; display: flex; align-items: center; justify-content: center;
+      background: rgba(10,15,30,0.8);
+    }
+    .confetti-content {
+      text-align: center; background: var(--bg-card); border: 1px solid var(--border-default);
+      border-radius: var(--radius-xl); padding: 48px; max-width: 400px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Student · S-OS</div></div></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Main</div>
+        <nav class="sidebar-nav">
+          <a href="home.html" class="sidebar-link"><span class="nav-icon">🏠</span> The Pulse</a>
+          <a href="profile.html" class="sidebar-link"><span class="nav-icon">👤</span> My Profile</a>
+          <a href="leaderboard.html" class="sidebar-link"><span class="nav-icon">🏆</span> Leaderboard</a>
+          <a href="quests.html" class="sidebar-link active"><span class="nav-icon">⚡</span> Quests<span class="nav-badge">3</span></a>
+          <a href="bootcamp.html" class="sidebar-link"><span class="nav-icon">🛠️</span> Bootcamp</a>
+        </nav>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Social</div><nav class="sidebar-nav"><a href="duels.html" class="sidebar-link"><span class="nav-icon">⚔️</span> Duels</a><a href="mentorship.html" class="sidebar-link"><span class="nav-icon">🤝</span> Mentorship</a></nav></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Account</div><nav class="sidebar-nav"><a href="settings.html" class="sidebar-link"><span class="nav-icon">⚙️</span> Settings</a></nav></div>
+      <div class="sidebar-user"><div class="user-avatar">RK</div><div class="user-info"><div class="user-name">Rahul Kumar</div><div class="user-role">CSE · 3rd Year</div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><h1 class="topbar-title">Quests</h1></div>
+        <div class="topbar-right"><div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div></div>
+      </header>
+
+      <div class="page-content">
+        <!-- ═══ ACTIVE QUESTS ═══ -->
+        <h3 style="margin-bottom:16px;">Active Quests <span class="badge badge-cyan" style="margin-left:8px;">3 Active</span></h3>
+
+        <!-- Daily Quest 1 -->
+        <div class="quest-active daily animate-in">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span class="badge badge-cyan" style="font-size:10px;">Daily</span>
+                <span class="domain-tag" style="font-size:11px;">🧠 Logic & DS</span>
+                <span style="font-size:12px;color:var(--text-muted);">Personalized — weakest domain</span>
+              </div>
+              <div style="font-size:16px;font-weight:600;">Solve 3 Medium-difficulty problems on LeetCode</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0;">
+              <span class="xp-chip" style="font-size:14px;">+120 XP</span>
+              <div style="font-size:12px;color:var(--accent-amber);margin-top:6px;">⏰ 6h 24m left</div>
+            </div>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:66%;"></div></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-top:6px;">
+            <span>2 of 3 completed</span><span>66%</span>
+          </div>
+        </div>
+
+        <!-- Daily Quest 2 -->
+        <div class="quest-active daily animate-in" style="animation-delay:50ms;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span class="badge badge-cyan" style="font-size:10px;">Daily</span>
+                <span class="domain-tag" style="font-size:11px;">💻 Tech Dev</span>
+              </div>
+              <div style="font-size:16px;font-weight:600;">Push at least 1 meaningful commit to any GitHub repo</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0;">
+              <span class="xp-chip" style="font-size:14px;">+40 XP</span>
+              <div style="font-size:12px;color:var(--accent-amber);margin-top:6px;">⏰ 6h 24m left</div>
+            </div>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--accent-green);"></div></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;margin-top:6px;">
+            <span style="color:var(--accent-green);">✓ Completed!</span><span class="xp-chip">+40 XP earned</span>
+          </div>
+        </div>
+
+        <!-- Daily Quest 3 -->
+        <div class="quest-active daily animate-in" style="animation-delay:100ms;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span class="badge badge-cyan" style="font-size:10px;">Daily</span>
+                <span class="domain-tag" style="font-size:11px;">🤝 Mentorship</span>
+              </div>
+              <div style="font-size:16px;font-weight:600;">Help 1 peer with a code review or question</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0;">
+              <span class="xp-chip" style="font-size:14px;">+30 XP</span>
+              <div style="font-size:12px;color:var(--accent-amber);margin-top:6px;">⏰ 6h 24m left</div>
+            </div>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:0%;"></div></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-top:6px;">
+            <span>Not started</span><span>0%</span>
+          </div>
+        </div>
+
+        <!-- Weekly Quest -->
+        <div class="quest-active weekly animate-in" style="animation-delay:150ms;margin-top:24px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+            <div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                <span class="badge badge-pathfinder" style="font-size:10px;">Weekly Challenge</span>
+                <span class="domain-tag" style="font-size:11px;">💻 Tech Dev</span>
+                <span class="domain-tag" style="font-size:11px;">🤖 AI/DS</span>
+              </div>
+              <div style="font-size:18px;font-weight:600;">Complete Bootcamp Week 13 Problem + Register for Evaluation</div>
+              <p style="font-size:13px;color:var(--text-secondary);margin-top:4px;">Cross-domain challenge tied to bootcamp participation</p>
+            </div>
+            <div style="text-align:right;flex-shrink:0;">
+              <span class="xp-chip" style="font-size:16px;">+300 XP</span>
+              <div style="font-size:12px;color:var(--accent-amber);margin-top:6px;">⏰ 3d 14h left</div>
+            </div>
+          </div>
+          <div class="progress-bar"><div class="progress-fill pathfinder" style="width:30%;"></div></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-top:6px;">
+            <span>Step 1/3: Register team ✓</span><span>30%</span>
+          </div>
+        </div>
+
+        <!-- ═══ QUEST LIBRARY ═══ -->
+        <h3 style="margin-top:var(--space-2xl);margin-bottom:16px;">Quest Library</h3>
+        <p style="font-size:14px;color:var(--text-secondary);margin-bottom:20px;">Browse all quest types. Complete these anytime to earn XP.</p>
+
+        <div class="tabs" style="margin-bottom:var(--space-lg);">
+          <div class="tab active">All Domains</div>
+          <div class="tab">🧠 Logic & DS</div>
+          <div class="tab">💻 Tech Dev</div>
+          <div class="tab">🤖 AI/DS</div>
+          <div class="tab">🎤 Soft Skills</div>
+          <div class="tab">🎨 UI/UX</div>
+          <div class="tab">🔧 Hardware</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+          <div class="quest-lib-card">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+              <span class="domain-tag" style="font-size:11px;">🧠 Logic & DS</span>
+              <span class="xp-chip" style="font-size:11px;">+30–120 XP</span>
+            </div>
+            <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Solve LeetCode Problems</div>
+            <div style="font-size:12px;color:var(--text-secondary);">Easy: 30 XP · Medium: 60 XP · Hard: 120 XP. Auto-synced via API.</div>
+          </div>
+          <div class="quest-lib-card">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+              <span class="domain-tag" style="font-size:11px;">💻 Tech Dev</span>
+              <span class="xp-chip" style="font-size:11px;">+20–100 XP</span>
+            </div>
+            <div style="font-size:14px;font-weight:600;margin-bottom:4px;">GitHub Contributions</div>
+            <div style="font-size:12px;color:var(--text-secondary);">Commits, PRs, new repos. Quality tier multiplied. Auto-synced via webhook.</div>
+          </div>
+          <div class="quest-lib-card">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+              <span class="domain-tag" style="font-size:11px;">🎤 Soft Skills</span>
+              <span class="xp-chip" style="font-size:11px;">+50 XP</span>
+            </div>
+            <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Attend Campus Event</div>
+            <div style="font-size:12px;color:var(--text-secondary);">Check in via QR code at college-verified events. XP within 60 seconds.</div>
+          </div>
+          <div class="quest-lib-card">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+              <span class="domain-tag" style="font-size:11px;">All Domains</span>
+              <span class="xp-chip" style="font-size:11px;">+200–450 XP</span>
+            </div>
+            <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Upload Certificate</div>
+            <div style="font-size:12px;color:var(--text-secondary);">Submit verified certificates. Requires 3 peer endorsements. S×5 to C×1 multiplier.</div>
+          </div>
+          <div class="quest-lib-card">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+              <span class="domain-tag" style="font-size:11px;">🤝 Mentorship</span>
+              <span class="xp-chip" style="font-size:11px;">+20–40 XP</span>
+            </div>
+            <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Help a Peer</div>
+            <div style="font-size:12px;color:var(--text-secondary);">Answer help requests. Confirmed by peer upvote. Earns Impact XP.</div>
+          </div>
+          <div class="quest-lib-card">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+              <span class="domain-tag" style="font-size:11px;">⚔️ Duels</span>
+              <span class="xp-chip" style="font-size:11px;">+50–380 XP</span>
+            </div>
+            <div style="font-size:14px;font-weight:600;margin-bottom:4px;">Win a Peer Duel</div>
+            <div style="font-size:12px;color:var(--text-secondary);">Challenge and defeat a student. Giant Slayer bonus for upset victories.</div>
+          </div>
+        </div>
+
+        <!-- ═══ QUEST COMPLETION ANIMATION (example) ═══ -->
+        <div class="confetti-overlay" style="display:none;">
+          <div class="confetti-content">
+            <div style="font-size:64px;margin-bottom:16px;">🎉</div>
+            <h2 style="font-size:28px;margin-bottom:8px;">Quest Complete!</h2>
+            <p style="color:var(--text-secondary);margin-bottom:20px;">Push at least 1 meaningful commit</p>
+            <div class="xp-chip" style="font-size:24px;padding:8px 20px;">+40 XP</div>
+            <button class="btn btn-primary" style="margin-top:24px;">Continue →</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

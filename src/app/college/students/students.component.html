@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify College — Student Directory</title>
+  
+  <style>
+    .college-sidebar { background: var(--bg-card); border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="college-sidebar">
+      <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">College / Placement OS</div></div></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Overview</div>
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="sidebar-link"><span class="nav-icon">📊</span> Dashboard</a>
+          <a href="students.html" class="sidebar-link active"><span class="nav-icon">🎓</span> Students</a>
+          <a href="college-analytics.html" class="sidebar-link"><span class="nav-icon">📈</span> Analytics</a>
+        </nav>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Operations</div>
+        <nav class="sidebar-nav">
+          <a href="bootcamps.html" class="sidebar-link"><span class="nav-icon">🛠️</span> Bootcamps</a>
+          <a href="events.html" class="sidebar-link"><span class="nav-icon">📅</span> Events & QR</a>
+          <a href="panels.html" class="sidebar-link"><span class="nav-icon">⚖️</span> Panel Config</a>
+        </nav>
+      </div>
+      <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">MR</div><div class="user-info"><div class="user-name">Malla Reddy Univ</div><div class="user-role">Placement Cell</div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><h1 class="topbar-title">Student Directory</h1></div>
+        <div class="topbar-right">
+          <button class="btn btn-primary btn-sm" (click)="toggleMassEmail()">✉️ Send Mass Email</button>
+          <button class="btn btn-outline btn-sm">📥 Export CSV</button>
+          <div class="topbar-icon-btn">🔔</div>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <div class="card" style="padding:0;">
+          <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);display:flex;gap:16px;align-items:center;">
+            <div class="topbar-search" style="flex:1;"><span class="search-icon">🔍</span><input placeholder="Search by name or roll number..."></div>
+            <select class="form-select" style="width:auto;"><option>All Branches</option><option>CSE</option><option>ECE</option><option>IT</option></select>
+            <select class="form-select" style="width:auto;"><option>All Years</option><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option></select>
+            <select class="form-select" style="width:auto;"><option>Overall Tier</option><option>Pathfinder</option><option>Trailblazer</option><option>Builder</option></select>
+          </div>
+          
+          <table class="data-table">
+            <thead>
+              <tr><th><input type="checkbox"></th><th>Student</th><th>Roll No.</th><th>Branch/Year</th><th>Overall Score</th><th>Top Domain</th><th>Tier</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm" style="border-color:var(--accent-pathfinder);">AK</div><div style="font-weight:600;">Anika Kapoor</div></div></td>
+                <td class="font-mono" style="font-size:12px;">21CS1012</td>
+                <td style="font-size:12px;">CSE · 3rd</td>
+                <td class="font-mono text-cyan">2,487</td>
+                <td><span class="domain-tag" style="font-size:11px;">🤖 AI/DS</span></td>
+                <td><span class="tier-badge tier-pathfinder" style="font-size:10px;">⭐</span></td>
+                <td><button class="btn btn-ghost btn-sm" style="font-size:11px;">View</button></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">SP</div><div style="font-weight:600;">Siddharth Patel</div></div></td>
+                <td class="font-mono" style="font-size:12px;">21CS1044</td>
+                <td style="font-size:12px;">CSE · 4th</td>
+                <td class="font-mono text-cyan">2,341</td>
+                <td><span class="domain-tag" style="font-size:11px;">💻 Tech Dev</span></td>
+                <td><span class="tier-badge tier-pathfinder" style="font-size:10px;">⭐</span></td>
+                <td><button class="btn btn-ghost btn-sm" style="font-size:11px;">View</button></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">RK</div><div style="font-weight:600;">Rahul Kumar</div></div></td>
+                <td class="font-mono" style="font-size:12px;">21CS1045</td>
+                <td style="font-size:12px;">CSE · 3rd</td>
+                <td class="font-mono text-cyan">1,847</td>
+                <td><span class="domain-tag" style="font-size:11px;">💻 Tech Dev</span></td>
+                <td><span class="tier-badge tier-trailblazer" style="font-size:10px;">⭐</span></td>
+                <td><button class="btn btn-ghost btn-sm" style="font-size:11px;">View</button></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">NR</div><div style="font-weight:600;">Neha Rao</div></div></td>
+                <td class="font-mono" style="font-size:12px;">22CS2011</td>
+                <td style="font-size:12px;">CSE · 2nd</td>
+                <td class="font-mono text-cyan">1,978</td>
+                <td><span class="domain-tag" style="font-size:11px;">🎨 UI/UX</span></td>
+                <td><span class="tier-badge tier-trailblazer" style="font-size:10px;">⭐</span></td>
+                <td><button class="btn btn-ghost btn-sm" style="font-size:11px;">View</button></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">TA</div><div style="font-weight:600;">Tanvi Agrawal</div></div></td>
+                <td class="font-mono" style="font-size:12px;">22IT3042</td>
+                <td style="font-size:12px;">IT · 2nd</td>
+                <td class="font-mono text-cyan">1,780</td>
+                <td><span class="domain-tag" style="font-size:11px;">🤖 AI/DS</span></td>
+                <td><span class="tier-badge tier-builder" style="font-size:10px;">⬡</span></td>
+                <td><button class="btn btn-ghost btn-sm" style="font-size:11px;">View</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="padding:16px;text-align:center;border-top:1px solid var(--border-default);">
+            <button class="btn btn-outline btn-sm">Load More (Showing 1-5 of 2481)</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <!-- Mass Email Drawer -->
+  <div class="overlay" *ngIf="isMassEmailOpen" (click)="toggleMassEmail()" style="position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(10,15,30,0.6); z-index:999;"></div>
+  <div class="drawer" [ngStyle]="{'right': isMassEmailOpen ? '0' : '-500px'}" style="position:fixed; top:0; bottom:0; width:500px; background:var(--bg-elevated); border-left:1px solid var(--border-default); z-index:1000; transition: right 0.3s ease; padding: 24px; display:flex; flex-direction:column;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+      <h3 style="margin:0;">Compose Email</h3>
+      <button class="btn btn-ghost btn-sm" (click)="toggleMassEmail()">✕</button>
+    </div>
+    
+    <div style="flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:16px;">
+      <div style="background:var(--bg-card); padding:12px; border-radius:var(--radius-md); border:1px solid var(--border-default);">
+        <span style="font-size:13px; color:var(--text-secondary);">To: </span>
+        <span style="font-size:13px; font-weight:600; color:var(--accent-cyan);">248 Students Selected (CSE 3rd Year)</span>
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Subject</label>
+        <input class="form-input" placeholder="e.g. Important: Meta Placement Drive Registration" value="Important: Meta Placement Drive Registration">
+      </div>
+      
+      <div class="form-group">
+        <label class="form-label">Message Template</label>
+        <select class="form-select">
+          <option>Custom Message</option>
+          <option>Placement Drive Announcement</option>
+          <option>Bootcamp Deadline Reminder</option>
+          <option>Resume Update Request</option>
+        </select>
+      </div>
+      
+      <div class="form-group" style="flex:1; display:flex; flex-direction:column;">
+        <label class="form-label">Body</label>
+        <textarea class="form-input" style="flex:1; min-height: 200px; resize:none;" placeholder="Type your message here..."></textarea>
+        <div style="font-size:11px; color:var(--text-muted); margin-top:8px;">Supports Markdown. You can use variables like {{ '{' }}{{ '{' }}student.name{{ '}' }}{{ '}' }}.</div>
+      </div>
+    </div>
+    
+    <div style="margin-top:24px; display:flex; gap:12px; justify-content:flex-end;">
+      <button class="btn btn-outline" (click)="toggleMassEmail()">Cancel</button>
+      <button class="btn btn-primary" (click)="toggleMassEmail()">Send Email</button>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Hire · Recruiter Portal</div></div></div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Recruiting</div>
+      <nav class="sidebar-nav">
+        <a href="/company/talent-search" class="sidebar-link"><span class="nav-icon">🔍</span> Search Talent</a>
+        <a href="/company/spotlight" class="sidebar-link"><span class="nav-icon">⭐</span> Talent Spotlight</a>
+        <a href="/company/bounty" class="sidebar-link"><span class="nav-icon">💰</span> Bounty Board</a>
+        <a href="/company/screening-setup" class="sidebar-link"><span class="nav-icon">📝</span> Screening</a>
+        <a href="/company/screening-results" class="sidebar-link"><span class="nav-icon">📊</span> Results</a>
+      </nav>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Management</div>
+      <nav class="sidebar-nav">
+        <a href="/company/watchlist" class="sidebar-link"><span class="nav-icon">📋</span> Watchlist</a>
+        <a href="/company/duel-arenas" class="sidebar-link"><span class="nav-icon">⚔️</span> Duel Arenas</a>
+        <a href="/company/analytics" class="sidebar-link"><span class="nav-icon">📈</span> Analytics</a>
+        <a href="/company/billing" class="sidebar-link active"><span class="nav-icon">⚙️</span> Account & Billing</a>
+      </nav>
+    </div>
+    <div class="sidebar-user"><div class="user-avatar" style="background:var(--gradient-pathfinder);">TC</div><div class="user-info"><div class="user-name">TechCorp India</div><div class="user-role">Pro Plan · 5 seats</div></div></div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="topbar-title">Account & Billing</h1>
+        <span style="font-size:13px;color:var(--text-muted);">Manage your subscription and credits</span>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div>
+      </div>
+    </header>
+
+    <div class="page-content" style="max-width: 900px;">
+      
+      <!-- Subscription Plan -->
+      <div class="card animate-in" style="margin-bottom: 24px;">
+        <h3 style="margin-bottom: 16px;">Current Plan</h3>
+        <div style="display:flex; justify-content:space-between; align-items:center; padding: 24px; background: rgba(0,212,255,0.05); border: 1px solid var(--accent-cyan); border-radius: var(--radius-md);">
+          <div>
+            <div style="font-size:24px; font-weight:700; color:var(--accent-cyan); margin-bottom:8px;">Ascendify Pro Plan</div>
+            <div style="font-size:14px; color:var(--text-secondary);">₹50,000 / month · 5 Recruiter Seats Included</div>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:8px;">Next billing date: Aug 1, 2026</div>
+          </div>
+          <div style="text-align:right;">
+            <button class="btn btn-primary" style="margin-bottom: 8px;">Upgrade to Enterprise</button>
+            <div style="font-size:12px; color:var(--accent-red); cursor:pointer;">Cancel Subscription</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Credits -->
+      <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 24px;">
+        
+        <!-- API Credits -->
+        <div class="card animate-in" style="animation-delay:50ms;">
+          <h3 style="margin-bottom: 4px;">Recruitment Credits</h3>
+          <p style="font-size:12px; color:var(--text-secondary); margin-bottom: 16px;">Used for sending interest requests and custom screening.</p>
+          <div style="font-size:36px; font-weight:800; font-family:monospace; margin-bottom:16px;">4,250 <span style="font-size:16px; color:var(--text-muted); font-weight:400;">/ 5,000</span></div>
+          <div class="progress-bar" style="margin-bottom: 16px;"><div class="progress-fill cyan" style="width: 85%;"></div></div>
+          <button class="btn btn-outline btn-sm">Buy More Credits</button>
+        </div>
+
+        <!-- Seats -->
+        <div class="card animate-in" style="animation-delay:100ms;">
+          <h3 style="margin-bottom: 4px;">Team Seats</h3>
+          <p style="font-size:12px; color:var(--text-secondary); margin-bottom: 16px;">Recruiters and hiring managers with portal access.</p>
+          <div style="font-size:36px; font-weight:800; font-family:monospace; margin-bottom:16px;">3 <span style="font-size:16px; color:var(--text-muted); font-weight:400;">/ 5</span></div>
+          <div class="progress-bar" style="margin-bottom: 16px;"><div class="progress-fill purple" style="width: 60%;"></div></div>
+          <button class="btn btn-outline btn-sm">Manage Team</button>
+        </div>
+      </div>
+
+      <!-- Invoice History -->
+      <div class="card animate-in" style="animation-delay:150ms;">
+        <h3 style="margin-bottom: 16px;">Billing History</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Invoice</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-size:13px;">Jul 1, 2026</td>
+              <td style="font-size:13px;">Pro Plan - Monthly</td>
+              <td style="font-size:13px;">₹50,000</td>
+              <td><span class="badge badge-green">Paid</span></td>
+              <td><button class="btn btn-ghost btn-sm">↓ PDF</button></td>
+            </tr>
+            <tr>
+              <td style="font-size:13px;">Jun 1, 2026</td>
+              <td style="font-size:13px;">Pro Plan - Monthly</td>
+              <td style="font-size:13px;">₹50,000</td>
+              <td><span class="badge badge-green">Paid</span></td>
+              <td><button class="btn btn-ghost btn-sm">↓ PDF</button></td>
+            </tr>
+            <tr>
+              <td style="font-size:13px;">May 15, 2026</td>
+              <td style="font-size:13px;">Additional 1,000 Credits</td>
+              <td style="font-size:13px;">₹10,000</td>
+              <td><span class="badge badge-green">Paid</span></td>
+              <td><button class="btn btn-ghost btn-sm">↓ PDF</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </main>
+</div>

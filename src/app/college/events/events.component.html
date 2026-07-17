@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify College — Events & QR</title>
+  
+  <style>
+    .college-sidebar { background: var(--bg-card); border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
+    .qr-card { background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-xl); padding: 32px; text-align: center; }
+    .qr-image { width: 200px; height: 200px; background: white; padding: 16px; border-radius: var(--radius-md); margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="college-sidebar">
+      <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">College / Placement OS</div></div></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Overview</div>
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="sidebar-link"><span class="nav-icon">📊</span> Dashboard</a>
+          <a href="students.html" class="sidebar-link"><span class="nav-icon">🎓</span> Students</a>
+          <a href="college-analytics.html" class="sidebar-link"><span class="nav-icon">📈</span> Analytics</a>
+        </nav>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Operations</div>
+        <nav class="sidebar-nav">
+          <a href="bootcamps.html" class="sidebar-link"><span class="nav-icon">🛠️</span> Bootcamps</a>
+          <a href="events.html" class="sidebar-link active"><span class="nav-icon">📅</span> Events & QR</a>
+          <a href="panels.html" class="sidebar-link"><span class="nav-icon">⚖️</span> Panel Config</a>
+        </nav>
+      </div>
+      <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">MR</div><div class="user-info"><div class="user-name">Malla Reddy Univ</div><div class="user-role">Placement Cell</div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><h1 class="topbar-title">Events & QR Attendance</h1></div>
+        <div class="topbar-right">
+          <button class="btn btn-primary btn-sm">+ Create Event</button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <!-- Active Event -->
+          <div class="qr-card animate-in">
+            <h3 style="margin-bottom:8px;">Live Event Registration</h3>
+            <p style="font-size:14px;color:var(--text-secondary);margin-bottom:24px;">API Design Workshop (Tech Dev)</p>
+            
+            <div class="qr-image">
+              <!-- Placeholder for actual QR code image -->
+              <svg viewBox="0 0 100 100" style="width:100%;height:100%;">
+                <rect x="0" y="0" width="30" height="30" fill="black"/><rect x="5" y="5" width="20" height="20" fill="white"/><rect x="10" y="10" width="10" height="10" fill="black"/>
+                <rect x="70" y="0" width="30" height="30" fill="black"/><rect x="75" y="5" width="20" height="20" fill="white"/><rect x="80" y="10" width="10" height="10" fill="black"/>
+                <rect x="0" y="70" width="30" height="30" fill="black"/><rect x="5" y="75" width="20" height="20" fill="white"/><rect x="10" y="80" width="10" height="10" fill="black"/>
+                <!-- Some random blocks -->
+                <rect x="40" y="10" width="20" height="10" fill="black"/><rect x="40" y="40" width="20" height="20" fill="black"/><rect x="70" y="40" width="30" height="20" fill="black"/><rect x="40" y="70" width="10" height="30" fill="black"/><rect x="60" y="70" width="40" height="10" fill="black"/><rect x="80" y="80" width="20" height="20" fill="black"/>
+              </svg>
+            </div>
+            
+            <div style="font-family:'JetBrains Mono';font-size:24px;font-weight:600;letter-spacing:4px;color:var(--accent-cyan);margin-bottom:16px;">EVENT-482</div>
+            <div style="display:flex;justify-content:center;gap:16px;margin-bottom:24px;">
+              <div style="text-align:center;"><div class="font-mono" style="font-size:20px;color:var(--accent-green);">142</div><div style="font-size:11px;color:var(--text-muted);">Scanned</div></div>
+              <div style="text-align:center;"><div class="font-mono" style="font-size:20px;">200</div><div style="font-size:11px;color:var(--text-muted);">Capacity</div></div>
+            </div>
+            
+            <div style="display:flex;gap:8px;justify-content:center;">
+              <button class="btn btn-outline">Print QR Code</button>
+              <button class="btn btn-ghost">End Event</button>
+            </div>
+          </div>
+
+          <!-- Event Creation Form -->
+          <div class="card animate-in" style="animation-delay:50ms;">
+            <h3 style="margin-bottom:20px;">Create New Event</h3>
+            <div class="form-group"><label class="form-label">Event Title</label><input class="form-input" placeholder="e.g. Hackathon Kickoff"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div class="form-group"><label class="form-label">Date</label><input class="form-input" type="date"></div>
+              <div class="form-group"><label class="form-label">Time</label><input class="form-input" type="time"></div>
+            </div>
+            <div class="form-group"><label class="form-label">Domain Tag</label><select class="form-select"><option>Cross-Domain (General)</option><option>Tech Dev</option><option>AI/DS</option><option>Logic & DS</option><option>Soft Skills</option></select></div>
+            <div class="form-group"><label class="form-label">XP Reward (Attendance)</label><input class="form-input" type="number" placeholder="50"></div>
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+              <div class="toggle-switch active"></div>
+              <div><div style="font-size:13px;font-weight:600;">Dynamic QR Code</div><div style="font-size:11px;color:var(--text-muted);">Refreshes every 10 seconds to prevent sharing photos</div></div>
+            </div>
+            <button class="btn btn-primary w-full">Generate Event & QR</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

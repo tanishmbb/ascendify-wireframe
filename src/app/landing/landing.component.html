@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify — Student Operating System</title>
+  <meta name="description" content="Campus-exclusive, gamified Social Operating System. Replace the static resume with verified Proof of Work.">
+  
+  <style>
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 9999px;
+      font-size: 13px;
+      color: var(--accent-cyan);
+      font-weight: 500;
+      margin-bottom: 32px;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 72px;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      animation: fadeInUp 0.6s ease 0.1s forwards;
+      opacity: 0;
+    }
+    .hero-title .gradient {
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-pathfinder) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--text-secondary);
+      max-width: 640px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+      animation: fadeInUp 0.6s ease 0.2s forwards;
+      opacity: 0;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      animation: fadeInUp 0.6s ease 0.3s forwards;
+      opacity: 0;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      margin-top: 80px;
+      animation: fadeInUp 0.6s ease 0.4s forwards;
+      opacity: 0;
+    }
+    .hero-stat .number {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 36px;
+      color: var(--accent-cyan);
+    }
+    .hero-stat .label {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .glow-orb-1 {
+      width: 400px; height: 400px;
+      background: rgba(0,212,255,0.06);
+      top: 10%; left: 10%;
+      animation: float 8s ease-in-out infinite;
+    }
+    .glow-orb-2 {
+      width: 300px; height: 300px;
+      background: rgba(139,92,246,0.05);
+      bottom: 20%; right: 15%;
+      animation: float 6s ease-in-out infinite reverse;
+    }
+    .glow-orb-3 {
+      width: 200px; height: 200px;
+      background: rgba(245,166,35,0.04);
+      top: 40%; right: 30%;
+      animation: float 10s ease-in-out infinite;
+    }
+    /* Pillar Cards */
+    .pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: left;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .pillar-card:hover { border-color: rgba(0,212,255,0.2); transform: translateY(-4px); }
+    .pillar-card:hover::before { opacity: 1; }
+    .pillar-card:nth-child(1)::before { background: var(--gradient-cyan); }
+    .pillar-card:nth-child(2)::before { background: var(--gradient-pathfinder); }
+    .pillar-card:nth-child(3)::before { background: var(--gradient-purple); }
+    .pillar-card:nth-child(4)::before { background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); }
+    .pillar-card:nth-child(5)::before { background: linear-gradient(135deg, var(--accent-amber), var(--accent-red)); }
+    .pillar-icon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .pillar-card h3 { font-size: 20px; margin-bottom: 12px; }
+    .pillar-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* Problem / Solution Table */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .problem-card, .solution-card {
+      padding: 28px;
+      border-radius: 14px;
+      border: 1px solid var(--border-default);
+    }
+    .problem-card {
+      background: rgba(239,68,68,0.03);
+      border-color: rgba(239,68,68,0.15);
+    }
+    .solution-card {
+      background: rgba(16,185,129,0.03);
+      border-color: rgba(16,185,129,0.15);
+    }
+    .problem-card .number, .solution-card .number {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+    .problem-card .number { color: rgba(239,68,68,0.3); }
+    .solution-card .number { color: rgba(16,185,129,0.3); }
+
+    /* How it works */
+    .steps {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 60px;
+      right: 60px;
+      height: 2px;
+      background: var(--border-default);
+    }
+    .step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+    .step-number {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 2px solid var(--border-default);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 24px;
+      color: var(--accent-cyan);
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+    .step:hover .step-number {
+      border-color: var(--accent-cyan);
+      box-shadow: var(--shadow-glow-cyan);
+    }
+    .step h4 { font-size: 18px; margin-bottom: 8px; }
+    .step p { font-size: 13px; color: var(--text-secondary); }
+
+    /* Domain Grid */
+    .domain-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .domain-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .domain-card:hover {
+      border-color: rgba(0,212,255,0.2);
+      transform: translateY(-2px);
+    }
+    .domain-card .domain-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+    .domain-card .domain-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .domain-card .domain-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Triple Win */
+    .triple-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .triple-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .triple-card:hover { border-color: rgba(0,212,255,0.2); transform: translateY(-4px); }
+    .triple-card .triple-icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+    .triple-card h3 { font-size: 22px; margin-bottom: 12px; }
+    .triple-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    .triple-card ul { text-align: left; margin-top: 16px; }
+    .triple-card li {
+      font-size: 13px;
+      color: var(--text-secondary);
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(30,45,69,0.5);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .triple-card li:last-child { border-bottom: none; }
+    .triple-card li .check { color: var(--accent-green); }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 120px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(0,212,255,0.08) 0%, transparent 60%);
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--border-default);
+      padding: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    /* Feature Grid */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .feature-item {
+      display: flex;
+      gap: 16px;
+      padding: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+    .feature-item:hover { border-color: rgba(0,212,255,0.2); }
+    .feature-item .feature-icon-box {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .feature-item h4 { font-size: 15px; margin-bottom: 4px; }
+    .feature-item p { font-size: 12px; color: var(--text-secondary); }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════ NAVIGATION ═══════════════ -->
+  <nav class="landing-nav" id="main-nav">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="font-display" style="font-size:24px;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-pathfinder));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">ASCENDIFY</span>
+      <span style="font-size:10px;color:var(--text-muted);letter-spacing:2px;padding-top:4px;">S-OS</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:32px;">
+      <a href="#pillars" style="font-size:14px;color:var(--text-secondary);">Pillars</a>
+      <a href="#how-it-works" style="font-size:14px;color:var(--text-secondary);">How it Works</a>
+      <a href="#domains" style="font-size:14px;color:var(--text-secondary);">Domains</a>
+      <a href="#ecosystem" style="font-size:14px;color:var(--text-secondary);">Ecosystem</a>
+      <a href="#features" style="font-size:14px;color:var(--text-secondary);">Features</a>
+      <a href="auth.html" class="btn btn-outline btn-sm">Log In</a>
+      <a href="auth.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero-section" id="hero">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    <div class="glow-orb glow-orb-3"></div>
+    <div style="position:relative;z-index:1;">
+      <div class="hero-badge">
+        <span style="width:6px;height:6px;background:var(--accent-green);border-radius:50%;display:inline-block;"></span>
+        Campus-Exclusive · Gamified · Verified
+      </div>
+      <h1 class="hero-title">
+        Your Skills.<br>
+        <span class="gradient">Proven. Ranked. Hired.</span>
+      </h1>
+      <p class="hero-subtitle">
+        The Student Operating System that replaces the static resume with an automated, panel-verified Proof of Work ledger. Your real skill — visible, verifiable, and valuable to recruiters.
+      </p>
+      <div class="hero-actions">
+        <a href="auth.html" class="btn btn-primary btn-lg">Start Building Your Profile →</a>
+        <a href="#how-it-works" class="btn btn-outline btn-lg">See How It Works</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="number">8</div>
+          <div class="label">Domain Tracks</div>
+        </div>
+        <div class="hero-stat">
+          <div class="number">1200</div>
+          <div class="label">Starting Elo</div>
+        </div>
+        <div class="hero-stat">
+          <div class="number">100%</div>
+          <div class="label">Verified Actions</div>
+        </div>
+        <div class="hero-stat">
+          <div class="number">0</div>
+          <div class="label">Self-Reported Claims</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CORE PILLARS ═══════════════ -->
+  <section class="section" id="pillars" style="background:var(--bg-card);">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:48px;">
+        <span class="badge badge-cyan" style="margin-bottom:16px;display:inline-flex;">CORE PILLARS</span>
+        <h2 style="font-size:36px;">Built on Five Unshakeable Principles</h2>
+        <p style="color:var(--text-secondary);margin-top:12px;max-width:600px;margin-left:auto;margin-right:auto;">Every feature, every metric, every leaderboard traces back to these pillars.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+        <div class="pillar-card animate-in">
+          <div class="pillar-icon" style="background:rgba(0,212,255,0.1);color:var(--accent-cyan);">⚡</div>
+          <h3>Proof of Work</h3>
+          <p>XP earned through verified action — not typed claims. Every point traced to a commit, a defence, or a scan.</p>
+        </div>
+        <div class="pillar-card animate-in">
+          <div class="pillar-icon" style="background:rgba(245,166,35,0.1);color:var(--accent-pathfinder);">🏆</div>
+          <h3>Niche Meritocracy</h3>
+          <p>8 independent domain leaderboards. Every student is Top 10% somewhere. No single GPA axis.</p>
+        </div>
+        <div class="pillar-card animate-in">
+          <div class="pillar-icon" style="background:rgba(139,92,246,0.1);color:var(--accent-purple);">🔬</div>
+          <h3>Physical Verification</h3>
+          <p>Saturday bootcamp MVP defences. Panel-scored. Auditable. No one can fake building a working product.</p>
+        </div>
+        <div class="pillar-card animate-in" style="grid-column:1/3;">
+          <div style="display:flex;gap:32px;align-items:center;">
+            <div class="pillar-icon" style="background:rgba(16,185,129,0.1);color:var(--accent-green);flex-shrink:0;">🤝</div>
+            <div>
+              <h3>Triple-Win Ecosystem</h3>
+              <p>Students get careers. Colleges get analytics. Companies get pre-verified talent. One platform, three stakeholders, zero wasted time.</p>
+            </div>
+          </div>
+        </div>
+        <div class="pillar-card animate-in">
+          <div class="pillar-icon" style="background:rgba(245,158,11,0.1);color:var(--accent-amber);">🔒</div>
+          <h3>Campus-Exclusive Trust</h3>
+          <p>Restricted to one college per deployment. High-trust, high-network-effect environment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PROBLEM & SOLUTION ═══════════════ -->
+  <section class="section" id="problems">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:48px;">
+        <span class="badge badge-red" style="margin-bottom:16px;display:inline-flex;">THE PROBLEM</span>
+        <h2 style="font-size:36px;">Four Broken Systems. One Fix.</h2>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card animate-in">
+          <div class="number">01</div>
+          <h4 style="color:var(--accent-red);margin-bottom:8px;">The Average Fallacy</h4>
+          <p style="font-size:14px;color:var(--text-secondary);">GPA discards niche talent in specific domains. Students with low GPA but high domain mastery are filtered out before the first conversation.</p>
+        </div>
+        <div class="solution-card animate-in">
+          <div class="number">→</div>
+          <h4 style="color:var(--accent-green);margin-bottom:8px;">8 Independent Leaderboards</h4>
+          <p style="font-size:14px;color:var(--text-secondary);">Elo + XP per domain, not blended. Everyone is Top 10% somewhere. No single axis determines worth.</p>
+        </div>
+        <div class="problem-card animate-in">
+          <div class="number">02</div>
+          <h4 style="color:var(--accent-red);margin-bottom:8px;">Invisible Talent</h4>
+          <p style="font-size:14px;color:var(--text-secondary);">Capable introverts with zero campus visibility. Current system favours extroverts — builders stay hidden.</p>
+        </div>
+        <div class="solution-card animate-in">
+          <div class="number">→</div>
+          <h4 style="color:var(--accent-green);margin-bottom:8px;">API-Auto-Built Profile</h4>
+          <p style="font-size:14px;color:var(--text-secondary);">GitHub, LeetCode, CodeChef webhooks build your profile automatically. No self-promotion required.</p>
+        </div>
+        <div class="problem-card animate-in">
+          <div class="number">03</div>
+          <h4 style="color:var(--accent-red);margin-bottom:8px;">Resume Dishonesty</h4>
+          <p style="font-size:14px;color:var(--text-secondary);">Unverifiable claims, identical-looking CVs. Companies waste ₹80,000+ per recruitment cycle on manual interviews.</p>
+        </div>
+        <div class="solution-card animate-in">
+          <div class="number">→</div>
+          <h4 style="color:var(--accent-green);margin-bottom:8px;">Physical Panel Verification</h4>
+          <p style="font-size:14px;color:var(--text-secondary);">Saturday Bootcamp + Admin Portal scoring. Timestamped audit logs. Every achievement has a source.</p>
+        </div>
+        <div class="problem-card animate-in">
+          <div class="number">04</div>
+          <h4 style="color:var(--accent-red);margin-bottom:8px;">Motivation Decay</h4>
+          <p style="font-size:14px;color:var(--text-secondary);">No feedback loop outside exam season. Mid-tier and bottom-tier students rely on attendance registers and semester-end grades.</p>
+        </div>
+        <div class="solution-card animate-in">
+          <div class="number">→</div>
+          <h4 style="color:var(--accent-green);margin-bottom:8px;">Gamification Engine</h4>
+          <p style="font-size:14px;color:var(--text-secondary);">Daily quests, streaks, duels, XP pop-ups, leaderboard movement. Constant feedback that feels like progress.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ HOW IT WORKS ═══════════════ -->
+  <section class="section" id="how-it-works" style="background:var(--bg-card);">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:16px;">
+        <span class="badge badge-pathfinder" style="margin-bottom:16px;display:inline-flex;">HOW IT WORKS</span>
+        <h2 style="font-size:36px;">From Zero to Hired in Four Steps</h2>
+      </div>
+      <div class="steps">
+        <div class="step animate-in">
+          <div class="step-number">1</div>
+          <h4>Connect</h4>
+          <p>Sign up with college email. Link GitHub, LeetCode, CodeChef. Data flows automatically.</p>
+        </div>
+        <div class="step animate-in">
+          <div class="step-number">2</div>
+          <h4>Build</h4>
+          <p>Complete quests, join bootcamps, solve duels. Every verified action earns XP across 8 domains.</p>
+        </div>
+        <div class="step animate-in">
+          <div class="step-number">3</div>
+          <h4>Prove</h4>
+          <p>Defend your MVP every Saturday. Panel-scored. Your proof of work is auditable and timestamped.</p>
+        </div>
+        <div class="step animate-in">
+          <div class="step-number">4</div>
+          <h4>Get Found</h4>
+          <p>Companies search the live talent database. Your rank, velocity, and verified work speak for you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 8 DOMAINS ═══════════════ -->
+  <section class="section" id="domains">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:16px;">
+        <span class="badge badge-purple" style="margin-bottom:16px;display:inline-flex;">8 DOMAIN TRACKS</span>
+        <h2 style="font-size:36px;">Every Branch. Every Skill. Ranked Independently.</h2>
+        <p style="color:var(--text-secondary);margin-top:12px;">No blended GPA. Your strength is measured where it actually lives.</p>
+      </div>
+      <div class="domain-grid">
+        <div class="domain-card animate-in">
+          <div class="domain-icon">🧠</div>
+          <div class="domain-name">Logic & DS</div>
+          <div class="domain-desc">Data Structures, Algorithms, Problem Solving</div>
+        </div>
+        <div class="domain-card animate-in">
+          <div class="domain-icon">💻</div>
+          <div class="domain-name">Tech Dev</div>
+          <div class="domain-desc">Full-stack, Backend, Frontend, DevOps</div>
+        </div>
+        <div class="domain-card animate-in">
+          <div class="domain-icon">🤖</div>
+          <div class="domain-name">AI / DS</div>
+          <div class="domain-desc">Machine Learning, Data Science, NLP</div>
+        </div>
+        <div class="domain-card animate-in">
+          <div class="domain-icon">🔧</div>
+          <div class="domain-name">Hardware</div>
+          <div class="domain-desc">IoT, Embedded, Robotics, Circuits</div>
+        </div>
+        <div class="domain-card animate-in">
+          <div class="domain-icon">📐</div>
+          <div class="domain-name">Engineering Design</div>
+          <div class="domain-desc">CAD, Simulation, Mechanical Design</div>
+        </div>
+        <div class="domain-card animate-in">
+          <div class="domain-icon">🎤</div>
+          <div class="domain-name">Soft Skills</div>
+          <div class="domain-desc">Communication, Leadership, Teamwork</div>
+        </div>
+        <div class="domain-card animate-in">
+          <div class="domain-icon">🤲</div>
+          <div class="domain-name">Volunteering</div>
+          <div class="domain-desc">Community Service, Event Organization</div>
+        </div>
+        <div class="domain-card animate-in">
+          <div class="domain-icon">🎨</div>
+          <div class="domain-name">UI/UX</div>
+          <div class="domain-desc">Interface Design, User Research, Prototyping</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ TRIPLE-WIN ECOSYSTEM ═══════════════ -->
+  <section class="section" id="ecosystem" style="background:var(--bg-card);">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:16px;">
+        <span class="badge badge-green" style="margin-bottom:16px;display:inline-flex;">TRIPLE-WIN ECOSYSTEM</span>
+        <h2 style="font-size:36px;">Three Stakeholders. One Platform. Zero Wasted Time.</h2>
+      </div>
+      <div class="triple-grid">
+        <div class="triple-card animate-in">
+          <div class="triple-icon">🎓</div>
+          <h3>Students</h3>
+          <p>Your profile builds automatically. Your work speaks.</p>
+          <ul>
+            <li><span class="check">✓</span> Verified XP from real code & projects</li>
+            <li><span class="check">✓</span> 8 domain leaderboards — find your niche</li>
+            <li><span class="check">✓</span> Direct company interest notifications</li>
+            <li><span class="check">✓</span> Gamified quests, duels, and streaks</li>
+            <li><span class="check">✓</span> Physical bootcamp MVP defences</li>
+          </ul>
+        </div>
+        <div class="triple-card animate-in">
+          <div class="triple-icon">🏫</div>
+          <h3>Colleges</h3>
+          <p>Real-time skill mapping of every student, every domain.</p>
+          <ul>
+            <li><span class="check">✓</span> Skill heat maps & gap alerts</li>
+            <li><span class="check">✓</span> Branch-wise domain analytics</li>
+            <li><span class="check">✓</span> Bootcamp panel management</li>
+            <li><span class="check">✓</span> Placement-ready export reports</li>
+            <li><span class="check">✓</span> Event & QR attendance tracking</li>
+          </ul>
+        </div>
+        <div class="triple-card animate-in">
+          <div class="triple-icon">🏢</div>
+          <h3>Companies</h3>
+          <p>Search pre-verified talent by domain, tier, and velocity.</p>
+          <ul>
+            <li><span class="check">✓</span> Multi-axis talent search filters</li>
+            <li><span class="check">✓</span> Verified audit logs per student</li>
+            <li><span class="check">✓</span> In-platform coding assessments</li>
+            <li><span class="check">✓</span> Bounty board micro-internships</li>
+            <li><span class="check">✓</span> Talent Spotlight curated weekly</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ KEY FEATURES ═══════════════ -->
+  <section class="section" id="features">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:16px;">
+        <span class="badge badge-cyan" style="margin-bottom:16px;display:inline-flex;">PLATFORM FEATURES</span>
+        <h2 style="font-size:36px;">Everything a Student OS Needs</h2>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item animate-in">
+          <div class="feature-icon-box" style="background:rgba(0,212,255,0.1);color:var(--accent-cyan);">📊</div>
+          <div>
+            <h4>Radar Chart Profile</h4>
+            <p>5-axis spider chart showing domain strength. Animated on load with percentile labels.</p>
+          </div>
+        </div>
+        <div class="feature-item animate-in">
+          <div class="feature-icon-box" style="background:rgba(245,166,35,0.1);color:var(--accent-pathfinder);">⚡</div>
+          <div>
+            <h4>XP Engine</h4>
+            <p>Auto-sync from GitHub, LeetCode, CodeChef. Quality tier multipliers S×5 to C×1.</p>
+          </div>
+        </div>
+        <div class="feature-item animate-in">
+          <div class="feature-icon-box" style="background:rgba(16,185,129,0.1);color:var(--accent-green);">🏆</div>
+          <div>
+            <h4>Tier Badges</h4>
+            <p>Pathfinder (Top 5%), Trailblazer (20%), Builder (50%), Launcher — per domain.</p>
+          </div>
+        </div>
+        <div class="feature-item animate-in">
+          <div class="feature-icon-box" style="background:rgba(139,92,246,0.1);color:var(--accent-purple);">⚔️</div>
+          <div>
+            <h4>Peer Duels</h4>
+            <p>Challenge higher-tier students. Win Elo. Giant Slayer badge for upset victories.</p>
+          </div>
+        </div>
+        <div class="feature-item animate-in">
+          <div class="feature-icon-box" style="background:rgba(245,158,11,0.1);color:var(--accent-amber);">🔥</div>
+          <div>
+            <h4>Streaks & Velocity</h4>
+            <p>Daily login streaks with milestone bonuses. 30-day velocity score flags fast learners.</p>
+          </div>
+        </div>
+        <div class="feature-item animate-in">
+          <div class="feature-icon-box" style="background:rgba(59,130,246,0.1);color:var(--tier-builder);">📋</div>
+          <div>
+            <h4>Daily Quests</h4>
+            <p>3 active quests personalized to weakest domain. Weekly quests with larger XP rewards.</p>
+          </div>
+        </div>
+        <div class="feature-item animate-in">
+          <div class="feature-icon-box" style="background:rgba(239,68,68,0.1);color:var(--accent-red);">🛡️</div>
+          <div>
+            <h4>Fraud Detection</h4>
+            <p>GitHub spike rules, LeetCode speed checks, certificate duplication detection.</p>
+          </div>
+        </div>
+        <div class="feature-item animate-in">
+          <div class="feature-icon-box" style="background:rgba(6,182,212,0.1);color:var(--tier-launcher);">🔒</div>
+          <div>
+            <h4>DPDP Compliant</h4>
+            <p>Layered consent, data minimisation, right to erasure, grievance officer. India-first.</p>
+          </div>
+        </div>
+        <div class="feature-item animate-in">
+          <div class="feature-icon-box" style="background:rgba(0,212,255,0.1);color:var(--accent-cyan);">📡</div>
+          <div>
+            <h4>Live Feed — The Pulse</h4>
+            <p>Real-time campus activity: tier upgrades, bootcamp results, peer achievements.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CTA ═══════════════ -->
+  <section class="cta-section">
+    <div style="position:relative;z-index:1;">
+      <h2 style="font-family:'Syne',sans-serif;font-weight:700;font-size:48px;margin-bottom:16px;">Ready to Prove Your Worth?</h2>
+      <p style="color:var(--text-secondary);font-size:18px;margin-bottom:36px;max-width:560px;margin-left:auto;margin-right:auto;">Join Ascendify and let your real skills speak. No resumes. No guesswork. Just verified proof of work.</p>
+      <div style="display:flex;gap:16px;justify-content:center;">
+        <a href="auth.html" class="btn btn-primary btn-lg">Get Started Free →</a>
+        <a href="company/talent-search.html" class="btn btn-outline btn-lg">For Recruiters</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="footer">
+    <div>
+      <span class="font-display" style="font-size:18px;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-pathfinder));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">ASCENDIFY</span>
+      <span style="font-size:12px;color:var(--text-muted);margin-left:12px;">© 2026 · Malla Reddy University</span>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">DPDP Compliance</a>
+      <a href="#">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>

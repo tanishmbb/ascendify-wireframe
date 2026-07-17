@@ -1,0 +1,87 @@
+<div class="dashboard-layout" style="display:flex; flex-direction:column; min-height:100vh;">
+  
+  <!-- Topbar Minimal -->
+  <header style="padding: 16px 24px; border-bottom: 1px solid var(--border-default); display:flex; justify-content: space-between; align-items: center;">
+    <div style="font-weight: 800; font-size: 18px; letter-spacing: 2px;">ASCENDIFY</div>
+    <div *ngIf="state === 'assessment'" style="font-family: monospace; color: var(--accent-red); font-size: 18px;">
+      ⏳ 44:59
+    </div>
+  </header>
+
+  <main style="flex:1; padding: 40px; display:flex; justify-content:center; align-items:flex-start;">
+    
+    <!-- State 1: Consent -->
+    <div class="card animate-in" *ngIf="state === 'consent'" style="max-width:600px; width:100%; padding:40px;">
+      <h2 style="margin-bottom: 16px;">System Check & Consent</h2>
+      <p style="color:var(--text-secondary); margin-bottom: 24px; font-size: 14px;">Round 1: Initial Technical Screening</p>
+
+      <div style="background:var(--bg-elevated); padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border-default); margin-bottom: 24px;">
+        <div style="display:flex; justify-content:space-between; margin-bottom: 12px;">
+          <span style="font-size:14px; font-weight:600;">Camera Permissions</span>
+          <span style="color:var(--accent-green); font-size:14px;">✓ Granted</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; margin-bottom: 12px;">
+          <span style="font-size:14px; font-weight:600;">Microphone</span>
+          <span style="color:var(--accent-green); font-size:14px;">✓ Granted</span>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+          <span style="font-size:14px; font-weight:600;">Screen Sharing</span>
+          <span style="color:var(--accent-amber); font-size:14px;">Pending...</span>
+        </div>
+      </div>
+
+      <div style="background:rgba(239,68,68,0.05); padding:16px; border-left:4px solid var(--accent-red); margin-bottom:24px; font-size:13px; color:var(--text-secondary);">
+        <strong>Warning:</strong> Navigating away from this tab will result in automatic termination of the assessment.
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;" (click)="startAssessment()">Acknowledge & Start</button>
+    </div>
+
+    <!-- State 2: Assessment (Code Editor Mock) -->
+    <div class="animate-in" *ngIf="state === 'assessment'" style="width:100%; display:grid; grid-template-columns: 350px 1fr; gap:20px; height: calc(100vh - 150px);">
+      
+      <!-- Problem Description -->
+      <div class="card" style="padding:24px; overflow-y:auto;">
+        <h3 style="margin-bottom:8px;">1. Reverse Linked List</h3>
+        <div style="font-size:12px; color:var(--text-muted); margin-bottom:20px; display:flex; gap:8px;">
+          <span class="badge badge-pathfinder">Hard</span>
+          <span>Logic & DS</span>
+        </div>
+        
+        <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:16px;">
+          Given the <code>head</code> of a singly linked list, reverse the list, and return the reversed list. You must do this in-place in O(n) time and O(1) space.
+        </p>
+
+        <h4 style="margin-bottom:8px;">Example 1:</h4>
+        <pre style="background:var(--bg-elevated); padding:12px; border-radius:var(--radius-md); font-family:monospace; font-size:12px; color:var(--text-primary); margin-bottom:16px;">Input: head = [1,2,3,4,5]
+Output: [5,4,3,2,1]</pre>
+      </div>
+
+      <!-- Editor -->
+      <div class="card" style="display:flex; flex-direction:column; overflow:hidden;">
+        <div style="padding:12px 16px; border-bottom:1px solid var(--border-default); display:flex; justify-content:space-between; align-items:center; background:var(--bg-elevated);">
+          <select class="form-select" style="width:120px; padding:4px 8px; font-size:12px;"><option>Python 3</option><option>C++</option><option>Java</option></select>
+          <div style="display:flex; gap:8px;">
+            <button class="btn btn-outline btn-sm">Run Tests</button>
+            <button class="btn btn-primary btn-sm" (click)="submitAssessment()">Submit Code</button>
+          </div>
+        </div>
+        <div style="flex:1; background:#0d1117; padding:16px; font-family:monospace; font-size:14px; color:#c9d1d9; outline:none;" contenteditable="true">
+<span style="color:#ff7b72;">class</span> <span style="color:#d2a8ff;">Solution</span>:
+    <span style="color:#ff7b72;">def</span> <span style="color:#d2a8ff;">reverseList</span>(<span style="color:#ff7b72;">self</span>, head: Optional[ListNode]) -&gt; Optional[ListNode]:
+        <span style="color:#8b949e;"># Write your code here</span>
+        <span style="color:#ff7b72;">pass</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- State 3: Finished -->
+    <div class="card animate-in" *ngIf="state === 'finished'" style="max-width:500px; width:100%; padding:40px; text-align:center;">
+      <div style="font-size:60px; margin-bottom:20px;">✅</div>
+      <h2 style="margin-bottom:16px;">Assessment Submitted</h2>
+      <p style="color:var(--text-secondary); margin-bottom:24px; font-size:14px;">Your code has been saved and submitted for evaluation. You may now close this tab or return to your dashboard.</p>
+      <a href="/student/dashboard" class="btn btn-outline">Return to Dashboard</a>
+    </div>
+
+  </main>
+</div>

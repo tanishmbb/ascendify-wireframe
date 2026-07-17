@@ -1,0 +1,103 @@
+<div class="dashboard-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Hire · Recruiter Portal</div></div></div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Recruiting</div>
+      <nav class="sidebar-nav">
+        <a href="/company/talent-search" class="sidebar-link"><span class="nav-icon">🔍</span> Search Talent</a>
+        <a href="/company/spotlight" class="sidebar-link"><span class="nav-icon">⭐</span> Talent Spotlight</a>
+        <a href="/company/bounty" class="sidebar-link"><span class="nav-icon">💰</span> Bounty Board</a>
+        <a href="/company/screening-setup" class="sidebar-link"><span class="nav-icon">📝</span> Screening</a>
+        <a href="/company/screening-results" class="sidebar-link"><span class="nav-icon">📊</span> Results</a>
+      </nav>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Management</div>
+      <nav class="sidebar-nav">
+        <a href="/company/watchlist" class="sidebar-link"><span class="nav-icon">📋</span> Watchlist</a>
+        <a href="/company/duel-arenas" class="sidebar-link active"><span class="nav-icon">⚔️</span> Duel Arenas</a>
+        <a href="/company/analytics" class="sidebar-link"><span class="nav-icon">📈</span> Analytics</a>
+        <a href="/company/billing" class="sidebar-link"><span class="nav-icon">⚙️</span> Account & Billing</a>
+      </nav>
+    </div>
+    <div class="sidebar-user"><div class="user-avatar" style="background:var(--gradient-pathfinder);">TC</div><div class="user-info"><div class="user-name">TechCorp India</div><div class="user-role">Pro Plan · 5 seats</div></div></div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="topbar-title">Duel Arenas</h1>
+        <span style="font-size:13px;color:var(--text-muted);">Sponsor or host your own 1v1 arenas</span>
+      </div>
+      <div class="topbar-right">
+        <button class="btn btn-primary btn-sm">+ Create Arena</button>
+        <div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      
+      <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+        
+        <!-- Active Arena -->
+        <div class="card animate-in">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
+            <div>
+              <h3 style="margin-bottom:4px;">TechCorp Frontend Showdown</h3>
+              <div style="font-size:12px; color:var(--text-secondary);">Sponsored Arena · 💻 Tech Dev</div>
+            </div>
+            <span class="badge badge-green">Live Now</span>
+          </div>
+          
+          <div style="background:var(--bg-elevated); padding:16px; border-radius:var(--radius-md); margin-bottom:20px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+              <span style="font-size:13px; color:var(--text-muted);">Total Participants</span>
+              <span style="font-size:13px; font-weight:600;">1,248</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+              <span style="font-size:13px; color:var(--text-muted);">Total Matches Played</span>
+              <span style="font-size:13px; font-weight:600;">4,502</span>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+              <span style="font-size:13px; color:var(--text-muted);">Top Performers Identified</span>
+              <span style="font-size:13px; font-weight:600; color:var(--accent-pathfinder);">45</span>
+            </div>
+          </div>
+          
+          <button class="btn btn-outline" style="width:100%;">View Leaderboard</button>
+        </div>
+
+        <!-- Upcoming Arena -->
+        <div class="card animate-in" style="animation-delay: 50ms;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
+            <div>
+              <h3 style="margin-bottom:4px;">System Design Sprint</h3>
+              <div style="font-size:12px; color:var(--text-secondary);">Custom Challenge · 🧠 Logic & DS</div>
+            </div>
+            <span class="badge badge-amber">Upcoming</span>
+          </div>
+          
+          <div style="background:var(--bg-elevated); padding:16px; border-radius:var(--radius-md); margin-bottom:20px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+              <span style="font-size:13px; color:var(--text-muted);">Start Date</span>
+              <span style="font-size:13px; font-weight:600;">Aug 15, 2026</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+              <span style="font-size:13px; color:var(--text-muted);">Registered Users</span>
+              <span style="font-size:13px; font-weight:600;">340</span>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+              <span style="font-size:13px; color:var(--text-muted);">Prize Pool</span>
+              <span style="font-size:13px; font-weight:600; color:var(--accent-pathfinder);">₹50,000</span>
+            </div>
+          </div>
+          
+          <div style="display:flex; gap:12px;">
+            <button class="btn btn-outline" style="flex:1;">Edit Details</button>
+            <button class="btn btn-primary" style="flex:1;">Publish</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+</div>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify — Leaderboard</title>
+  
+  <style>
+    .rising-stars-section {
+      background: linear-gradient(135deg, rgba(245,158,11,0.06) 0%, rgba(245,166,35,0.03) 100%);
+      border: 1px solid rgba(245,158,11,0.15);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      margin-bottom: var(--space-xl);
+    }
+    .rising-star-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(245,158,11,0.15);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .rising-star-card:hover { transform: translateY(-2px); border-color: rgba(245,158,11,0.3); }
+    .podium-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .podium-card:hover { transform: translateY(-3px); }
+    .podium-card.pathfinder { border: 1px solid rgba(245,166,35,0.3); }
+    .podium-card.trailblazer { border: 1px solid rgba(148,163,184,0.3); }
+    .podium-card.builder { border: 1px solid rgba(205,127,50,0.3); }
+    .podium-number {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono'; font-size: 14px; font-weight: 700;
+    }
+    .podium-card.pathfinder .podium-number { background: var(--accent-pathfinder); color: #0A0F1E; }
+    .podium-card.trailblazer .podium-number { background: var(--accent-trailblazer); color: #0A0F1E; }
+    .podium-card.builder .podium-number { background: #CD7F32; color: #0A0F1E; }
+    .profile-preview-modal {
+      background: var(--bg-card); border: 1px solid var(--border-default);
+      border-radius: var(--radius-xl); padding: 28px; max-width: 420px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Student · S-OS</div></div></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Main</div>
+        <nav class="sidebar-nav">
+          <a href="home.html" class="sidebar-link"><span class="nav-icon">🏠</span> The Pulse</a>
+          <a href="profile.html" class="sidebar-link"><span class="nav-icon">👤</span> My Profile</a>
+          <a href="leaderboard.html" class="sidebar-link active"><span class="nav-icon">🏆</span> Leaderboard</a>
+          <a href="quests.html" class="sidebar-link"><span class="nav-icon">⚡</span> Quests</a>
+          <a href="bootcamp.html" class="sidebar-link"><span class="nav-icon">🛠️</span> Bootcamp</a>
+        </nav>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Social</div>
+        <nav class="sidebar-nav">
+          <a href="duels.html" class="sidebar-link"><span class="nav-icon">⚔️</span> Duels</a>
+          <a href="mentorship.html" class="sidebar-link"><span class="nav-icon">🤝</span> Mentorship</a>
+        </nav>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Account</div><nav class="sidebar-nav"><a href="settings.html" class="sidebar-link"><span class="nav-icon">⚙️</span> Settings</a></nav></div>
+      <div class="sidebar-user"><div class="user-avatar">RK</div><div class="user-info"><div class="user-name">Rahul Kumar</div><div class="user-role">CSE · 3rd Year</div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><h1 class="topbar-title">Leaderboard</h1></div>
+        <div class="topbar-right">
+          <div class="topbar-search"><span class="search-icon">🔍</span><input type="text" placeholder="Search students..."></div>
+          <div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <!-- ═══ DOMAIN TABS ═══ -->
+        <div class="tabs" style="margin-bottom:var(--space-lg);">
+          <div class="tab active">Overall</div>
+          <div class="tab">🧠 Logic & DS</div>
+          <div class="tab">💻 Tech Dev</div>
+          <div class="tab">🤖 AI/DS</div>
+          <div class="tab">🔧 Hardware</div>
+          <div class="tab">📐 Eng. Design</div>
+          <div class="tab">🎤 Soft Skills</div>
+          <div class="tab">🤲 Volunteering</div>
+          <div class="tab">🎨 UI/UX</div>
+        </div>
+
+        <!-- ═══ FILTER BAR ═══ -->
+        <div class="filter-bar">
+          <select class="form-select" style="width:auto;min-width:140px;padding:7px 32px 7px 12px;font-size:13px;">
+            <option>All Branches</option><option>CSE</option><option>ECE</option><option>IT</option><option>MECH</option><option>CIVIL</option>
+          </select>
+          <select class="form-select" style="width:auto;min-width:120px;padding:7px 32px 7px 12px;font-size:13px;">
+            <option>All Years</option><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option>
+          </select>
+          <div class="topbar-search" style="min-width:200px;"><span class="search-icon">🔍</span><input placeholder="Search by name..."></div>
+        </div>
+
+        <!-- ═══ PINNED OWN RANK ═══ -->
+        <div class="leaderboard-row own animate-in" style="margin-bottom:var(--space-lg);padding:16px;">
+          <div class="rank-number" style="font-size:18px;color:var(--accent-cyan);">#24</div>
+          <div class="avatar" style="border-color:var(--accent-cyan);">RK</div>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;">Rahul Kumar <span style="font-size:12px;color:var(--text-muted);">(You)</span></div>
+            <div style="font-size:12px;color:var(--text-secondary);">CSE · 3rd Year</div>
+          </div>
+          <span class="tier-badge tier-trailblazer" style="font-size:11px;">⭐ Trailblazer</span>
+          <div style="text-align:right;">
+            <div class="font-mono" style="font-size:18px;color:var(--accent-cyan);">1,847</div>
+            <span class="velocity-arrow up" style="font-size:11px;">↑ 12.4%</span>
+          </div>
+          <span class="streak-flame">🔥 23</span>
+        </div>
+
+        <!-- ═══ RISING STARS ═══ -->
+        <div class="rising-stars-section animate-in" style="animation-delay:50ms;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+            <span style="font-size:18px;">🚀</span>
+            <h3 style="font-size:16px;">High Growth Talent ↑</h3>
+            <span class="badge badge-amber">Top 3 by Velocity</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+            <div class="rising-star-card">
+              <div class="avatar" style="margin:0 auto 10px;border-color:var(--accent-amber);">PD</div>
+              <div style="font-size:14px;font-weight:600;">Priya Desai</div>
+              <div style="font-size:12px;color:var(--text-muted);">ECE · 2nd Year</div>
+              <div class="velocity-arrow up" style="font-size:14px;margin-top:8px;">↑ 28.5%</div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">+14 ranks this week</div>
+            </div>
+            <div class="rising-star-card">
+              <div class="avatar" style="margin:0 auto 10px;border-color:var(--accent-amber);">KR</div>
+              <div style="font-size:14px;font-weight:600;">Kiran Reddy</div>
+              <div style="font-size:12px;color:var(--text-muted);">CSE · 1st Year</div>
+              <div class="velocity-arrow up" style="font-size:14px;margin-top:8px;">↑ 22.1%</div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">+11 ranks this week</div>
+            </div>
+            <div class="rising-star-card">
+              <div class="avatar" style="margin:0 auto 10px;border-color:var(--accent-amber);">SA</div>
+              <div style="font-size:14px;font-weight:600;">Sneha Agarwal</div>
+              <div style="font-size:12px;color:var(--text-muted);">IT · 3rd Year</div>
+              <div class="velocity-arrow up" style="font-size:14px;margin-top:8px;">↑ 19.7%</div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">+9 ranks this week</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ TOP 3 PODIUM ═══ -->
+        <div style="display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:16px;align-items:end;margin-bottom:var(--space-xl);">
+          <div class="podium-card trailblazer animate-in" style="animation-delay:100ms;">
+            <div class="podium-number">2</div>
+            <div class="avatar avatar-lg" style="margin:8px auto 10px;border-color:var(--accent-trailblazer);">SP</div>
+            <div style="font-size:15px;font-weight:600;">Siddharth Patel</div>
+            <div style="font-size:12px;color:var(--text-muted);">CSE · 4th Year</div>
+            <div class="font-mono" style="font-size:22px;color:var(--accent-trailblazer);margin-top:8px;">2,341</div>
+            <span class="tier-badge tier-pathfinder" style="font-size:10px;margin-top:8px;">⭐ Pathfinder</span>
+          </div>
+          <div class="podium-card pathfinder animate-in" style="animation-delay:50ms;">
+            <div class="podium-number">1</div>
+            <div class="avatar avatar-xl" style="margin:8px auto 10px;border-color:var(--accent-pathfinder);">AK</div>
+            <div style="font-size:17px;font-weight:700;">Anika Kapoor</div>
+            <div style="font-size:12px;color:var(--text-muted);">CSE · 3rd Year</div>
+            <div class="font-mono" style="font-size:28px;color:var(--accent-pathfinder);margin-top:8px;">2,487</div>
+            <span class="tier-badge tier-pathfinder" style="font-size:10px;margin-top:8px;">⭐ Pathfinder</span>
+          </div>
+          <div class="podium-card builder animate-in" style="animation-delay:150ms;">
+            <div class="podium-number">3</div>
+            <div class="avatar avatar-lg" style="margin:8px auto 10px;border-color:#CD7F32;">MN</div>
+            <div style="font-size:15px;font-weight:600;">Meera Nair</div>
+            <div style="font-size:12px;color:var(--text-muted);">IT · 4th Year</div>
+            <div class="font-mono" style="font-size:22px;color:#CD7F32;margin-top:8px;">2,298</div>
+            <span class="tier-badge tier-pathfinder" style="font-size:10px;margin-top:8px;">⭐ Pathfinder</span>
+          </div>
+        </div>
+
+        <!-- ═══ LEADERBOARD LIST ═══ -->
+        <div class="card" style="padding:0;">
+          <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:13px;color:var(--text-muted);">Showing 248 students · Overall Rankings</span>
+          </div>
+
+          <div class="leaderboard-row rank-1">
+            <div class="rank-number">1</div>
+            <div class="avatar" style="border-color:var(--accent-pathfinder);">AK</div>
+            <div style="flex:1;"><div style="font-size:14px;font-weight:600;">Anika Kapoor</div><div style="font-size:12px;color:var(--text-muted);">CSE · 3rd Year</div></div>
+            <span class="tier-badge tier-pathfinder" style="font-size:10px;">⭐ Pathfinder</span>
+            <div class="font-mono" style="font-size:16px;color:var(--accent-pathfinder);">2,487</div>
+            <span class="velocity-arrow up">↑ 5.3%</span>
+            <span class="streak-flame">🔥 45</span>
+          </div>
+          <div class="leaderboard-row rank-2">
+            <div class="rank-number">2</div>
+            <div class="avatar" style="border-color:var(--accent-trailblazer);">SP</div>
+            <div style="flex:1;"><div style="font-size:14px;font-weight:600;">Siddharth Patel</div><div style="font-size:12px;color:var(--text-muted);">CSE · 4th Year</div></div>
+            <span class="tier-badge tier-pathfinder" style="font-size:10px;">⭐ Pathfinder</span>
+            <div class="font-mono" style="font-size:16px;color:var(--accent-trailblazer);">2,341</div>
+            <span class="velocity-arrow up">↑ 3.1%</span>
+            <span class="streak-flame">🔥 31</span>
+          </div>
+          <div class="leaderboard-row rank-3">
+            <div class="rank-number">3</div>
+            <div class="avatar" style="border-color:#CD7F32;">MN</div>
+            <div style="flex:1;"><div style="font-size:14px;font-weight:600;">Meera Nair</div><div style="font-size:12px;color:var(--text-muted);">IT · 4th Year</div></div>
+            <span class="tier-badge tier-pathfinder" style="font-size:10px;">⭐ Pathfinder</span>
+            <div class="font-mono" style="font-size:16px;color:#CD7F32;">2,298</div>
+            <span class="velocity-arrow stable">→ 0.8%</span>
+            <span class="streak-flame">🔥 18</span>
+          </div>
+          <div class="leaderboard-row">
+            <div class="rank-number">4</div>
+            <div class="avatar">RJ</div>
+            <div style="flex:1;"><div style="font-size:14px;font-weight:600;">Rohan Joshi</div><div style="font-size:12px;color:var(--text-muted);">ECE · 4th Year</div></div>
+            <span class="tier-badge tier-pathfinder" style="font-size:10px;">⭐ Pathfinder</span>
+            <div class="font-mono" style="font-size:16px;">2,210</div>
+            <span class="velocity-arrow up">↑ 2.4%</span>
+            <span class="streak-flame">🔥 12</span>
+          </div>
+          <div class="leaderboard-row">
+            <div class="rank-number">5</div>
+            <div class="avatar">VS</div>
+            <div style="flex:1;"><div style="font-size:14px;font-weight:600;">Vikram Singh</div><div style="font-size:12px;color:var(--text-muted);">CSE · 3rd Year</div></div>
+            <span class="tier-badge tier-pathfinder" style="font-size:10px;">⭐ Pathfinder</span>
+            <div class="font-mono" style="font-size:16px;">2,178</div>
+            <span class="velocity-arrow down">↓ 1.2%</span>
+            <span class="streak-flame">🔥 30</span>
+          </div>
+          <div class="leaderboard-row">
+            <div class="rank-number">6</div>
+            <div class="avatar">TA</div>
+            <div style="flex:1;"><div style="font-size:14px;font-weight:600;">Tanvi Agrawal</div><div style="font-size:12px;color:var(--text-muted);">IT · 2nd Year</div></div>
+            <span class="tier-badge tier-trailblazer" style="font-size:10px;">⭐ Trailblazer</span>
+            <div class="font-mono" style="font-size:16px;">2,045</div>
+            <span class="velocity-arrow up">↑ 6.8%</span>
+            <span class="streak-flame">🔥 8</span>
+          </div>
+          <div class="leaderboard-row">
+            <div class="rank-number">7</div>
+            <div class="avatar">AG</div>
+            <div style="flex:1;"><div style="font-size:14px;font-weight:600;">Arjun Gupta</div><div style="font-size:12px;color:var(--text-muted);">MECH · 3rd Year</div></div>
+            <span class="tier-badge tier-trailblazer" style="font-size:10px;">⭐ Trailblazer</span>
+            <div class="font-mono" style="font-size:16px;">2,012</div>
+            <span class="velocity-arrow stable">→ 0.3%</span>
+            <span class="streak-flame">🔥 5</span>
+          </div>
+          <div class="leaderboard-row">
+            <div class="rank-number">8</div>
+            <div class="avatar">NR</div>
+            <div style="flex:1;"><div style="font-size:14px;font-weight:600;">Neha Rao</div><div style="font-size:12px;color:var(--text-muted);">CSE · 2nd Year</div></div>
+            <span class="tier-badge tier-trailblazer" style="font-size:10px;">⭐ Trailblazer</span>
+            <div class="font-mono" style="font-size:16px;">1,978</div>
+            <span class="velocity-arrow up">↑ 9.2%</span>
+            <span class="streak-flame">🔥 14</span>
+          </div>
+          <!-- More rows... -->
+          <div style="padding:16px;text-align:center;">
+            <button class="btn btn-outline btn-sm">Load More Students</button>
+          </div>
+        </div>
+
+        <!-- ═══ PROFILE PREVIEW MODAL (example) ═══ -->
+        <div class="modal-overlay" style="display:none;" id="profile-modal">
+          <div class="profile-preview-modal">
+            <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;">
+              <div class="avatar avatar-lg" style="border-color:var(--accent-pathfinder);">AK</div>
+              <div>
+                <div style="font-size:18px;font-weight:700;">Anika Kapoor</div>
+                <div style="font-size:13px;color:var(--text-muted);">CSE · 3rd Year</div>
+                <div style="margin-top:4px;"><span class="tier-badge tier-pathfinder" style="font-size:10px;">⭐ Pathfinder</span> <span class="badge badge-purple" style="font-size:10px;">🧬 Polymath</span></div>
+              </div>
+            </div>
+            <!-- Mini radar -->
+            <div style="width:180px;height:180px;margin:0 auto 16px;">
+              <svg viewBox="0 0 180 180">
+                <polygon points="90,20 160,55 145,140 35,140 20,55" fill="none" stroke="rgba(30,45,69,0.4)" stroke-width="1"/>
+                <polygon points="90,30 140,58 130,125 50,125 40,58" fill="rgba(0,212,255,0.1)" stroke="var(--accent-cyan)" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <div style="font-size:13px;color:var(--text-secondary);text-align:center;">Top 3 Domains: AI/DS (98%), Tech Dev (95%), Logic (92%)</div>
+            <div style="display:flex;gap:8px;margin-top:16px;">
+              <button class="btn btn-primary w-full btn-sm">View Full Profile</button>
+              <button class="btn btn-outline btn-sm">⚔️ Challenge</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

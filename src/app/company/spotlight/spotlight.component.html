@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify Hire — Talent Spotlight</title>
+  
+  <style>
+    .spotlight-card { background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-xl); padding: 28px; transition: all 0.3s; }
+    .spotlight-card:hover { border-color: rgba(245,166,35,0.3); transform: translateY(-3px); box-shadow: var(--shadow-pathfinder); }
+    .spotlight-reason { background: rgba(245,166,35,0.06); border: 1px solid rgba(245,166,35,0.15); border-radius: var(--radius-md); padding: 12px 16px; margin-top: 16px; font-size: 13px; color: var(--text-secondary); }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Hire · Recruiter Portal</div></div></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Recruiting</div>
+        <nav class="sidebar-nav">
+          <a href="talent-search.html" class="sidebar-link"><span class="nav-icon">🔍</span> Search Talent</a>
+          <a href="spotlight.html" class="sidebar-link active"><span class="nav-icon">⭐</span> Talent Spotlight</a>
+          <a href="bounty.html" class="sidebar-link"><span class="nav-icon">💰</span> Bounty Board</a>
+          <a href="screening-setup.html" class="sidebar-link"><span class="nav-icon">📝</span> Screening</a>
+          <a href="screening-results.html" class="sidebar-link"><span class="nav-icon">📊</span> Results</a>
+        </nav>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Management</div><nav class="sidebar-nav"><a href="#" class="sidebar-link"><span class="nav-icon">📋</span> Watchlist</a><a href="analytics.html" class="sidebar-link"><span class="nav-icon">📈</span> Analytics</a></nav></div>
+      <div class="sidebar-user"><div class="user-avatar" style="background:var(--gradient-pathfinder);">TC</div><div class="user-info"><div class="user-name">TechCorp India</div><div class="user-role">Pro Plan</div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><h1 class="topbar-title">Talent Spotlight</h1><span class="badge badge-pathfinder">Refreshed Weekly</span></div>
+        <div class="topbar-right"><span style="font-size:13px;color:var(--text-muted);">Last updated: July 14, 2026</span></div>
+      </header>
+
+      <div class="page-content">
+        <p style="font-size:14px;color:var(--text-secondary);margin-bottom:var(--space-xl);">Algorithm-curated top students per domain. Based on velocity, bootcamp performance, and verified activity.</p>
+
+        <!-- Spotlight by Domain -->
+        <div style="margin-bottom:var(--space-2xl);">
+          <h3 style="margin-bottom:16px;display:flex;align-items:center;gap:8px;">💻 Tech Dev — Top 3</h3>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+            <div class="spotlight-card animate-in">
+              <div style="display:flex;gap:14px;align-items:center;margin-bottom:12px;">
+                <div class="avatar avatar-lg" style="border-color:var(--accent-pathfinder);">AK</div>
+                <div><div style="font-size:16px;font-weight:600;">Anika Kapoor</div><div style="font-size:12px;color:var(--text-muted);">CSE · 3rd Year</div><span class="tier-badge tier-pathfinder" style="font-size:10px;margin-top:4px;">⭐ Pathfinder</span></div>
+              </div>
+              <div style="display:flex;gap:8px;margin-bottom:8px;">
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-cyan);">2,487</div><div style="font-size:10px;color:var(--text-muted);">Score</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-green);">↑5.3%</div><div style="font-size:10px;color:var(--text-muted);">Velocity</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-pathfinder);">89.2</div><div style="font-size:10px;color:var(--text-muted);">Avg Boot.</div></div>
+              </div>
+              <div class="spotlight-reason">💡 <strong>Why Featured:</strong> Highest consistency — 45-day streak, 12 PRs merged this month, bootcamp avg 89.2 across 8 defences.</div>
+              <div style="display:flex;gap:8px;margin-top:14px;">
+                <a href="student-profile.html" class="btn btn-primary btn-sm" style="flex:1;">View Profile</a>
+                <button class="btn btn-pathfinder btn-sm">✨ Interest</button>
+              </div>
+            </div>
+            <div class="spotlight-card animate-in" style="animation-delay:50ms;">
+              <div style="display:flex;gap:14px;align-items:center;margin-bottom:12px;">
+                <div class="avatar avatar-lg" style="border-color:var(--accent-pathfinder);">SP</div>
+                <div><div style="font-size:16px;font-weight:600;">Siddharth Patel</div><div style="font-size:12px;color:var(--text-muted);">CSE · 4th Year</div><span class="tier-badge tier-pathfinder" style="font-size:10px;margin-top:4px;">⭐ Pathfinder</span></div>
+              </div>
+              <div style="display:flex;gap:8px;margin-bottom:8px;">
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-cyan);">2,341</div><div style="font-size:10px;color:var(--text-muted);">Score</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-green);">↑3.1%</div><div style="font-size:10px;color:var(--text-muted);">Velocity</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-pathfinder);">86.5</div><div style="font-size:10px;color:var(--text-muted);">Avg Boot.</div></div>
+              </div>
+              <div class="spotlight-reason">💡 <strong>Why Featured:</strong> Strong full-stack — consistent GitHub activity (47 repos), mentors 6 peers, highest Defense XP in Tech Dev.</div>
+              <div style="display:flex;gap:8px;margin-top:14px;"><a href="student-profile.html" class="btn btn-primary btn-sm" style="flex:1;">View Profile</a><button class="btn btn-pathfinder btn-sm">✨ Interest</button></div>
+            </div>
+            <div class="spotlight-card animate-in" style="animation-delay:100ms;">
+              <div style="display:flex;gap:14px;align-items:center;margin-bottom:12px;">
+                <div class="avatar avatar-lg">NR</div>
+                <div><div style="font-size:16px;font-weight:600;">Neha Rao</div><div style="font-size:12px;color:var(--text-muted);">CSE · 2nd Year</div><span class="tier-badge tier-trailblazer" style="font-size:10px;margin-top:4px;">⭐ Trailblazer</span><span class="badge badge-amber" style="font-size:9px;margin-left:4px;">Rising Star ↑</span></div>
+              </div>
+              <div style="display:flex;gap:8px;margin-bottom:8px;">
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-cyan);">1,978</div><div style="font-size:10px;color:var(--text-muted);">Score</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-green);">↑9.2%</div><div style="font-size:10px;color:var(--text-muted);">Velocity</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-pathfinder);">82.0</div><div style="font-size:10px;color:var(--text-muted);">Avg Boot.</div></div>
+              </div>
+              <div class="spotlight-reason">💡 <strong>Why Featured:</strong> Fastest growth in 2nd year cohort — velocity ↑9.2%, climbed 22 ranks in 30 days, cross-domain UI/UX skills.</div>
+              <div style="display:flex;gap:8px;margin-top:14px;"><a href="student-profile.html" class="btn btn-primary btn-sm" style="flex:1;">View Profile</a><button class="btn btn-pathfinder btn-sm">✨ Interest</button></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:var(--space-2xl);">
+          <h3 style="margin-bottom:16px;display:flex;align-items:center;gap:8px;">🧠 Logic & DS — Top 3</h3>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+            <div class="spotlight-card animate-in">
+              <div style="display:flex;gap:14px;align-items:center;margin-bottom:12px;">
+                <div class="avatar avatar-lg" style="border-color:var(--accent-pathfinder);">RJ</div>
+                <div><div style="font-size:16px;font-weight:600;">Rohan Joshi</div><div style="font-size:12px;color:var(--text-muted);">ECE · 4th Year</div><span class="tier-badge tier-pathfinder" style="font-size:10px;margin-top:4px;">⭐ Pathfinder</span></div>
+              </div>
+              <div style="display:flex;gap:8px;margin-bottom:8px;">
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-cyan);">2,210</div><div style="font-size:10px;color:var(--text-muted);">Score</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-green);">↑4.2%</div><div style="font-size:10px;color:var(--text-muted);">Velocity</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-pathfinder);">92.0</div><div style="font-size:10px;color:var(--text-muted);">Avg Boot.</div></div>
+              </div>
+              <div class="spotlight-reason">💡 <strong>Why Featured:</strong> Exceptional problem solving speed. Solved 3 hard duels in record time.</div>
+              <div style="display:flex;gap:8px;margin-top:14px;">
+                <a href="student-profile.html" class="btn btn-primary btn-sm" style="flex:1;">View Profile</a>
+                <button class="btn btn-pathfinder btn-sm">✨ Interest</button>
+              </div>
+            </div>
+            
+            <div class="spotlight-card animate-in" style="animation-delay:50ms;">
+              <div style="display:flex;gap:14px;align-items:center;margin-bottom:12px;">
+                <div class="avatar avatar-lg" style="border-color:var(--accent-pathfinder);">AK</div>
+                <div><div style="font-size:16px;font-weight:600;">Anika Kapoor</div><div style="font-size:12px;color:var(--text-muted);">CSE · 3rd Year</div><span class="tier-badge tier-pathfinder" style="font-size:10px;margin-top:4px;">⭐ Pathfinder</span></div>
+              </div>
+              <div style="display:flex;gap:8px;margin-bottom:8px;">
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-cyan);">2,180</div><div style="font-size:10px;color:var(--text-muted);">Score</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-green);">↑2.8%</div><div style="font-size:10px;color:var(--text-muted);">Velocity</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-pathfinder);">88.5</div><div style="font-size:10px;color:var(--text-muted);">Avg Boot.</div></div>
+              </div>
+              <div class="spotlight-reason">💡 <strong>Why Featured:</strong> Consistently ranks in the top 5% for all Logic assessments and peer code reviews.</div>
+              <div style="display:flex;gap:8px;margin-top:14px;">
+                <a href="student-profile.html" class="btn btn-primary btn-sm" style="flex:1;">View Profile</a>
+                <button class="btn btn-pathfinder btn-sm">✨ Interest</button>
+              </div>
+            </div>
+
+            <div class="spotlight-card animate-in" style="animation-delay:100ms;">
+              <div style="display:flex;gap:14px;align-items:center;margin-bottom:12px;">
+                <div class="avatar avatar-lg">VS</div>
+                <div><div style="font-size:16px;font-weight:600;">Vikram Singh</div><div style="font-size:12px;color:var(--text-muted);">CSE · 3rd Year</div><span class="tier-badge tier-trailblazer" style="font-size:10px;margin-top:4px;">⭐ Trailblazer</span></div>
+              </div>
+              <div style="display:flex;gap:8px;margin-bottom:8px;">
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-cyan);">2,045</div><div style="font-size:10px;color:var(--text-muted);">Score</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-green);">↑7.5%</div><div style="font-size:10px;color:var(--text-muted);">Velocity</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-pathfinder);">84.0</div><div style="font-size:10px;color:var(--text-muted);">Avg Boot.</div></div>
+              </div>
+              <div class="spotlight-reason">💡 <strong>Why Featured:</strong> Highest improvement in graph algorithms over the last 30 days.</div>
+              <div style="display:flex;gap:8px;margin-top:14px;">
+                <a href="student-profile.html" class="btn btn-primary btn-sm" style="flex:1;">View Profile</a>
+                <button class="btn btn-pathfinder btn-sm">✨ Interest</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:var(--space-2xl);">
+          <h3 style="margin-bottom:16px;display:flex;align-items:center;gap:8px;">🤖 AI/DS — Top 3</h3>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+            <div class="spotlight-card animate-in">
+              <div style="display:flex;gap:14px;align-items:center;margin-bottom:12px;">
+                <div class="avatar avatar-lg" style="border-color:var(--accent-pathfinder);">AK</div>
+                <div><div style="font-size:16px;font-weight:600;">Anika Kapoor</div><div style="font-size:12px;color:var(--text-muted);">CSE · 3rd Year</div><span class="tier-badge tier-pathfinder" style="font-size:10px;margin-top:4px;">⭐ Pathfinder</span></div>
+              </div>
+              <div style="display:flex;gap:8px;margin-bottom:8px;">
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-cyan);">2,320</div><div style="font-size:10px;color:var(--text-muted);">Score</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-green);">↑4.5%</div><div style="font-size:10px;color:var(--text-muted);">Velocity</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-pathfinder);">90.5</div><div style="font-size:10px;color:var(--text-muted);">Avg Boot.</div></div>
+              </div>
+              <div class="spotlight-reason">💡 <strong>Why Featured:</strong> Outstanding ML model deployment project; peer-reviewed and highly rated.</div>
+              <div style="display:flex;gap:8px;margin-top:14px;">
+                <a href="student-profile.html" class="btn btn-primary btn-sm" style="flex:1;">View Profile</a>
+                <button class="btn btn-pathfinder btn-sm">✨ Interest</button>
+              </div>
+            </div>
+
+            <div class="spotlight-card animate-in" style="animation-delay:50ms;">
+              <div style="display:flex;gap:14px;align-items:center;margin-bottom:12px;">
+                <div class="avatar avatar-lg">PD</div>
+                <div><div style="font-size:16px;font-weight:600;">Priya Desai</div><div style="font-size:12px;color:var(--text-muted);">ECE · 2nd Year</div><span class="tier-badge tier-trailblazer" style="font-size:10px;margin-top:4px;">⭐ Trailblazer</span></div>
+              </div>
+              <div style="display:flex;gap:8px;margin-bottom:8px;">
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-cyan);">1,890</div><div style="font-size:10px;color:var(--text-muted);">Score</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-green);">↑8.2%</div><div style="font-size:10px;color:var(--text-muted);">Velocity</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-pathfinder);">81.5</div><div style="font-size:10px;color:var(--text-muted);">Avg Boot.</div></div>
+              </div>
+              <div class="spotlight-reason">💡 <strong>Why Featured:</strong> High engagement in Data Science bootcamps. Actively contributed to 3 open source repos.</div>
+              <div style="display:flex;gap:8px;margin-top:14px;">
+                <a href="student-profile.html" class="btn btn-primary btn-sm" style="flex:1;">View Profile</a>
+                <button class="btn btn-pathfinder btn-sm">✨ Interest</button>
+              </div>
+            </div>
+
+            <div class="spotlight-card animate-in" style="animation-delay:100ms;">
+              <div style="display:flex;gap:14px;align-items:center;margin-bottom:12px;">
+                <div class="avatar avatar-lg">TA</div>
+                <div><div style="font-size:16px;font-weight:600;">Tanvi Agrawal</div><div style="font-size:12px;color:var(--text-muted);">IT · 2nd Year</div><span class="tier-badge tier-builder" style="font-size:10px;margin-top:4px;">⬡ Builder</span></div>
+              </div>
+              <div style="display:flex;gap:8px;margin-bottom:8px;">
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-cyan);">1,780</div><div style="font-size:10px;color:var(--text-muted);">Score</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-green);">↑12.4%</div><div style="font-size:10px;color:var(--text-muted);">Velocity</div></div>
+                <div style="flex:1;text-align:center;padding:10px;background:var(--bg-elevated);border-radius:var(--radius-md);"><div class="font-mono" style="font-size:18px;color:var(--accent-pathfinder);">78.0</div><div style="font-size:10px;color:var(--text-muted);">Avg Boot.</div></div>
+              </div>
+              <div class="spotlight-reason">💡 <strong>Why Featured:</strong> Fastest velocity in AI/DS this month. Rapidly learning and applying NLP concepts.</div>
+              <div style="display:flex;gap:8px;margin-top:14px;">
+                <a href="student-profile.html" class="btn btn-primary btn-sm" style="flex:1;">View Profile</a>
+                <button class="btn btn-pathfinder btn-sm">✨ Interest</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

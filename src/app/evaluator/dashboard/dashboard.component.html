@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify Panel — Evaluator View</title>
+  
+  <style>
+    .eval-sidebar { background: var(--bg-card); border-right: 1px solid var(--border-default); width: 300px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; overflow-y: auto; }
+    .team-item { padding: 12px; border: 1px solid var(--border-default); border-radius: var(--radius-md); margin-bottom: 8px; cursor: pointer; transition: all 0.2s; }
+    .team-item:hover { border-color: var(--accent-cyan); }
+    .team-item.active { border-color: var(--accent-cyan); background: rgba(0,212,255,0.05); }
+    .team-item.done { border-color: var(--accent-green); opacity: 0.7; }
+    .rubric-row { display: grid; grid-template-columns: 1fr 200px; gap: 16px; align-items: center; padding: 16px; border-bottom: 1px solid var(--border-default); }
+    .rubric-row:last-child { border-bottom: none; }
+    .score-input { width: 60px; text-align: center; font-size: 16px; font-weight: 600; font-family: 'JetBrains Mono'; }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="eval-sidebar">
+      <div style="margin-bottom:24px;">
+        <div style="font-size:18px;font-weight:700;margin-bottom:4px;font-family:'Space Grotesk';">ASCENDIFY Evaluator</div>
+        <div style="font-size:12px;color:var(--text-muted);">Week 13 Bootcamp · Panel A</div>
+      </div>
+      
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <span style="font-size:13px;font-weight:600;">Teams Queue (16)</span>
+        <span class="badge badge-cyan">2/16 Done</span>
+      </div>
+
+      <div class="team-item done">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:13px;font-weight:600;">Team Alpha</span><span style="font-size:11px;color:var(--accent-green);">84/100</span></div>
+        <div style="font-size:11px;color:var(--text-muted);">Completed at 10:15 AM</div>
+      </div>
+      <div class="team-item done">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:13px;font-weight:600;">CodeCrafters</span><span style="font-size:11px;color:var(--accent-green);">92/100</span></div>
+        <div style="font-size:11px;color:var(--text-muted);">Completed at 10:32 AM</div>
+      </div>
+      <div class="team-item active">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:13px;font-weight:600;color:var(--accent-cyan);">Syntax Error</span><span class="badge badge-amber" style="font-size:10px;">Evaluating</span></div>
+        <div style="font-size:11px;color:var(--text-muted);">Started at 10:35 AM</div>
+      </div>
+      <div class="team-item">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:13px;font-weight:600;">Logic Bomb</span><span style="font-size:11px;color:var(--text-muted);">Up Next</span></div>
+        <div style="font-size:11px;color:var(--text-muted);">Estimated 10:50 AM</div>
+      </div>
+      <div class="team-item"><div style="font-size:13px;font-weight:600;margin-bottom:4px;">Tech Titans</div></div>
+      <div class="team-item"><div style="font-size:13px;font-weight:600;margin-bottom:4px;">Null Pointers</div></div>
+
+      <div style="margin-top:auto;padding-top:20px;">
+        <button class="btn btn-outline btn-sm w-full">Request Break</button>
+      </div>
+    </aside>
+
+    <main class="main-content" style="padding:0;">
+      <header class="topbar" style="border-bottom:1px solid var(--border-default);">
+        <div class="topbar-left">
+          <h1 class="topbar-title">Evaluating: Syntax Error</h1>
+          <span style="font-size:13px;color:var(--text-muted);">Team Size: 4</span>
+        </div>
+        <div class="topbar-right">
+          <div style="font-size:13px;color:var(--text-secondary);">Avg Time/Team: <span class="font-mono text-cyan">16m 20s</span></div>
+        </div>
+      </header>
+
+      <div class="page-content" style="max-width:1000px;margin:0 auto;padding-top:24px;">
+        <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;">
+          <!-- Rubric Form -->
+          <div>
+            <div class="card" style="padding:0;margin-bottom:24px;">
+              <div class="card-header" style="padding:16px 20px;border-bottom:1px solid var(--border-default);background:rgba(0,212,255,0.03);"><div class="card-title">Scoring Rubric — IoT Temp Monitor</div></div>
+              
+              <div class="rubric-row">
+                <div>
+                  <div style="font-size:14px;font-weight:600;margin-bottom:4px;">1. Technical Implementation (40 pts)</div>
+                  <div style="font-size:12px;color:var(--text-secondary);">Does the code work? Is the architecture sound? Quality of sensor calibration.</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end;">
+                  <input type="number" class="form-input score-input" value="32" min="0" max="40">
+                  <span style="font-size:14px;color:var(--text-muted);">/ 40</span>
+                </div>
+              </div>
+
+              <div class="rubric-row">
+                <div>
+                  <div style="font-size:14px;font-weight:600;margin-bottom:4px;">2. Innovation & Originality (25 pts)</div>
+                  <div style="font-size:12px;color:var(--text-secondary);">Did they go beyond the basic requirements? Unique approach to the problem.</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end;">
+                  <input type="number" class="form-input score-input" value="18" min="0" max="25">
+                  <span style="font-size:14px;color:var(--text-muted);">/ 25</span>
+                </div>
+              </div>
+
+              <div class="rubric-row">
+                <div>
+                  <div style="font-size:14px;font-weight:600;margin-bottom:4px;">3. Presentation & Communication (20 pts)</div>
+                  <div style="font-size:12px;color:var(--text-secondary);">Clarity of pitch, ability to answer Q&A, slide quality.</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end;">
+                  <input type="number" class="form-input score-input" placeholder="0" min="0" max="20">
+                  <span style="font-size:14px;color:var(--text-muted);">/ 20</span>
+                </div>
+              </div>
+
+              <div class="rubric-row">
+                <div>
+                  <div style="font-size:14px;font-weight:600;margin-bottom:4px;">4. UI / Design / Usability (15 pts)</div>
+                  <div style="font-size:12px;color:var(--text-secondary);">Frontend dashboard aesthetics, user experience of the hardware interface.</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end;">
+                  <input type="number" class="form-input score-input" placeholder="0" min="0" max="15">
+                  <span style="font-size:14px;color:var(--text-muted);">/ 15</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 style="margin-bottom:12px;">Jury Comments</h3>
+              <textarea class="form-textarea" style="height:120px;" placeholder="Provide constructive feedback for the team. This will be visible on their profiles."></textarea>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
+                <div style="font-size:18px;font-weight:600;">Total Score: <span class="font-mono text-cyan" style="font-size:24px;">50</span><span style="font-size:14px;color:var(--text-muted);"> / 100</span></div>
+                <button class="btn btn-primary btn-lg">Submit Score & Next Team →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team Details -->
+          <div>
+            <div class="card" style="margin-bottom:24px;">
+              <h3 style="margin-bottom:16px;">Team Members</h3>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div class="avatar avatar-sm">RK</div>
+                  <div><div style="font-size:13px;font-weight:600;">Rahul Kumar</div><div style="font-size:11px;color:var(--text-muted);">CSE · Lead</div></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div class="avatar avatar-sm">SP</div>
+                  <div><div style="font-size:13px;font-weight:600;">Siddharth Patel</div><div style="font-size:11px;color:var(--text-muted);">CSE · Backend</div></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div class="avatar avatar-sm">NR</div>
+                  <div><div style="font-size:13px;font-weight:600;">Neha Rao</div><div style="font-size:11px;color:var(--text-muted);">CSE · UI/UX</div></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div class="avatar avatar-sm">MN</div>
+                  <div><div style="font-size:13px;font-weight:600;">Meera Nair</div><div style="font-size:11px;color:var(--text-muted);">IT · Presentation</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 style="margin-bottom:16px;">Project Links</h3>
+              <a href="#" class="btn btn-outline btn-sm w-full" style="margin-bottom:8px;justify-content:flex-start;padding:8px 12px;">🐙 GitHub Repository</a>
+              <a href="#" class="btn btn-outline btn-sm w-full" style="margin-bottom:8px;justify-content:flex-start;padding:8px 12px;">🌐 Live Demo Link</a>
+              <a href="#" class="btn btn-outline btn-sm w-full" style="justify-content:flex-start;padding:8px 12px;">📊 Presentation Deck</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

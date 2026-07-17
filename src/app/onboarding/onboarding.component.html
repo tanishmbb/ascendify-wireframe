@@ -1,0 +1,128 @@
+<div class="dashboard-layout" style="display:flex; justify-content:center; align-items:center; min-height:100vh; padding: 20px;">
+  
+  <div class="card animate-in" style="max-width: 600px; width: 100%; padding: 40px;">
+    
+    <!-- Header -->
+    <div style="text-align:center; margin-bottom: 30px;">
+      <div style="font-weight: 800; font-size: 24px; letter-spacing: 2px; color: var(--text-primary); margin-bottom: 8px;">ASCENDIFY</div>
+      <div style="color: var(--text-secondary); font-size: 14px;">Setup Your Profile (Step {{currentStep}} of {{totalSteps}})</div>
+      
+      <!-- Progress Bar -->
+      <div class="progress-bar" style="margin-top: 20px; height: 6px;">
+        <div class="progress-fill cyan" [style.width]="(currentStep / totalSteps) * 100 + '%'"></div>
+      </div>
+    </div>
+
+    <!-- Step 1: Consent -->
+    <div *ngIf="currentStep === 1">
+      <h2 style="margin-bottom: 16px;">Legal & Consent</h2>
+      <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 24px;">Before we begin, please review our terms regarding data processing as per DPDP guidelines.</p>
+      
+      <div style="background: var(--bg-elevated); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-default); margin-bottom: 16px;">
+        <label style="display:flex; gap: 12px; align-items: flex-start; cursor: pointer;">
+          <input type="checkbox" style="margin-top: 4px;" checked>
+          <span style="font-size: 14px;">I agree to the <a href="/terms" target="_blank" style="color: var(--accent-cyan);">Terms of Service</a> and <a href="/privacy" target="_blank" style="color: var(--accent-cyan);">Privacy Policy</a>.</span>
+        </label>
+      </div>
+
+      <div style="background: var(--bg-elevated); padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-default); margin-bottom: 24px;">
+        <label style="display:flex; gap: 12px; align-items: flex-start; cursor: pointer;">
+          <input type="checkbox" style="margin-top: 4px;" checked>
+          <span style="font-size: 14px;">I consent to the collection and processing of my academic and skill-based data to match with opportunities.</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Step 2: Profile Setup -->
+    <div *ngIf="currentStep === 2">
+      <h2 style="margin-bottom: 16px;">Basic Profile</h2>
+      <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 24px;">Tell us about your academic background.</p>
+
+      <div style="margin-bottom: 16px;">
+        <label style="display:block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase;">Full Name</label>
+        <input type="text" class="form-input" placeholder="e.g. Jane Doe" value="Anika Kapoor">
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <label style="display:block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase;">College / University</label>
+        <select class="form-select">
+          <option>Indian Institute of Technology, Bombay</option>
+          <option>National Institute of Technology, Trichy</option>
+          <option selected>Delhi Technological University</option>
+        </select>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
+        <div>
+          <label style="display:block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase;">Degree</label>
+          <select class="form-select"><option>B.Tech</option><option>B.Sc</option><option>M.Tech</option></select>
+        </div>
+        <div>
+          <label style="display:block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase;">Graduation Year</label>
+          <select class="form-select"><option>2025</option><option selected>2026</option><option>2027</option></select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Shadow Mode -->
+    <div *ngIf="currentStep === 3">
+      <h2 style="margin-bottom: 16px;">Shadow Mode</h2>
+      <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 24px;">Protect against bias by hiding your personal identity (name, gender, college) from recruiters until you accept their request.</p>
+
+      <div style="background: rgba(148,163,184,0.1); border: 1px solid var(--border-active); border-radius: var(--radius-md); padding: 20px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+        <div>
+          <div style="font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 8px;">🎭 Enable Shadow Mode</div>
+          <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Recruiters will only see your domain scores and badges.</div>
+        </div>
+        <div>
+          <!-- Simple toggle mock -->
+          <label class="switch" style="position:relative; display:inline-block; width:44px; height:24px;">
+            <input type="checkbox" checked style="opacity:0; width:0; height:0;">
+            <span class="slider" style="position:absolute; cursor:pointer; top:0; left:0; right:0; bottom:0; background-color:var(--accent-cyan); transition:.4s; border-radius:24px;"></span>
+            <span style="position:absolute; height:18px; width:18px; left:22px; bottom:3px; background-color:white; transition:.4s; border-radius:50%;"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Connect Accounts -->
+    <div *ngIf="currentStep === 4">
+      <h2 style="margin-bottom: 16px;">Connect Platforms</h2>
+      <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 24px;">Sync your external profiles to instantly boost your domain XP.</p>
+
+      <div style="display:flex; flex-direction: column; gap: 12px; margin-bottom: 24px;">
+        <button class="btn btn-outline" style="justify-content: flex-start; padding: 12px 20px;">
+          <span style="font-size: 18px; margin-right: 12px;">🐙</span> Connect GitHub
+        </button>
+        <button class="btn btn-outline" style="justify-content: flex-start; padding: 12px 20px;">
+          <span style="font-size: 18px; margin-right: 12px;">👨‍💻</span> Connect LeetCode
+        </button>
+        <button class="btn btn-outline" style="justify-content: flex-start; padding: 12px 20px;">
+          <span style="font-size: 18px; margin-right: 12px;">🏆</span> Connect HackerRank
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 5: Initial Radar -->
+    <div *ngIf="currentStep === 5" style="text-align: center;">
+      <h2 style="margin-bottom: 16px;">Your Base Profile</h2>
+      <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 24px;">Based on your synced accounts, here is your initial skill footprint.</p>
+      
+      <div style="width: 200px; height: 200px; margin: 0 auto 24px; border-radius: 50%; border: 1px dashed var(--accent-cyan); display: flex; align-items: center; justify-content: center; background: rgba(0, 212, 255, 0.05);">
+        <div style="font-size: 40px;">🕸️</div>
+      </div>
+      <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">
+        Strongest Domains: <strong style="color: var(--text-primary);">Tech Dev</strong>, <strong style="color: var(--text-primary);">Logic & DS</strong>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div style="display:flex; justify-content: space-between; border-top: 1px solid var(--border-default); padding-top: 20px;">
+      <button class="btn btn-outline" (click)="prevStep()" [style.visibility]="currentStep === 1 ? 'hidden' : 'visible'">Back</button>
+      
+      <button class="btn btn-primary" *ngIf="currentStep < totalSteps" (click)="nextStep()">Continue →</button>
+      <button class="btn btn-cyan" *ngIf="currentStep === totalSteps" (click)="finish()">Launch Ascendify 🚀</button>
+    </div>
+
+  </div>
+</div>

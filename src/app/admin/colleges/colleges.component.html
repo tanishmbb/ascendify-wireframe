@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify Admin — College Approvals</title>
+  
+  <style>
+    .admin-sidebar { background: #0F172A; border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <aside class="admin-sidebar" style="background:#0F172A;">
+    <div class="sidebar-logo"><div><div class="logo-text" style="color:var(--accent-cyan);">ASCENDIFY</div><div class="logo-sub">Employee Operations</div></div></div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Core Ops</div>
+      <nav class="sidebar-nav">
+        <a href="/admin/dashboard" class="sidebar-link"><span class="nav-icon">📊</span> Overview</a>
+        <a href="/admin/colleges" class="sidebar-link active"><span class="nav-icon">🏛️</span> College Approvals</a>
+        <a href="/admin/companies" class="sidebar-link"><span class="nav-icon">🏢</span> Company Verification</a>
+      </nav>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Content & Trust</div>
+      <nav class="sidebar-nav">
+        <a href="/admin/content" class="sidebar-link"><span class="nav-icon">📝</span> Content Moderation</a>
+        <a href="/admin/fraud" class="sidebar-link"><span class="nav-icon">🛡️</span> Fraud Reports</a>
+        <a href="/admin/support" class="sidebar-link"><span class="nav-icon">🎫</span> Support Tickets</a>
+      </nav>
+    </div>
+    <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">EO</div><div class="user-info"><div class="user-name">Riya Singh</div><div class="user-role">Operations Lead</div></div></div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left"><h1 class="topbar-title">College Approvals</h1></div>
+      <div class="topbar-right">
+        <div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="card" style="padding:0;">
+        <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);display:flex;gap:16px;align-items:center;">
+          <div class="topbar-search" style="flex:1;"><span class="search-icon">🔍</span><input placeholder="Search colleges..."></div>
+          <select class="form-select" style="width:auto;"><option>Status: Pending (14)</option><option>Status: Approved</option><option>Status: Rejected</option></select>
+        </div>
+        
+        <table class="data-table">
+          <thead>
+            <tr><th>College Name</th><th>Location</th><th>Contact Person</th><th>Submitted Date</th><th>Status</th><th>Actions</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div style="font-weight:600;">VIT Pune</div><div style="font-size:12px;color:var(--text-secondary);">ID: COL-8921</div></td>
+              <td>Pune, Maharashtra</td>
+              <td>Dr. Anil Kumar<br><span style="font-size:12px;color:var(--text-muted);">anil@vit.edu</span></td>
+              <td>Today, 10:30 AM</td>
+              <td><span class="badge badge-amber">Pending MOU</span></td>
+              <td>
+                <button class="btn btn-outline btn-sm">Review Docs</button>
+              </td>
+            </tr>
+            <tr>
+              <td><div style="font-weight:600;">JNTU Hyderabad</div><div style="font-size:12px;color:var(--text-secondary);">ID: COL-8922</div></td>
+              <td>Hyderabad, TS</td>
+              <td>Prof. Ramesh<br><span style="font-size:12px;color:var(--text-muted);">ramesh@jntu.ac.in</span></td>
+              <td>Yesterday</td>
+              <td><span class="badge badge-red">Missing Docs</span></td>
+              <td>
+                <button class="btn btn-outline btn-sm">Review Docs</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

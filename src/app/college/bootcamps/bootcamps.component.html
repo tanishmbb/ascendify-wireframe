@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify College — Bootcamps</title>
+  
+  <style>
+    .college-sidebar { background: var(--bg-card); border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
+    .status-badge { padding: 4px 10px; border-radius: var(--radius-full); font-size: 11px; font-weight: 600; }
+    .status-badge.active { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+    .status-badge.eval { background: rgba(245,158,11,0.15); color: var(--accent-amber); }
+    .status-badge.completed { background: rgba(0,212,255,0.15); color: var(--accent-cyan); }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="college-sidebar">
+      <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">College / Placement OS</div></div></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Overview</div>
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="sidebar-link"><span class="nav-icon">📊</span> Dashboard</a>
+          <a href="students.html" class="sidebar-link"><span class="nav-icon">🎓</span> Students</a>
+          <a href="college-analytics.html" class="sidebar-link"><span class="nav-icon">📈</span> Analytics</a>
+        </nav>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Operations</div>
+        <nav class="sidebar-nav">
+          <a href="bootcamps.html" class="sidebar-link active"><span class="nav-icon">🛠️</span> Bootcamps</a>
+          <a href="events.html" class="sidebar-link"><span class="nav-icon">📅</span> Events & QR</a>
+          <a href="panels.html" class="sidebar-link"><span class="nav-icon">⚖️</span> Panel Config</a>
+        </nav>
+      </div>
+      <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">MR</div><div class="user-info"><div class="user-name">Malla Reddy Univ</div><div class="user-role">Placement Cell</div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><h1 class="topbar-title">Bootcamp Management</h1></div>
+        <div class="topbar-right">
+          <button class="btn btn-primary btn-sm">+ Schedule Evaluation</button>
+          <div class="topbar-icon-btn">🔔</div>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;">
+          <!-- Active Bootcamp Stats -->
+          <div>
+            <div class="card" style="margin-bottom:var(--space-xl);background:linear-gradient(135deg,rgba(0,212,255,0.04),rgba(139,92,246,0.03));border-color:rgba(0,212,255,0.15);">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+                <div>
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                    <span class="badge badge-cyan">Week 13</span>
+                    <span class="status-badge eval">Evaluation Upcoming</span>
+                  </div>
+                  <h2 style="font-size:20px;margin-bottom:4px;">Real-Time Sentiment Dashboard</h2>
+                  <div style="font-size:13px;color:var(--text-secondary);">Cross-domain: Tech Dev + AI/DS</div>
+                </div>
+                <div style="text-align:right;">
+                  <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">EVALUATION DAY</div>
+                  <div class="font-mono text-cyan" style="font-size:18px;">Saturday, 10:00 AM</div>
+                </div>
+              </div>
+              
+              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;">
+                <div style="background:var(--bg-card);padding:12px;border-radius:var(--radius-md);border:1px solid var(--border-default);text-align:center;">
+                  <div class="font-mono" style="font-size:20px;color:var(--accent-cyan);">184</div>
+                  <div style="font-size:11px;color:var(--text-muted);">Teams Registered</div>
+                </div>
+                <div style="background:var(--bg-card);padding:12px;border-radius:var(--radius-md);border:1px solid var(--border-default);text-align:center;">
+                  <div class="font-mono" style="font-size:20px;color:var(--accent-cyan);">12</div>
+                  <div style="font-size:11px;color:var(--text-muted);">Panels Assigned</div>
+                </div>
+                <div style="background:var(--bg-card);padding:12px;border-radius:var(--radius-md);border:1px solid var(--border-default);text-align:center;">
+                  <div class="font-mono" style="font-size:20px;color:var(--accent-amber);">15m</div>
+                  <div style="font-size:11px;color:var(--text-muted);">Time per slot</div>
+                </div>
+                <div style="background:var(--bg-card);padding:12px;border-radius:var(--radius-md);border:1px solid var(--border-default);text-align:center;">
+                  <div class="font-mono" style="font-size:20px;color:var(--text-primary);">0%</div>
+                  <div style="font-size:11px;color:var(--text-muted);">Evaluated</div>
+                </div>
+              </div>
+
+              <div style="display:flex;gap:8px;">
+                <button class="btn btn-primary btn-sm">Manage Panel Assignments</button>
+                <button class="btn btn-outline btn-sm">Generate Duty Roster PDF</button>
+              </div>
+            </div>
+
+            <!-- History -->
+            <div class="card" style="padding:0;">
+              <div class="card-header" style="padding:16px 20px;border-bottom:1px solid var(--border-default);"><div class="card-title">Bootcamp History</div></div>
+              <table class="data-table">
+                <thead><tr><th>Week</th><th>Problem</th><th>Domain</th><th>Participation</th><th>Avg Score</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td class="font-mono" style="font-size:12px;">W12</td>
+                    <td style="font-weight:600;font-size:13px;">IoT Temp Monitor</td>
+                    <td><span class="domain-tag" style="font-size:11px;">🔧 Hardware</span></td>
+                    <td>42% (180/428)</td>
+                    <td class="font-mono text-green">76.4</td>
+                    <td><span class="status-badge completed">Completed</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono" style="font-size:12px;">W11</td>
+                    <td style="font-weight:600;font-size:13px;">REST API Builder</td>
+                    <td><span class="domain-tag" style="font-size:11px;">💻 Tech Dev</span></td>
+                    <td>58% (248/428)</td>
+                    <td class="font-mono text-cyan">72.1</td>
+                    <td><span class="status-badge completed">Completed</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono" style="font-size:12px;">W10</td>
+                    <td style="font-weight:600;font-size:13px;">Pitch Deck</td>
+                    <td><span class="domain-tag" style="font-size:11px;">🎤 Soft Skills</span></td>
+                    <td>65% (278/428)</td>
+                    <td class="font-mono text-pathfinder">81.5</td>
+                    <td><span class="status-badge completed">Completed</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono" style="font-size:12px;">W9</td>
+                    <td style="font-weight:600;font-size:13px;">ML Image Classifier</td>
+                    <td><span class="domain-tag" style="font-size:11px;">🤖 AI/DS</span></td>
+                    <td>38% (162/428)</td>
+                    <td class="font-mono text-green">74.8</td>
+                    <td><span class="status-badge completed">Completed</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div>
+            <div class="card" style="margin-bottom:16px;">
+              <h3 style="margin-bottom:16px;font-size:15px;">Evaluator Panels (Week 13)</h3>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:var(--bg-elevated);border-radius:var(--radius-md);margin-bottom:8px;">
+                <div><div style="font-size:13px;font-weight:600;">Panel A (Room 401)</div><div style="font-size:11px;color:var(--text-muted);">Dr. Sharma, Prof. Rao</div></div>
+                <div style="font-size:12px;color:var(--text-secondary);">16 teams</div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:var(--bg-elevated);border-radius:var(--radius-md);margin-bottom:8px;">
+                <div><div style="font-size:13px;font-weight:600;">Panel B (Room 402)</div><div style="font-size:11px;color:var(--text-muted);">Dr. Gupta, Mrs. Reddy</div></div>
+                <div style="font-size:12px;color:var(--text-secondary);">15 teams</div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:var(--bg-elevated);border-radius:var(--radius-md);margin-bottom:8px;">
+                <div><div style="font-size:13px;font-weight:600;">Panel C (Room 403)</div><div style="font-size:11px;color:var(--text-muted);">Prof. Kumar, Mr. Singh</div></div>
+                <div style="font-size:12px;color:var(--text-secondary);">16 teams</div>
+              </div>
+              <button class="btn btn-outline btn-sm w-full" style="margin-top:8px;">View All 12 Panels</button>
+            </div>
+
+            <div class="card">
+              <h3 style="margin-bottom:12px;font-size:15px;">Admin Tools</h3>
+              <button class="btn btn-ghost w-full" style="text-align:left;justify-content:flex-start;padding:12px;margin-bottom:4px;">📊 Export Domain Analytics</button>
+              <button class="btn btn-ghost w-full" style="text-align:left;justify-content:flex-start;padding:12px;margin-bottom:4px;">⚖️ Adjust Scoring Rubric</button>
+              <button class="btn btn-ghost w-full" style="text-align:left;justify-content:flex-start;padding:12px;margin-bottom:4px;">⚠️ Manage Disputed Scores</button>
+              <button class="btn btn-ghost w-full" style="text-align:left;justify-content:flex-start;padding:12px;">🗓️ View Academic Calendar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

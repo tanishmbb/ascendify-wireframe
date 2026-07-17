@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify Hire — Screening Setup</title>
+  
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Hire · Recruiter Portal</div></div></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Recruiting</div>
+        <nav class="sidebar-nav">
+          <a href="talent-search.html" class="sidebar-link"><span class="nav-icon">🔍</span> Search Talent</a>
+          <a href="spotlight.html" class="sidebar-link"><span class="nav-icon">⭐</span> Talent Spotlight</a>
+          <a href="bounty.html" class="sidebar-link"><span class="nav-icon">💰</span> Bounty Board</a>
+          <a href="screening-setup.html" class="sidebar-link active"><span class="nav-icon">📝</span> Screening</a>
+          <a href="screening-results.html" class="sidebar-link"><span class="nav-icon">📊</span> Results</a>
+        </nav>
+      </div>
+      <div class="sidebar-user"><div class="user-avatar" style="background:var(--gradient-pathfinder);">TC</div><div class="user-info"><div class="user-name">TechCorp India</div><div class="user-role">Pro Plan</div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><h1 class="topbar-title">Screening Round Setup</h1></div>
+        <div class="topbar-right"><button class="btn btn-outline btn-sm">📋 My Rounds (4)</button></div>
+      </header>
+
+      <div class="page-content" style="max-width:900px;">
+        <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;">
+          <!-- Setup Form -->
+          <div class="card">
+            <h3 style="margin-bottom:20px;">Create New Screening Round</h3>
+            <div class="form-group"><label class="form-label">Round Title</label><input class="form-input" placeholder="e.g. SDE Intern Round 1 — Backend" value="SDE Intern Round 1 — Backend"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div class="form-group"><label class="form-label">Domain</label><select class="form-select"><option>Logic & DS</option><option selected>Tech Dev</option><option>AI/DS</option><option>Multi-domain</option></select></div>
+              <div class="form-group"><label class="form-label">Problem Type</label><select class="form-select"><option>Coding (multi-language)</option><option>MCQ</option><option>Short Answer</option><option>Mixed</option></select></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Problem Source</label>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                <div style="padding:14px;text-align:center;border-radius:var(--radius-md);background:rgba(0,212,255,0.08);border:1px solid var(--accent-cyan);font-size:13px;font-weight:600;color:var(--accent-cyan);cursor:pointer;">Ascendify Problem Bank</div>
+                <div style="padding:14px;text-align:center;border-radius:var(--radius-md);background:var(--bg-input);border:1px solid var(--border-default);font-size:13px;color:var(--text-secondary);cursor:pointer;">Upload Own Problems</div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div class="form-group"><label class="form-label">Time Limit</label><select class="form-select"><option>15 min</option><option selected>30 min</option><option>60 min</option><option>90 min</option><option>Custom</option></select></div>
+              <div class="form-group"><label class="form-label">Pass Threshold</label><input class="form-input" type="number" value="70" placeholder="0-100"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Participant Source</label>
+              <select class="form-select"><option>From Watchlist</option><option>From Search Results</option><option>Open Invite Link</option></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Proctoring Level</label>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">
+                <div style="padding:12px;text-align:center;border-radius:var(--radius-md);background:var(--bg-input);border:1px solid var(--border-default);font-size:12px;color:var(--text-secondary);cursor:pointer;">None</div>
+                <div style="padding:12px;text-align:center;border-radius:var(--radius-md);background:rgba(0,212,255,0.08);border:1px solid var(--accent-cyan);font-size:12px;font-weight:600;color:var(--accent-cyan);cursor:pointer;">Tab Detection</div>
+                <div style="padding:12px;text-align:center;border-radius:var(--radius-md);background:var(--bg-input);border:1px solid var(--border-default);font-size:12px;color:var(--text-secondary);cursor:pointer;">Camera-On</div>
+              </div>
+
+              <!-- Advanced Anti-Cheat -->
+              <div style="background:var(--bg-elevated); padding:16px; border-radius:var(--radius-md); border:1px solid var(--border-default);">
+                <div style="font-size:13px; font-weight:600; margin-bottom:12px; color:var(--text-primary);">Advanced Anti-Cheat (Pro)</div>
+                <div style="display:flex; flex-direction:column; gap:12px;">
+                  <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                    <input type="checkbox" checked>
+                    <span style="font-size:13px; color:var(--text-secondary);">AI Code Plagiarism Check (Cross-reference Ascendify DB)</span>
+                  </label>
+                  <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                    <input type="checkbox" checked>
+                    <span style="font-size:13px; color:var(--text-secondary);">Disable Copy-Paste in Editor</span>
+                  </label>
+                  <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+                    <input type="checkbox">
+                    <span style="font-size:13px; color:var(--text-secondary);">Audio/Environment Recording (Requires Camera-On)</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Result Visibility</label>
+              <select class="form-select"><option>Immediate to student</option><option>Delayed</option><option>Company-only</option></select>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+              <div class="toggle-switch active"></div>
+              <div><div style="font-size:13px;font-weight:600;">Link to XP</div><div style="font-size:11px;color:var(--text-muted);">Passing score contributes to student's domain XP</div></div>
+            </div>
+            <button class="btn btn-primary btn-lg w-full">Create Screening Round →</button>
+          </div>
+
+          <!-- Problem Bank Preview -->
+          <div>
+            <div class="card" style="margin-bottom:16px;">
+              <div class="card-title" style="margin-bottom:16px;">Problem Bank Preview</div>
+              <div style="padding:12px;background:var(--bg-elevated);border-radius:var(--radius-md);margin-bottom:8px;cursor:pointer;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                  <span style="font-size:13px;font-weight:600;">Two Sum Variant</span>
+                  <span class="badge badge-green" style="font-size:10px;">Easy</span>
+                </div>
+                <div style="font-size:11px;color:var(--text-muted);">Logic & DS · Avg time: 12 min · Used 34×</div>
+              </div>
+              <div style="padding:12px;background:var(--bg-elevated);border-radius:var(--radius-md);margin-bottom:8px;cursor:pointer;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                  <span style="font-size:13px;font-weight:600;">Binary Tree Traversal</span>
+                  <span class="badge badge-amber" style="font-size:10px;">Medium</span>
+                </div>
+                <div style="font-size:11px;color:var(--text-muted);">Logic & DS · Avg time: 22 min · Used 28×</div>
+              </div>
+              <div style="padding:12px;background:var(--bg-elevated);border-radius:var(--radius-md);margin-bottom:8px;cursor:pointer;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                  <span style="font-size:13px;font-weight:600;">REST API Design</span>
+                  <span class="badge badge-red" style="font-size:10px;">Hard</span>
+                </div>
+                <div style="font-size:11px;color:var(--text-muted);">Tech Dev · Avg time: 38 min · Used 15×</div>
+              </div>
+              <div style="padding:12px;background:var(--bg-elevated);border-radius:var(--radius-md);cursor:pointer;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                  <span style="font-size:13px;font-weight:600;">ML Pipeline Setup</span>
+                  <span class="badge badge-red" style="font-size:10px;">Hard</span>
+                </div>
+                <div style="font-size:11px;color:var(--text-muted);">AI/DS · Avg time: 45 min · Used 8×</div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title" style="margin-bottom:12px;">Anti-Leak Controls</div>
+              <div style="font-size:13px;color:var(--text-secondary);line-height:1.6;">
+                <div style="display:flex;gap:8px;margin-bottom:8px;"><span class="verified-badge">✓</span>Problems hidden until round begins</div>
+                <div style="display:flex;gap:8px;margin-bottom:8px;"><span class="verified-badge">✓</span>Randomised problem order</div>
+                <div style="display:flex;gap:8px;margin-bottom:8px;"><span class="verified-badge">✓</span>Tab-switch detection active</div>
+                <div style="display:flex;gap:8px;"><span class="verified-badge">✓</span>Problems rotated quarterly</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

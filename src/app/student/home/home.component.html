@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify — The Pulse</title>
+  <meta name="description" content="Ascendify Student Dashboard — Live feed, quests, and XP tracking.">
+  
+  <style>
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(0,212,255,0.08) 0%, rgba(245,166,35,0.06) 50%, rgba(139,92,246,0.05) 100%);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: var(--radius-xl);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-lg);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .hero-banner:hover { border-color: rgba(0,212,255,0.3); box-shadow: var(--shadow-cyan); }
+    .hero-score {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 56px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-pathfinder));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+    .hero-meta { display: flex; align-items: center; gap: 16px; margin-top: 8px; }
+    .hero-right { display: flex; align-items: center; gap: 24px; }
+    .mini-radar {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 2px solid var(--border-default);
+      background: radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 70%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .mini-radar svg { width: 100px; height: 100px; }
+    .quest-pinned {
+      background: linear-gradient(135deg, rgba(0,212,255,0.06) 0%, rgba(0,212,255,0.02) 100%);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      margin-bottom: var(--space-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .quest-pinned::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 4px; background: var(--accent-cyan);
+    }
+    .quest-pinned .quest-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .quest-pinned .quest-title { font-size: 16px; font-weight: 600; }
+    .quest-pinned .quest-xp { font-family: 'JetBrains Mono'; font-weight: 600; color: var(--accent-pathfinder); }
+    .feed-card {
+      display: flex;
+      gap: 14px;
+      padding: 16px;
+      border-bottom: 1px solid rgba(30,45,69,0.5);
+      transition: background 0.2s;
+    }
+    .feed-card:hover { background: rgba(0,212,255,0.02); }
+    .feed-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--bg-elevated); display: flex; align-items: center;
+      justify-content: center; font-size: 16px; flex-shrink: 0;
+      border: 2px solid var(--border-default);
+    }
+    .feed-content { flex: 1; min-width: 0; }
+    .feed-content .feed-text { font-size: 14px; line-height: 1.5; margin-bottom: 4px; }
+    .feed-content .feed-time { font-size: 12px; color: var(--text-muted); }
+    .streak-card {
+      background: rgba(245,158,11,0.06);
+      border: 1px solid rgba(245,158,11,0.15);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      text-align: center;
+    }
+    .streak-number {
+      font-family: 'JetBrains Mono'; font-size: 36px; font-weight: 600;
+      color: var(--accent-amber);
+    }
+    .upcoming-event {
+      padding: 14px; border-radius: var(--radius-md);
+      background: var(--bg-elevated); border: 1px solid var(--border-default);
+      margin-bottom: 10px; display: flex; gap: 12px; align-items: center;
+    }
+    .event-date {
+      width: 48px; text-align: center; flex-shrink: 0;
+    }
+    .event-date .day { font-family: 'JetBrains Mono'; font-size: 22px; font-weight: 600; color: var(--accent-cyan); }
+    .event-date .month { font-size: 11px; color: var(--text-muted); text-transform: uppercase; }
+    .rank-preview {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px; background: var(--bg-elevated);
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-md); margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <!-- ═══════════════ SIDEBAR ═══════════════ -->
+    <aside class="sidebar" id="student-sidebar">
+      <div class="sidebar-logo">
+        <div>
+          <div class="logo-text">ASCENDIFY</div>
+          <div class="logo-sub">Student · S-OS</div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Main</div>
+        <nav class="sidebar-nav">
+          <a href="home.html" class="sidebar-link active">
+            <span class="nav-icon">🏠</span> The Pulse
+          </a>
+          <a href="profile.html" class="sidebar-link">
+            <span class="nav-icon">👤</span> My Profile
+          </a>
+          <a href="leaderboard.html" class="sidebar-link">
+            <span class="nav-icon">🏆</span> Leaderboard
+          </a>
+          <a href="quests.html" class="sidebar-link">
+            <span class="nav-icon">⚡</span> Quests
+            <span class="nav-badge">3</span>
+          </a>
+          <a href="bootcamp.html" class="sidebar-link">
+            <span class="nav-icon">🛠️</span> Bootcamp
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Social</div>
+        <nav class="sidebar-nav">
+          <a href="duels.html" class="sidebar-link">
+            <span class="nav-icon">⚔️</span> Duels
+            <span class="nav-badge">1</span>
+          </a>
+          <a href="mentorship.html" class="sidebar-link">
+            <span class="nav-icon">🤝</span> Mentorship
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Account</div>
+        <nav class="sidebar-nav">
+          <a href="settings.html" class="sidebar-link">
+            <span class="nav-icon">⚙️</span> Settings
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-user">
+        <div class="user-avatar">RK</div>
+        <div class="user-info">
+          <div class="user-name">Rahul Kumar</div>
+          <div class="user-role">CSE · 3rd Year</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+    <main class="main-content">
+      <!-- ═══ TOP BAR ═══ -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="topbar-title">The Pulse</h1>
+          <span class="badge badge-green">Live</span>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-search">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Search students, quests, events...">
+          </div>
+          <div class="topbar-icon-btn" (click)="toggleNotifications()" style="cursor: pointer;">
+            🔔
+            <span class="notif-badge"></span>
+          </div>
+          <div class="topbar-icon-btn">⚙️</div>
+        </div>
+      </header>
+
+      <!-- ═══ PAGE CONTENT ═══ -->
+      <div class="page-content">
+        <!-- Hero Score Banner -->
+        <div class="hero-banner animate-in">
+          <div>
+            <div style="display:flex;align-items:baseline;gap:16px;">
+              <div class="hero-score">1,847</div>
+              <span class="velocity-arrow up" style="font-size:16px;">↑ 12.4%</span>
+            </div>
+            <div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">Overall Skill Score</div>
+            <div class="hero-meta">
+              <span class="tier-badge tier-trailblazer">⭐ Trailblazer</span>
+              <span class="streak-flame">🔥 23 days</span>
+              <span style="font-size:13px;color:var(--text-muted);">Top 18% Overall</span>
+            </div>
+          </div>
+          <div class="hero-right">
+            <div style="text-align:right;margin-right:16px;">
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">Strongest Domain</div>
+              <div style="font-size:16px;font-weight:600;">Tech Dev</div>
+              <div style="font-size:13px;color:var(--accent-cyan);">Top 8% · Elo 1,621</div>
+            </div>
+            <div class="mini-radar">
+              <svg viewBox="0 0 100 100">
+                <polygon points="50,15 82,35 75,72 25,72 18,35" fill="none" stroke="rgba(30,45,69,0.5)" stroke-width="1"/>
+                <polygon points="50,25 72,40 67,65 33,65 28,40" fill="none" stroke="rgba(30,45,69,0.3)" stroke-width="1"/>
+                <polygon points="50,20 78,38 72,68 28,68 22,38" fill="rgba(0,212,255,0.15)" stroke="var(--accent-cyan)" stroke-width="1.5"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;">
+          <!-- ═══ LEFT COLUMN — Feed ═══ -->
+          <div>
+            <!-- Daily Quest Card (Pinned) -->
+            <div class="quest-pinned animate-in" style="animation-delay:50ms;">
+              <div class="quest-header">
+                <div>
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                    <span class="badge badge-cyan">Daily Quest</span>
+                    <span class="domain-tag">🧠 Logic & DS</span>
+                  </div>
+                  <div class="quest-title">Solve 3 Medium-difficulty problems on LeetCode</div>
+                </div>
+                <div style="text-align:right;">
+                  <div class="quest-xp">+120 XP</div>
+                  <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">
+                    <span class="font-mono" style="color:var(--accent-amber);">6h 24m</span> left
+                  </div>
+                </div>
+              </div>
+              <div class="progress-bar" style="margin-bottom:8px;">
+                <div class="progress-fill" style="width:66%;"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);">
+                <span>2 of 3 completed</span>
+                <span>66%</span>
+              </div>
+            </div>
+
+            <!-- Live Feed -->
+            <div class="card animate-in" style="animation-delay:100ms;padding:0;">
+              <div class="card-header" style="padding:16px 20px 0;">
+                <div class="card-title">Live Feed</div>
+                <div class="pill-tabs">
+                  <div class="pill-tab active">All</div>
+                  <div class="pill-tab">Achievements</div>
+                  <div class="pill-tab">Bootcamp</div>
+                  <div class="pill-tab">Events</div>
+                </div>
+              </div>
+
+              <div style="padding:8px 4px;">
+                <!-- Feed Item 1 — Tier Upgrade -->
+                <div class="feed-card">
+                  <div class="feed-avatar" style="border-color:var(--tier-pathfinder);">AK</div>
+                  <div class="feed-content">
+                    <div class="feed-text">
+                      <strong>Anika Kapoor</strong> upgraded to <span class="tier-badge tier-pathfinder" style="font-size:11px;padding:2px 8px;">⭐ Pathfinder</span> in <span class="text-cyan">AI/DS</span>
+                    </div>
+                    <div class="feed-time">2 minutes ago · <span class="xp-chip">+450 XP</span></div>
+                  </div>
+                </div>
+
+                <!-- Feed Item 2 — Bootcamp Result -->
+                <div class="feed-card">
+                  <div class="feed-avatar">🛠️</div>
+                  <div class="feed-content">
+                    <div class="feed-text">
+                      <strong>Bootcamp Week 12</strong> results published — <span class="text-cyan">42 students</span> evaluated, avg score <span class="font-mono text-pathfinder">73.4</span>
+                    </div>
+                    <div class="feed-time">15 minutes ago</div>
+                  </div>
+                </div>
+
+                <!-- Feed Item 3 — Peer Achievement -->
+                <div class="feed-card">
+                  <div class="feed-avatar" style="border-color:var(--accent-green);">VS</div>
+                  <div class="feed-content">
+                    <div class="feed-text">
+                      <strong>Vikram Singh</strong> completed a 30-day streak! 🔥 <span class="badge badge-amber" style="font-size:10px;">+250 XP Bonus</span>
+                    </div>
+                    <div class="feed-time">28 minutes ago</div>
+                  </div>
+                </div>
+
+                <!-- Feed Item 4 — Leaderboard Move -->
+                <div class="feed-card">
+                  <div class="feed-avatar">PD</div>
+                  <div class="feed-content">
+                    <div class="feed-text">
+                      <strong>Priya Desai</strong> climbed <span class="velocity-arrow up">↑ 14 ranks</span> in <span class="text-cyan">Tech Dev</span> this week
+                    </div>
+                    <div class="feed-time">42 minutes ago · <span class="badge badge-amber" style="font-size:10px;">Rising Star</span></div>
+                  </div>
+                </div>
+
+                <!-- Feed Item 5 — Event -->
+                <div class="feed-card">
+                  <div class="feed-avatar" style="background:rgba(139,92,246,0.15);color:var(--accent-purple);">📅</div>
+                  <div class="feed-content">
+                    <div class="feed-text">
+                      <strong>Upcoming Event:</strong> "API Design Workshop" — this Saturday, 3:00 PM. <span class="domain-tag" style="font-size:11px;">💻 Tech Dev</span>
+                    </div>
+                    <div class="feed-time">1 hour ago · <a href="#">Register →</a></div>
+                  </div>
+                </div>
+
+                <!-- Feed Item 6 — Giant Slayer -->
+                <div class="feed-card">
+                  <div class="feed-avatar" style="border-color:var(--accent-amber);">KR</div>
+                  <div class="feed-content">
+                    <div class="feed-text">
+                      <strong>Kiran Reddy</strong> earned <span class="badge badge-amber" style="font-size:10px;">⚔️ Giant Slayer</span> — Launcher defeated a Pathfinder in <span class="text-cyan">Logic & DS</span>!
+                    </div>
+                    <div class="feed-time">1 hour ago · <span class="xp-chip">+380 XP</span></div>
+                  </div>
+                </div>
+
+                <!-- Feed Item 7 — Company Interest -->
+                <div class="feed-card">
+                  <div class="feed-avatar" style="background:rgba(16,185,129,0.15);color:var(--accent-green);">🏢</div>
+                  <div class="feed-content">
+                    <div class="feed-text">
+                      A company showed interest in <strong>3 students</strong> in the <span class="text-cyan">Backend</span> category this week
+                    </div>
+                    <div class="feed-time">2 hours ago</div>
+                  </div>
+                </div>
+
+                <!-- Feed Item 8 — Achievement Upload -->
+                <div class="feed-card">
+                  <div class="feed-avatar">MN</div>
+                  <div class="feed-content">
+                    <div class="feed-text">
+                      <strong>Meera Nair</strong> submitted a new achievement: "AWS Cloud Practitioner Certification" <span class="verified-badge">✓</span>
+                    </div>
+                    <div class="feed-time">3 hours ago · <span class="xp-chip">+200 XP</span> · Pending endorsement</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ═══ RIGHT COLUMN — Widgets ═══ -->
+          <div>
+            <!-- Streak Widget -->
+            <div class="streak-card animate-in" style="animation-delay:150ms;margin-bottom:var(--space-md);">
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;">Current Streak</div>
+              <div class="streak-number">🔥 23</div>
+              <div style="font-size:13px;color:var(--text-secondary);margin-top:4px;">days</div>
+              <div class="progress-bar" style="margin-top:12px;">
+                <div class="progress-fill pathfinder" style="width:76%;"></div>
+              </div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">7 days to 30-day bonus (+250 XP)</div>
+            </div>
+
+            <!-- Your Domains Preview -->
+            <div class="card animate-in" style="animation-delay:200ms;margin-bottom:var(--space-md);">
+              <div class="card-header">
+                <div class="card-title">Your Domains</div>
+                <a href="profile.html" style="font-size:12px;">View All →</a>
+              </div>
+              <div class="rank-preview">
+                <span style="font-size:18px;">💻</span>
+                <div style="flex:1;">
+                  <div style="font-size:13px;font-weight:600;">Tech Dev</div>
+                  <div style="font-size:11px;color:var(--text-muted);">Top 8%</div>
+                </div>
+                <div style="text-align:right;">
+                  <div class="font-mono" style="font-size:15px;color:var(--accent-cyan);">1,621</div>
+                  <span class="velocity-arrow up" style="font-size:11px;">↑ 4.2%</span>
+                </div>
+                <span class="tier-badge tier-pathfinder" style="font-size:10px;padding:2px 8px;">⭐</span>
+              </div>
+              <div class="rank-preview">
+                <span style="font-size:18px;">🧠</span>
+                <div style="flex:1;">
+                  <div style="font-size:13px;font-weight:600;">Logic & DS</div>
+                  <div style="font-size:11px;color:var(--text-muted);">Top 15%</div>
+                </div>
+                <div style="text-align:right;">
+                  <div class="font-mono" style="font-size:15px;color:var(--accent-cyan);">1,489</div>
+                  <span class="velocity-arrow up" style="font-size:11px;">↑ 8.1%</span>
+                </div>
+                <span class="tier-badge tier-trailblazer" style="font-size:10px;padding:2px 8px;">⭐</span>
+              </div>
+              <div class="rank-preview">
+                <span style="font-size:18px;">🤖</span>
+                <div style="flex:1;">
+                  <div style="font-size:13px;font-weight:600;">AI / DS</div>
+                  <div style="font-size:11px;color:var(--text-muted);">Top 32%</div>
+                </div>
+                <div style="text-align:right;">
+                  <div class="font-mono" style="font-size:15px;color:var(--accent-cyan);">1,312</div>
+                  <span class="velocity-arrow stable" style="font-size:11px;">→ 0.3%</span>
+                </div>
+                <span class="tier-badge tier-builder" style="font-size:10px;padding:2px 8px;">⬡</span>
+              </div>
+            </div>
+
+            <!-- Upcoming Events -->
+            <div class="card animate-in" style="animation-delay:250ms;margin-bottom:var(--space-md);">
+              <div class="card-header">
+                <div class="card-title">Upcoming Events</div>
+                <a href="#" style="font-size:12px;">See All →</a>
+              </div>
+              <div class="upcoming-event">
+                <div class="event-date">
+                  <div class="day">19</div>
+                  <div class="month">Jul</div>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:14px;font-weight:600;">Saturday Bootcamp</div>
+                  <div style="font-size:12px;color:var(--text-muted);">MVP Defence · 10:00 AM</div>
+                </div>
+                <span class="badge badge-cyan" style="font-size:10px;">Registered</span>
+              </div>
+              <div class="upcoming-event">
+                <div class="event-date">
+                  <div class="day">19</div>
+                  <div class="month">Jul</div>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:14px;font-weight:600;">API Design Workshop</div>
+                  <div style="font-size:12px;color:var(--text-muted);">Tech Dev · 3:00 PM</div>
+                </div>
+                <button class="btn btn-outline btn-sm" style="font-size:11px;padding:4px 10px;">RSVP</button>
+              </div>
+              <div class="upcoming-event">
+                <div class="event-date">
+                  <div class="day">22</div>
+                  <div class="month">Jul</div>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:14px;font-weight:600;">Hackathon Prep</div>
+                  <div style="font-size:12px;color:var(--text-muted);">Cross-Domain · 6:00 PM</div>
+                </div>
+                <button class="btn btn-outline btn-sm" style="font-size:11px;padding:4px 10px;">RSVP</button>
+              </div>
+            </div>
+
+            <!-- Recent XP Activity -->
+            <div class="card animate-in" style="animation-delay:300ms;">
+              <div class="card-header">
+                <div class="card-title">Recent XP</div>
+                <a href="profile.html" style="font-size:12px;">Full Log →</a>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span style="font-size:16px;">🐙</span>
+                  <div style="flex:1;">
+                    <div style="font-size:13px;">GitHub PR merged — auth-service</div>
+                    <div style="font-size:11px;color:var(--text-muted);">2 hours ago</div>
+                  </div>
+                  <span class="xp-chip">+45 XP</span>
+                  <span class="verified-badge">✓</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span style="font-size:16px;">🧩</span>
+                  <div style="flex:1;">
+                    <div style="font-size:13px;">LeetCode — Two Sum II solved</div>
+                    <div style="font-size:11px;color:var(--text-muted);">4 hours ago</div>
+                  </div>
+                  <span class="xp-chip">+30 XP</span>
+                  <span class="verified-badge">✓</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span style="font-size:16px;">🛠️</span>
+                  <div style="flex:1;">
+                    <div style="font-size:13px;">Bootcamp Week 11 — Score: 82</div>
+                    <div style="font-size:11px;color:var(--text-muted);">5 days ago</div>
+                  </div>
+                  <span class="xp-chip">+350 XP</span>
+                  <span class="verified-badge">✓</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <span style="font-size:16px;">📅</span>
+                  <div style="flex:1;">
+                    <div style="font-size:13px;">Event: ML Workshop attended</div>
+                    <div style="font-size:11px;color:var(--text-muted);">6 days ago</div>
+                  </div>
+                  <span class="xp-chip">+50 XP</span>
+                  <span class="verified-badge">✓</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ FLOATING ACTION BUTTON ═══ -->
+      <div class="fab" title="Upload Achievement">+</div>
+
+      <!-- ═══ NOTIFICATION DRAWER ═══ -->
+      <div class="overlay" *ngIf="isNotificationDrawerOpen" (click)="toggleNotifications()" style="position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(10,15,30,0.6); z-index:999;"></div>
+      <div class="drawer" [ngStyle]="{'right': isNotificationDrawerOpen ? '0' : '-400px'}" style="position:fixed; top:0; bottom:0; width:380px; background:var(--bg-elevated); border-left:1px solid var(--border-default); z-index:1000; transition: right 0.3s ease; padding: 24px; display:flex; flex-direction:column;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+          <h3 style="margin:0;">Notifications</h3>
+          <button class="btn btn-ghost btn-sm" (click)="toggleNotifications()">✕</button>
+        </div>
+        
+        <div style="flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:16px;">
+          <div style="padding:16px; background:rgba(0,212,255,0.05); border:1px solid rgba(0,212,255,0.2); border-radius:var(--radius-md);">
+            <div style="font-size:12px; color:var(--accent-cyan); font-weight:600; margin-bottom:4px;">Achievement Unlocked!</div>
+            <div style="font-size:14px; font-weight:600; margin-bottom:4px;">10-Day Streak 🔥</div>
+            <div style="font-size:12px; color:var(--text-secondary); margin-bottom:8px;">You consistently logged in and coded. +150 XP.</div>
+            <button class="btn btn-outline btn-sm" (click)="openAchievementModal(); toggleNotifications()">View Reward</button>
+          </div>
+
+          <div style="padding:16px; background:var(--bg-card); border:1px solid var(--border-default); border-radius:var(--radius-md);">
+            <div style="font-size:12px; color:var(--accent-pathfinder); font-weight:600; margin-bottom:4px;">Duel Challenge</div>
+            <div style="font-size:14px; font-weight:600; margin-bottom:4px;">Anika K. challenged you! ⚔️</div>
+            <div style="font-size:12px; color:var(--text-secondary); margin-bottom:8px;">Domain: Logic & DS. Wager: 50 XP.</div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-primary btn-sm">Accept</button>
+              <button class="btn btn-outline btn-sm">Decline</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ ACHIEVEMENT MODAL ═══ -->
+      <div class="overlay" *ngIf="isAchievementModalOpen" style="position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(10,15,30,0.85); z-index:1000; display:flex; align-items:center; justify-content:center;">
+        <div class="modal animate-in" style="background:var(--bg-card); border:1px solid var(--accent-pathfinder); border-radius:var(--radius-xl); padding:40px; text-align:center; max-width:400px; width:100%; box-shadow:0 0 40px rgba(245,166,35,0.15);">
+          <div style="font-size:64px; margin-bottom:16px;">🏆</div>
+          <h2 style="color:var(--accent-pathfinder); margin-bottom:8px;">Rank Up!</h2>
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:24px;">You have successfully reached the <strong>Trailblazer</strong> tier in Logic & DS.</p>
+          
+          <div style="background:rgba(245,166,35,0.1); border-radius:var(--radius-md); padding:16px; margin-bottom:24px;">
+            <div style="font-size:24px; font-weight:800; color:var(--accent-pathfinder); font-family:monospace;">+500 XP</div>
+            <div style="font-size:12px; color:var(--text-muted);">Bonus Awarded</div>
+          </div>
+
+          <button class="btn btn-pathfinder" style="width:100%;" (click)="closeAchievementModal()">Awesome!</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>

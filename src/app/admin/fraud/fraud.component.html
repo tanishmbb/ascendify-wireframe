@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify Admin — Fraud Reports</title>
+  
+  <style>
+    .admin-sidebar { background: #0F172A; border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
+    .flag-card { background: var(--bg-card); border-left: 4px solid var(--accent-red); border-radius: var(--radius-md); padding: 16px; margin-bottom: 12px; }
+    .flag-card.amber { border-left-color: var(--accent-amber); }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <aside class="admin-sidebar" style="background:#0F172A;">
+    <div class="sidebar-logo"><div><div class="logo-text" style="color:var(--accent-cyan);">ASCENDIFY</div><div class="logo-sub">Employee Operations</div></div></div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Core Ops</div>
+      <nav class="sidebar-nav">
+        <a href="/admin/dashboard" class="sidebar-link"><span class="nav-icon">📊</span> Overview</a>
+        <a href="/admin/colleges" class="sidebar-link"><span class="nav-icon">🏛️</span> College Approvals</a>
+        <a href="/admin/companies" class="sidebar-link"><span class="nav-icon">🏢</span> Company Verification</a>
+      </nav>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Content & Trust</div>
+      <nav class="sidebar-nav">
+        <a href="/admin/content" class="sidebar-link"><span class="nav-icon">📝</span> Content Moderation</a>
+        <a href="/admin/fraud" class="sidebar-link active"><span class="nav-icon">🛡️</span> Fraud Reports</a>
+        <a href="/admin/support" class="sidebar-link"><span class="nav-icon">🎫</span> Support Tickets</a>
+      </nav>
+    </div>
+    <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">EO</div><div class="user-info"><div class="user-name">Riya Singh</div><div class="user-role">Operations Lead</div></div></div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left"><h1 class="topbar-title">Fraud Reports</h1></div>
+      <div class="topbar-right">
+        <div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;">
+        
+        <!-- Incident Queue -->
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+            <h3 style="display:flex;align-items:center;gap:8px;">Open Incidents <span class="badge badge-red">2 High Priority</span></h3>
+            <div class="pill-tabs">
+              <div class="pill-tab active">All (12)</div><div class="pill-tab">Cert Duplication</div><div class="pill-tab">XP Farming</div>
+            </div>
+          </div>
+
+          <!-- Incident 1 -->
+          <div class="flag-card animate-in">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+              <div style="display:flex;align-items:center;gap:8px;"><span class="badge badge-red" style="font-size:10px;">High Priority</span><span style="font-weight:600;font-size:14px;">Certificate Hash Collision</span></div>
+              <span style="font-size:12px;color:var(--text-muted);">2 hours ago</span>
+            </div>
+            <p style="font-size:13px;margin-bottom:12px;">AWS Certified Solutions Architect certificate uploaded by <strong>Vikram S.</strong> (VNR VJIET) matches exact PDF hash of a certificate uploaded by another user 4 days ago.</p>
+            <div style="display:flex;gap:8px;background:rgba(255,255,255,0.03);padding:8px;border-radius:4px;margin-bottom:12px;">
+              <button class="btn btn-ghost btn-sm" style="font-size:11px;">📄 Compare Pdfs</button>
+              <button class="btn btn-ghost btn-sm" style="font-size:11px;">👤 View Profile</button>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <button class="btn btn-outline btn-sm">Reject Certificate & Deduct XP</button>
+              <button class="btn btn-ghost btn-sm" style="color:var(--text-secondary);">Dismiss False Positive</button>
+            </div>
+          </div>
+
+          <!-- Incident 2 -->
+          <div class="flag-card amber animate-in" style="animation-delay:50ms;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+              <div style="display:flex;align-items:center;gap:8px;"><span class="badge badge-amber" style="font-size:10px;">Medium Priority</span><span style="font-weight:600;font-size:14px;">Suspicious XP Farming Velocity</span></div>
+              <span style="font-size:12px;color:var(--text-muted);">5 hours ago</span>
+            </div>
+            <p style="font-size:13px;margin-bottom:12px;">User <strong>Rohit T.</strong> (DTU) gained 450 XP in Logic & DS in under 20 minutes across 15 separate automated quiz submissions.</p>
+            <div style="display:flex;gap:8px;">
+              <button class="btn btn-outline btn-sm">Adjust XP Manually</button>
+              <button class="btn btn-ghost btn-sm" style="color:var(--accent-red);">Ban User</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Investigation Tools -->
+        <div>
+          <div class="card" style="margin-bottom:24px;">
+            <h3 style="margin-bottom:16px;">User Investigation Tool</h3>
+            <div class="form-group" style="margin-bottom:16px;">
+              <label class="form-label">Lookup User by Email or ID</label>
+              <div style="display:flex; gap:8px;">
+                <input class="form-input" placeholder="e.g. rohit.t@dtu.ac.in" style="flex:1;">
+                <button class="btn btn-outline">Search</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom:16px;">XP Adjustment Flow</h3>
+            <div style="margin-bottom:16px; padding:12px; background:var(--bg-elevated); border-radius:var(--radius-md);">
+              <div style="font-size:12px; color:var(--text-muted); margin-bottom:4px;">Target User</div>
+              <div style="font-size:14px; font-weight:600;">Rohit T. (Student #1492)</div>
+              <div style="font-size:12px; color:var(--text-secondary);">Current Tier: Trailblazer</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Domain</label>
+              <select class="form-select"><option>Logic & DS (Current: 1,450 XP)</option></select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Adjustment Amount</label>
+              <input class="form-input" type="number" placeholder="-450" value="-450">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Reason</label>
+              <textarea class="form-input" style="height:60px;">Reversal of illegitimate quiz submissions detected by rate limiter.</textarea>
+            </div>
+
+            <button class="btn btn-primary w-full">Apply XP Adjustment</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

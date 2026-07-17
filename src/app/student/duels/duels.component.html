@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify — Duels</title>
+  
+  <style>
+    .duel-card {
+      background: var(--bg-card); border: 1px solid var(--border-default);
+      border-radius: var(--radius-xl); padding: 28px; margin-bottom: 16px;
+      transition: all 0.3s;
+    }
+    .duel-card:hover { border-color: rgba(0,212,255,0.2); }
+    .duel-vs {
+      display: flex; align-items: center; justify-content: center; gap: 32px;
+    }
+    .duel-player { text-align: center; }
+    .vs-badge {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-amber));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne'; font-weight: 700; font-size: 16px; color: white;
+    }
+    .elo-stake {
+      display: flex; align-items: center; gap: 8px; justify-content: center;
+      margin-top: 16px; padding: 12px; background: var(--bg-elevated);
+      border-radius: var(--radius-md);
+    }
+    .challenge-form {
+      background: var(--bg-card); border: 1px solid var(--border-default);
+      border-radius: var(--radius-xl); padding: 28px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Student · S-OS</div></div></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Main</div>
+        <nav class="sidebar-nav">
+          <a href="home.html" class="sidebar-link"><span class="nav-icon">🏠</span> The Pulse</a>
+          <a href="profile.html" class="sidebar-link"><span class="nav-icon">👤</span> My Profile</a>
+          <a href="leaderboard.html" class="sidebar-link"><span class="nav-icon">🏆</span> Leaderboard</a>
+          <a href="quests.html" class="sidebar-link"><span class="nav-icon">⚡</span> Quests</a>
+          <a href="bootcamp.html" class="sidebar-link"><span class="nav-icon">🛠️</span> Bootcamp</a>
+        </nav>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Social</div><nav class="sidebar-nav"><a href="duels.html" class="sidebar-link active"><span class="nav-icon">⚔️</span> Duels<span class="nav-badge">1</span></a><a href="mentorship.html" class="sidebar-link"><span class="nav-icon">🤝</span> Mentorship</a></nav></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Account</div><nav class="sidebar-nav"><a href="settings.html" class="sidebar-link"><span class="nav-icon">⚙️</span> Settings</a></nav></div>
+      <div class="sidebar-user"><div class="user-avatar">RK</div><div class="user-info"><div class="user-name">Rahul Kumar</div><div class="user-role">CSE · 3rd Year</div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><h1 class="topbar-title">Peer Duels</h1></div>
+        <div class="topbar-right"><button class="btn btn-primary btn-sm">⚔️ Challenge a Peer</button><div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div></div>
+      </header>
+
+      <div class="page-content">
+        <!-- ═══ INCOMING CHALLENGE ═══ -->
+        <div class="announcement-banner" style="border-color:rgba(245,158,11,0.3);background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(239,68,68,0.05));">
+          <span style="font-size:24px;">⚔️</span>
+          <div style="flex:1;">
+            <div style="font-size:15px;font-weight:600;margin-bottom:2px;">Incoming Challenge from Arjun Gupta!</div>
+            <div style="font-size:13px;color:var(--text-secondary);">Domain: Logic & DS · 30-min code sprint · Elo stake: ±28</div>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-primary btn-sm">Accept</button>
+            <button class="btn btn-ghost btn-sm">Decline</button>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 380px;gap:24px;">
+          <div>
+            <!-- ═══ ACTIVE DUEL ═══ -->
+            <h3 style="margin-bottom:16px;">Active Duel</h3>
+            <div class="duel-card" style="background:linear-gradient(135deg,rgba(0,212,255,0.04),rgba(245,166,35,0.03));border-color:rgba(0,212,255,0.2);">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+                <span class="badge badge-cyan">In Progress</span>
+                <span class="domain-tag">💻 Tech Dev</span>
+                <span style="font-size:12px;color:var(--text-muted);">30-min code sprint</span>
+                <div style="margin-left:auto;">
+                  <span class="font-mono" style="font-size:18px;color:var(--accent-amber);">18:42</span>
+                  <span style="font-size:12px;color:var(--text-muted);">remaining</span>
+                </div>
+              </div>
+              <div class="duel-vs">
+                <div class="duel-player">
+                  <div class="avatar avatar-lg" style="margin:0 auto 8px;border-color:var(--accent-cyan);">RK</div>
+                  <div style="font-size:15px;font-weight:600;">Rahul Kumar</div>
+                  <div style="font-size:12px;color:var(--text-muted);">You · Trailblazer</div>
+                  <div class="font-mono" style="font-size:18px;color:var(--accent-cyan);margin-top:4px;">Elo 1,621</div>
+                </div>
+                <div class="vs-badge">VS</div>
+                <div class="duel-player">
+                  <div class="avatar avatar-lg" style="margin:0 auto 8px;border-color:var(--accent-pathfinder);">PD</div>
+                  <div style="font-size:15px;font-weight:600;">Priya Desai</div>
+                  <div style="font-size:12px;color:var(--text-muted);">Pathfinder · ↑28.5%</div>
+                  <div class="font-mono" style="font-size:18px;color:var(--accent-pathfinder);margin-top:4px;">Elo 1,750</div>
+                </div>
+              </div>
+              <div class="elo-stake">
+                <span style="font-size:12px;color:var(--text-muted);">Elo Stake:</span>
+                <span style="font-size:14px;font-weight:600;color:var(--accent-green);">Win: +32 Elo</span>
+                <span style="font-size:14px;color:var(--text-muted);">|</span>
+                <span style="font-size:14px;font-weight:600;color:var(--accent-red);">Lose: -16 Elo</span>
+                <span style="font-size:11px;color:var(--accent-amber);margin-left:8px;">⚡ Giant Slayer eligible!</span>
+              </div>
+            </div>
+
+            <!-- ═══ DUEL HISTORY ═══ -->
+            <h3 style="margin-top:var(--space-xl);margin-bottom:16px;">Duel History</h3>
+            <div class="card" style="padding:0;">
+              <table class="data-table">
+                <thead><tr>
+                  <th>Opponent</th><th>Domain</th><th>Format</th><th>Result</th><th>Elo Δ</th><th>XP</th><th>Date</th>
+                </tr></thead>
+                <tbody>
+                  <tr>
+                    <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">VS</div>Vikram Singh</div></td>
+                    <td><span class="domain-tag" style="font-size:11px;">💻 Tech Dev</span></td>
+                    <td style="font-size:13px;">Code Sprint</td>
+                    <td><span class="badge badge-green">Won</span></td>
+                    <td class="font-mono" style="color:var(--accent-green);">+24</td>
+                    <td><span class="xp-chip">+80 XP</span></td>
+                    <td style="font-size:12px;color:var(--text-muted);">3 days ago</td>
+                  </tr>
+                  <tr>
+                    <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">AK</div>Anika Kapoor</div></td>
+                    <td><span class="domain-tag" style="font-size:11px;">🧠 Logic & DS</span></td>
+                    <td style="font-size:13px;">Code Sprint</td>
+                    <td><span class="badge badge-red">Lost</span></td>
+                    <td class="font-mono" style="color:var(--accent-red);">-12</td>
+                    <td><span style="font-size:12px;color:var(--text-muted);">Defense XP: +15</span></td>
+                    <td style="font-size:12px;color:var(--text-muted);">1 week ago</td>
+                  </tr>
+                  <tr>
+                    <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">MN</div>Meera Nair</div></td>
+                    <td><span class="domain-tag" style="font-size:11px;">🎨 UI/UX</span></td>
+                    <td style="font-size:13px;">Redesign Sprint</td>
+                    <td><span class="badge badge-green">Won</span></td>
+                    <td class="font-mono" style="color:var(--accent-green);">+18</td>
+                    <td><span class="xp-chip">+60 XP</span></td>
+                    <td style="font-size:12px;color:var(--text-muted);">2 weeks ago</td>
+                  </tr>
+                  <tr>
+                    <td><div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">SP</div>Siddharth Patel</div></td>
+                    <td><span class="domain-tag" style="font-size:11px;">💻 Tech Dev</span></td>
+                    <td style="font-size:13px;">Code Sprint</td>
+                    <td><span class="badge badge-amber">Won ⚡</span></td>
+                    <td class="font-mono" style="color:var(--accent-pathfinder);">+40</td>
+                    <td><span class="xp-chip">+160 XP</span> <span class="badge badge-amber" style="font-size:9px;margin-left:4px;">Giant Slayer!</span></td>
+                    <td style="font-size:12px;color:var(--text-muted);">3 weeks ago</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- ═══ RIGHT — CHALLENGE FORM ═══ -->
+          <div>
+            <div class="challenge-form">
+              <h3 style="margin-bottom:4px;">Challenge a Peer</h3>
+              <p style="font-size:13px;color:var(--text-secondary);margin-bottom:20px;">Challenge a student in a higher tier to earn more Elo and XP.</p>
+
+              <div class="form-group">
+                <label class="form-label">Search Opponent</label>
+                <div class="topbar-search" style="min-width:100%;"><span class="search-icon">🔍</span><input placeholder="Search by name..."></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Domain</label>
+                <select class="form-select">
+                  <option>💻 Tech Dev</option>
+                  <option>🧠 Logic & DS</option>
+                  <option>🤖 AI / DS</option>
+                  <option>🎨 UI/UX</option>
+                  <option>🎤 Soft Skills</option>
+                  <option>🔧 Hardware</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Format</label>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                  <div style="padding:12px;text-align:center;border-radius:var(--radius-md);background:rgba(0,212,255,0.08);border:1px solid var(--accent-cyan);font-size:13px;font-weight:600;color:var(--accent-cyan);cursor:pointer;">30-min Code Sprint</div>
+                  <div style="padding:12px;text-align:center;border-radius:var(--radius-md);background:var(--bg-input);border:1px solid var(--border-default);font-size:13px;color:var(--text-secondary);cursor:pointer;">Peer-Voted Pitch</div>
+                  <div style="padding:12px;text-align:center;border-radius:var(--radius-md);background:var(--bg-input);border:1px solid var(--border-default);font-size:13px;color:var(--text-secondary);cursor:pointer;">Redesign Sprint</div>
+                  <div style="padding:12px;text-align:center;border-radius:var(--radius-md);background:var(--bg-input);border:1px solid var(--border-default);font-size:13px;color:var(--text-secondary);cursor:pointer;">Dataset Challenge</div>
+                </div>
+              </div>
+
+              <button class="btn btn-primary w-full btn-lg">⚔️ Send Challenge</button>
+
+              <div style="margin-top:20px;padding:16px;background:var(--bg-elevated);border-radius:var(--radius-md);">
+                <div style="font-size:13px;font-weight:600;margin-bottom:8px;">Elo Stake System</div>
+                <div style="font-size:12px;color:var(--text-secondary);line-height:1.6;">
+                  • Winner gains Elo proportional to rating gap<br>
+                  • Loser loses proportionally less — asymmetric to encourage challengers<br>
+                  • <span class="text-amber">Giant Slayer:</span> Launcher beating Pathfinder = 2× XP + badge<br>
+                  • Defender earns Defense XP even when winning
+                </div>
+              </div>
+            </div>
+
+            <!-- Duel Stats -->
+            <div class="card" style="margin-top:16px;">
+              <div class="card-title" style="margin-bottom:16px;">Your Duel Stats</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <div style="text-align:center;padding:16px;background:var(--bg-elevated);border-radius:var(--radius-md);">
+                  <div class="font-mono" style="font-size:24px;color:var(--accent-green);">7</div>
+                  <div style="font-size:12px;color:var(--text-muted);">Wins</div>
+                </div>
+                <div style="text-align:center;padding:16px;background:var(--bg-elevated);border-radius:var(--radius-md);">
+                  <div class="font-mono" style="font-size:24px;color:var(--accent-red);">3</div>
+                  <div style="font-size:12px;color:var(--text-muted);">Losses</div>
+                </div>
+                <div style="text-align:center;padding:16px;background:var(--bg-elevated);border-radius:var(--radius-md);">
+                  <div class="font-mono" style="font-size:24px;color:var(--accent-cyan);">70%</div>
+                  <div style="font-size:12px;color:var(--text-muted);">Win Rate</div>
+                </div>
+                <div style="text-align:center;padding:16px;background:var(--bg-elevated);border-radius:var(--radius-md);">
+                  <div class="font-mono" style="font-size:24px;color:var(--accent-pathfinder);">1</div>
+                  <div style="font-size:12px;color:var(--text-muted);">Giant Slayer</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify — Sign In</title>
+  <meta name="description" content="Sign in to Ascendify with your college email. Create your verified student profile.">
+  
+  <style>
+    .auth-steps { display: flex; gap: 8px; margin-bottom: 32px; }
+    .auth-step {
+      flex: 1; height: 4px; border-radius: 2px; background: var(--bg-elevated);
+    }
+    .auth-step.active { background: var(--accent-cyan); }
+    .auth-step.done { background: var(--accent-green); }
+    .otp-inputs { display: flex; gap: 12px; justify-content: center; margin: 24px 0; }
+    .otp-input {
+      width: 52px; height: 60px;
+      background: var(--bg-input); border: 1px solid var(--border-default);
+      border-radius: var(--radius-md);
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 600;
+      color: var(--text-primary);
+      transition: border-color 0.2s;
+    }
+    .otp-input:focus { border-color: var(--accent-cyan); box-shadow: 0 0 0 3px rgba(0,212,255,0.1); }
+    .consent-card {
+      background: var(--bg-elevated); border: 1px solid var(--border-default);
+      border-radius: var(--radius-md); padding: 16px; margin-bottom: 12px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .consent-card .left { display: flex; align-items: center; gap: 12px; }
+    .consent-card .icon { font-size: 20px; }
+    .consent-card h4 { font-size: 14px; font-weight: 600; }
+    .consent-card p { font-size: 12px; color: var(--text-muted); }
+    .feature-highlight {
+      display: flex; align-items: center; gap: 16px; padding: 16px 0;
+      border-bottom: 1px solid rgba(30,45,69,0.5);
+    }
+    .feature-highlight:last-child { border-bottom: none; }
+    .feature-highlight .fh-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .feature-highlight h4 { font-size: 15px; margin-bottom: 2px; }
+    .feature-highlight p { font-size: 12px; color: var(--text-secondary); }
+    .or-divider {
+      display: flex; align-items: center; gap: 16px; margin: 20px 0;
+      color: var(--text-muted); font-size: 13px;
+    }
+    .or-divider::before, .or-divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--border-default);
+    }
+    .social-btn {
+      width: 100%; padding: 12px; border-radius: var(--radius-md);
+      background: var(--bg-elevated); border: 1px solid var(--border-default);
+      color: var(--text-primary); font-size: 14px; font-weight: 500;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .social-btn:hover { border-color: var(--accent-cyan); }
+    .branch-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin: 16px 0; }
+    .branch-option {
+      padding: 12px; text-align: center; border-radius: var(--radius-md);
+      background: var(--bg-input); border: 1px solid var(--border-default);
+      font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s;
+    }
+    .branch-option:hover { border-color: var(--accent-cyan); }
+    .branch-option.selected { border-color: var(--accent-cyan); background: rgba(0,212,255,0.08); color: var(--accent-cyan); }
+    .connect-account {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 16px; background: var(--bg-elevated);
+      border: 1px solid var(--border-default); border-radius: var(--radius-md);
+      margin-bottom: 10px; transition: all 0.2s;
+    }
+    .connect-account:hover { border-color: rgba(0,212,255,0.2); }
+    .connect-account .ca-left { display: flex; align-items: center; gap: 12px; }
+    .connect-account .ca-icon { font-size: 20px; }
+    .connect-account .ca-name { font-size: 14px; font-weight: 500; }
+    .connect-account .ca-desc { font-size: 11px; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+  <div class="auth-container">
+    <!-- ═══ LEFT — AUTH FORMS ═══ -->
+    <div class="auth-left">
+      <div class="auth-card">
+        <!-- Logo -->
+        <div style="margin-bottom:32px;">
+          <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;">
+            <span class="font-display" style="font-size:28px;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-pathfinder));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">ASCENDIFY</span>
+          </a>
+        </div>
+
+        <!-- ═══ STEP 1: LOGIN / REGISTER ═══ -->
+        <div id="step-login">
+          <div class="auth-steps">
+            <div class="auth-step active"></div>
+            <div class="auth-step"></div>
+            <div class="auth-step"></div>
+            <div class="auth-step"></div>
+          </div>
+
+          <h2 style="font-size:28px;margin-bottom:8px;">Welcome to Ascendify</h2>
+          <p style="color:var(--text-secondary);font-size:14px;margin-bottom:32px;">Sign in with your college email to continue</p>
+
+          <div class="form-group">
+            <label class="form-label">College Email</label>
+            <input type="email" class="form-input" placeholder="yourname&#64;mrec.ac.in" id="email-input">
+          </div>
+
+          <button class="btn btn-primary w-full" style="margin-bottom:16px;">Send OTP →</button>
+
+          <div class="or-divider">or</div>
+
+          <button class="social-btn">
+            <span>🔑</span> Sign in with College Google Workspace
+          </button>
+
+          <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-top:24px;">
+            Only &#64;mrec.ac.in email addresses are accepted. <br>
+            <a href="#" style="font-size:12px;">Need help?</a>
+          </p>
+        </div>
+
+        <!-- ═══ STEP 2: OTP VERIFICATION ═══ -->
+        <div id="step-otp" style="display:none;">
+          <div class="auth-steps">
+            <div class="auth-step done"></div>
+            <div class="auth-step active"></div>
+            <div class="auth-step"></div>
+            <div class="auth-step"></div>
+          </div>
+
+          <h2 style="font-size:28px;margin-bottom:8px;">Verify Your Email</h2>
+          <p style="color:var(--text-secondary);font-size:14px;margin-bottom:8px;">We sent a 6-digit code to</p>
+          <p style="color:var(--accent-cyan);font-size:14px;font-weight:600;margin-bottom:24px;">rahul.k&#64;mrec.ac.in</p>
+
+          <div class="otp-inputs">
+            <input type="text" class="otp-input" maxlength="1" value="4">
+            <input type="text" class="otp-input" maxlength="1" value="7">
+            <input type="text" class="otp-input" maxlength="1" value="2">
+            <input type="text" class="otp-input" maxlength="1" value="">
+            <input type="text" class="otp-input" maxlength="1" value="">
+            <input type="text" class="otp-input" maxlength="1" value="">
+          </div>
+
+          <button class="btn btn-primary w-full" style="margin-bottom:16px;">Verify & Continue →</button>
+
+          <p style="text-align:center;">
+            <span style="color:var(--text-muted);font-size:13px;">Didn't receive? </span>
+            <a href="#" style="font-size:13px;">Resend OTP</a>
+            <span style="color:var(--text-muted);font-size:13px;"> · <span class="font-mono" style="color:var(--accent-cyan);">02:34</span></span>
+          </p>
+        </div>
+
+        <!-- ═══ STEP 3: DPDP CONSENT ═══ -->
+        <div id="step-consent" style="display:none;">
+          <div class="auth-steps">
+            <div class="auth-step done"></div>
+            <div class="auth-step done"></div>
+            <div class="auth-step active"></div>
+            <div class="auth-step"></div>
+          </div>
+
+          <h2 style="font-size:28px;margin-bottom:8px;">Data Consent</h2>
+          <p style="color:var(--text-secondary);font-size:14px;margin-bottom:24px;">We respect your data. Choose what Ascendify can access. You can change these anytime.</p>
+
+          <div class="consent-card">
+            <div class="left">
+              <span class="icon">📧</span>
+              <div>
+                <h4>Email & Identity</h4>
+                <p>Name, email, year, branch for your profile</p>
+              </div>
+            </div>
+            <div class="badge badge-green">Required</div>
+          </div>
+
+          <div class="consent-card">
+            <div class="left">
+              <span class="icon">💻</span>
+              <div>
+                <h4>GitHub Activity</h4>
+                <p>Repos, commits, PRs, languages for XP calculation</p>
+              </div>
+            </div>
+            <div class="toggle-switch active"></div>
+          </div>
+
+          <div class="consent-card">
+            <div class="left">
+              <span class="icon">🧩</span>
+              <div>
+                <h4>LeetCode & Coding Platforms</h4>
+                <p>Problems solved, contest rating, streak data</p>
+              </div>
+            </div>
+            <div class="toggle-switch active"></div>
+          </div>
+
+          <div class="consent-card">
+            <div class="left">
+              <span class="icon">📅</span>
+              <div>
+                <h4>Event Attendance</h4>
+                <p>QR scan check-ins at campus events</p>
+              </div>
+            </div>
+            <div class="toggle-switch active"></div>
+          </div>
+
+          <div class="consent-card">
+            <div class="left">
+              <span class="icon">👁️</span>
+              <div>
+                <h4>Recruiter Visibility</h4>
+                <p>Allow companies to view your tier & domain rank</p>
+              </div>
+            </div>
+            <div class="toggle-switch"></div>
+          </div>
+
+          <div class="consent-card">
+            <div class="left">
+              <span class="icon">🎥</span>
+              <div>
+                <h4>Screening Proctoring</h4>
+                <p>Camera access during company coding rounds</p>
+              </div>
+            </div>
+            <div class="toggle-switch"></div>
+          </div>
+
+          <p style="font-size:11px;color:var(--text-muted);margin:16px 0 20px;">
+            By continuing, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. 
+            Data stored in India (AWS Mumbai). You can delete your account and all data anytime.
+          </p>
+
+          <button class="btn btn-primary w-full">Accept & Continue →</button>
+        </div>
+
+        <!-- ═══ STEP 4: PROFILE SETUP ═══ -->
+        <div id="step-profile" style="display:none;">
+          <div class="auth-steps">
+            <div class="auth-step done"></div>
+            <div class="auth-step done"></div>
+            <div class="auth-step done"></div>
+            <div class="auth-step active"></div>
+          </div>
+
+          <h2 style="font-size:28px;margin-bottom:8px;">Set Up Your Profile</h2>
+          <p style="color:var(--text-secondary);font-size:14px;margin-bottom:24px;">Almost there! Let's build your student identity.</p>
+
+          <!-- Avatar upload -->
+          <div style="text-align:center;margin-bottom:24px;">
+            <div class="avatar avatar-2xl" style="margin:0 auto 12px;border-color:var(--accent-cyan);font-size:32px;background:rgba(0,212,255,0.1);">
+              📷
+            </div>
+            <a href="#" style="font-size:13px;">Upload Photo</a>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-input" placeholder="Rahul Kumar" value="Rahul Kumar">
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="form-group">
+              <label class="form-label">Year</label>
+              <select class="form-select">
+                <option>1st Year</option>
+                <option>2nd Year</option>
+                <option selected>3rd Year</option>
+                <option>4th Year</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Roll Number</label>
+              <input type="text" class="form-input" placeholder="21CS1045" value="21CS1045">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Branch</label>
+            <div class="branch-grid">
+              <div class="branch-option selected">CSE</div>
+              <div class="branch-option">ECE</div>
+              <div class="branch-option">IT</div>
+              <div class="branch-option">MECH</div>
+              <div class="branch-option">CIVIL</div>
+              <div class="branch-option">Other</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Short Bio <span style="color:var(--text-muted);">(optional)</span></label>
+            <textarea class="form-textarea" rows="2" placeholder="Full-stack dev. Love building MVPs and breaking things."></textarea>
+          </div>
+
+          <div style="margin-bottom:20px;">
+            <label class="form-label">Connect Accounts</label>
+            <div class="connect-account">
+              <div class="ca-left">
+                <span class="ca-icon">🐙</span>
+                <div>
+                  <div class="ca-name">GitHub</div>
+                  <div class="ca-desc">Auto-sync repos, commits, PRs</div>
+                </div>
+              </div>
+              <button class="btn btn-outline btn-sm">Connect</button>
+            </div>
+            <div class="connect-account">
+              <div class="ca-left">
+                <span class="ca-icon">🧩</span>
+                <div>
+                  <div class="ca-name">LeetCode</div>
+                  <div class="ca-desc">Problems solved, contest rating</div>
+                </div>
+              </div>
+              <button class="btn btn-outline btn-sm">Connect</button>
+            </div>
+            <div class="connect-account">
+              <div class="ca-left">
+                <span class="ca-icon">🍽️</span>
+                <div>
+                  <div class="ca-name">CodeChef</div>
+                  <div class="ca-desc">Contest rating, problems solved</div>
+                </div>
+              </div>
+              <button class="btn btn-outline btn-sm">Connect</button>
+            </div>
+          </div>
+
+          <div style="background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.15);border-radius:var(--radius-md);padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+            <span>🛡️</span>
+            <div>
+              <div style="font-size:13px;font-weight:600;">Shadow Mode Active</div>
+              <div style="font-size:11px;color:var(--text-muted);">Your identity is hidden from recruiters for 60 days. Only your tier badge is visible.</div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary w-full btn-lg">Launch My Profile 🚀</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ RIGHT — BRAND PANEL ═══ -->
+    <div class="auth-right">
+      <div style="position:relative;z-index:1;text-align:center;padding:48px;max-width:500px;">
+        <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:48px;margin-bottom:24px;background:linear-gradient(135deg,var(--accent-cyan),var(--accent-pathfinder));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+          ASCENDIFY
+        </div>
+        <p style="font-size:14px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase;margin-bottom:48px;">Student Operating System</p>
+
+        <div class="feature-highlight">
+          <div class="fh-icon" style="background:rgba(0,212,255,0.1);color:var(--accent-cyan);">⚡</div>
+          <div style="text-align:left;">
+            <h4>Proof of Work</h4>
+            <p>Every XP point is traced to a real action — commits, defences, or scans.</p>
+          </div>
+        </div>
+        <div class="feature-highlight">
+          <div class="fh-icon" style="background:rgba(245,166,35,0.1);color:var(--accent-pathfinder);">🏆</div>
+          <div style="text-align:left;">
+            <h4>8 Domain Leaderboards</h4>
+            <p>Ranked independently across Logic, Tech Dev, AI, Hardware, and more.</p>
+          </div>
+        </div>
+        <div class="feature-highlight">
+          <div class="fh-icon" style="background:rgba(139,92,246,0.1);color:var(--accent-purple);">🔬</div>
+          <div style="text-align:left;">
+            <h4>Saturday Bootcamps</h4>
+            <p>Build MVPs. Defend to a panel. Physical verification no resume can match.</p>
+          </div>
+        </div>
+        <div class="feature-highlight">
+          <div class="fh-icon" style="background:rgba(16,185,129,0.1);color:var(--accent-green);">🏢</div>
+          <div style="text-align:left;">
+            <h4>Get Hired</h4>
+            <p>Companies search verified talent by domain, tier, and velocity. Be found.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border-default);">
+          <p style="font-size:12px;color:var(--text-muted);">Exclusively for Malla Reddy University · Strictly Confidential</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify Admin — Employee Operations</title>
+  
+  <style>
+    .admin-sidebar { background: #0F172A; border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
+    .stat-card.admin { background: linear-gradient(135deg, rgba(30,45,69,0.5), rgba(15,23,42,0.8)); border-color: rgba(30,45,69,0.8); }
+    .heatmap-cell { width: 100%; height: 24px; border-radius: 2px; }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <aside class="admin-sidebar" style="background:#0F172A;">
+    <div class="sidebar-logo"><div><div class="logo-text" style="color:var(--accent-cyan);">ASCENDIFY</div><div class="logo-sub">Employee Operations</div></div></div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Core Ops</div>
+      <nav class="sidebar-nav">
+        <a href="/admin/dashboard" class="sidebar-link active"><span class="nav-icon">📊</span> Overview</a>
+        <a href="/admin/colleges" class="sidebar-link"><span class="nav-icon">🏛️</span> College Approvals</a>
+        <a href="/admin/companies" class="sidebar-link"><span class="nav-icon">🏢</span> Company Verification</a>
+      </nav>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Content & Trust</div>
+      <nav class="sidebar-nav">
+        <a href="/admin/content" class="sidebar-link"><span class="nav-icon">📝</span> Content Moderation</a>
+        <a href="/admin/fraud" class="sidebar-link"><span class="nav-icon">🛡️</span> Fraud Reports</a>
+        <a href="/admin/support" class="sidebar-link"><span class="nav-icon">🎫</span> Support Tickets</a>
+      </nav>
+    </div>
+    <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">EO</div><div class="user-info"><div class="user-name">Riya Singh</div><div class="user-role">Operations Lead</div></div></div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left"><h1 class="topbar-title">Operations Overview</h1></div>
+      <div class="topbar-right">
+        <button class="btn btn-primary btn-sm">Generate Shift Report</button>
+        <div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <!-- KPIs -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:24px;">
+        <div class="stat-card"><div class="stat-label">Pending Colleges</div><div class="stat-value text-cyan">14</div><div class="stat-trend up">Action Required</div></div>
+        <div class="stat-card"><div class="stat-label">Pending Companies</div><div class="stat-value">28</div><div class="stat-trend">In Verification</div></div>
+        <div class="stat-card"><div class="stat-label">Open Tickets</div><div class="stat-value text-amber">142</div><div class="stat-trend down">↓ 5% since yesterday</div></div>
+        <div class="stat-card"><div class="stat-label">Fraud Flags</div><div class="stat-value text-red">34</div><div class="stat-trend up">↑ 2 High Priority</div></div>
+      </div>
+
+      <div style="display:grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+        
+        <!-- Recent Activity Feed -->
+        <div class="card animate-in">
+          <h3 style="margin-bottom: 16px;">Action Items</h3>
+          
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:var(--bg-elevated); border-radius:var(--radius-md); border-left:3px solid var(--accent-cyan);">
+              <div>
+                <div style="font-size:13px; font-weight:600;">College Verification: VIT Pune</div>
+                <div style="font-size:12px; color:var(--text-secondary);">Submitted 2 hours ago. Needs MOU review.</div>
+              </div>
+              <button class="btn btn-outline btn-sm">Review</button>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:var(--bg-elevated); border-radius:var(--radius-md); border-left:3px solid var(--accent-red);">
+              <div>
+                <div style="font-size:13px; font-weight:600;">Content Moderation: Inappropriate Forum Post</div>
+                <div style="font-size:12px; color:var(--text-secondary);">Flagged by 5 students in Tech Dev domain.</div>
+              </div>
+              <button class="btn btn-outline btn-sm">Review</button>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:var(--bg-elevated); border-radius:var(--radius-md); border-left:3px solid var(--accent-amber);">
+              <div>
+                <div style="font-size:13px; font-weight:600;">Support Ticket #4892</div>
+                <div style="font-size:12px; color:var(--text-secondary);">Company unable to access watchlist. SLA breaches in 4 hours.</div>
+              </div>
+              <button class="btn btn-outline btn-sm">Review</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shift Performance -->
+        <div class="card animate-in" style="animation-delay: 50ms;">
+          <h3 style="margin-bottom: 16px;">My Shift Performance</h3>
+          
+          <div style="margin-bottom: 16px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom: 8px;">
+              <span style="font-size:13px; color:var(--text-muted);">Tickets Resolved</span>
+              <span style="font-size:13px; font-weight:600; color:var(--text-primary);">45 / 50 Target</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill cyan" style="width: 90%;"></div></div>
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom: 8px;">
+              <span style="font-size:13px; color:var(--text-muted);">Verifications Completed</span>
+              <span style="font-size:13px; font-weight:600; color:var(--text-primary);">12 / 15 Target</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill green" style="width: 80%;"></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

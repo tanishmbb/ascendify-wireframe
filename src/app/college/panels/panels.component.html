@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify College — Panel Config</title>
+  
+  <style>
+    .college-sidebar { background: var(--bg-card); border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
+    .panel-card { background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="college-sidebar">
+      <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">College / Placement OS</div></div></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Overview</div>
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="sidebar-link"><span class="nav-icon">📊</span> Dashboard</a>
+          <a href="students.html" class="sidebar-link"><span class="nav-icon">🎓</span> Students</a>
+          <a href="college-analytics.html" class="sidebar-link"><span class="nav-icon">📈</span> Analytics</a>
+        </nav>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Operations</div>
+        <nav class="sidebar-nav">
+          <a href="bootcamps.html" class="sidebar-link"><span class="nav-icon">🛠️</span> Bootcamps</a>
+          <a href="events.html" class="sidebar-link"><span class="nav-icon">📅</span> Events & QR</a>
+          <a href="panels.html" class="sidebar-link active"><span class="nav-icon">⚖️</span> Panel Config</a>
+        </nav>
+      </div>
+      <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">MR</div><div class="user-info"><div class="user-name">Malla Reddy Univ</div><div class="user-role">Placement Cell</div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><h1 class="topbar-title">Bootcamp Panel Configuration</h1></div>
+        <div class="topbar-right"><button class="btn btn-outline btn-sm">Manage Rubrics</button></div>
+      </header>
+
+      <div class="page-content" style="max-width:900px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <!-- Active Panels -->
+          <div>
+            <h3 style="margin-bottom:16px;">Week 13 Evaluators <span class="badge badge-cyan">12 Configured</span></h3>
+            
+            <div class="panel-card animate-in">
+              <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+                <h4 style="font-size:16px;">Panel A (Room 401)</h4>
+                <span class="badge badge-green">Confirmed</span>
+              </div>
+              <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;">Domain: 💻 Tech Dev, 🤖 AI/DS</div>
+              <div style="display:flex;gap:12px;margin-bottom:16px;">
+                <div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">DS</div><div style="font-size:12px;">Dr. Sharma (Lead)</div></div>
+                <div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">PR</div><div style="font-size:12px;">Prof. Rao</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:12px;color:var(--text-muted);">16 teams assigned</span>
+                <button class="btn btn-ghost btn-sm">Edit</button>
+              </div>
+            </div>
+
+            <div class="panel-card animate-in" style="animation-delay:50ms;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+                <h4 style="font-size:16px;">Panel B (Room 402)</h4>
+                <span class="badge badge-amber">1 Pending</span>
+              </div>
+              <div style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;">Domain: 💻 Tech Dev, 🤖 AI/DS</div>
+              <div style="display:flex;gap:12px;margin-bottom:16px;">
+                <div style="display:flex;align-items:center;gap:8px;"><div class="avatar avatar-sm">DG</div><div style="font-size:12px;">Dr. Gupta (Lead)</div></div>
+                <div style="display:flex;align-items:center;gap:8px;opacity:0.5;"><div class="avatar avatar-sm">?</div><div style="font-size:12px;">Mrs. Reddy (Unconfirmed)</div></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:12px;color:var(--text-muted);">15 teams assigned</span>
+                <button class="btn btn-ghost btn-sm">Edit</button>
+              </div>
+            </div>
+
+            <button class="btn btn-outline w-full">+ Add New Panel</button>
+          </div>
+
+          <!-- Configuration Form -->
+          <div>
+            <div class="card">
+              <h3 style="margin-bottom:20px;">Auto-Assign Teams</h3>
+              <p style="font-size:13px;color:var(--text-secondary);margin-bottom:20px;">Use the algorithm to distribute registered teams evenly across available panels based on domain expertise.</p>
+              
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+                <div style="padding:16px;background:var(--bg-elevated);border-radius:var(--radius-md);text-align:center;">
+                  <div class="font-mono text-cyan" style="font-size:24px;">184</div>
+                  <div style="font-size:12px;color:var(--text-muted);">Registered Teams</div>
+                </div>
+                <div style="padding:16px;background:var(--bg-elevated);border-radius:var(--radius-md);text-align:center;">
+                  <div class="font-mono text-cyan" style="font-size:24px;">12</div>
+                  <div style="font-size:12px;color:var(--text-muted);">Active Panels</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Assignment Strategy</label>
+                <select class="form-select">
+                  <option>Strict Domain Match</option>
+                  <option>Load Balanced (Even distribution)</option>
+                  <option>Randomized</option>
+                </select>
+              </div>
+
+              <button class="btn btn-primary w-full">Run Auto-Assign</button>
+            </div>
+            
+            <div class="card" style="margin-top:24px;">
+              <h3 style="margin-bottom:16px;">Evaluator Access Links</h3>
+              <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">Send these links to external panel members (industry experts/alumni) so they can access the scoring rubric without creating an account.</p>
+              <button class="btn btn-outline w-full" style="margin-bottom:8px;">Generate Magic Link (Valid 48h)</button>
+              <button class="btn btn-ghost w-full">View Evaluator Portal Demo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

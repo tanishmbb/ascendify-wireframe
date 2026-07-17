@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify Admin — Company Verification</title>
+  
+  <style>
+    .admin-sidebar { background: #0F172A; border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <aside class="admin-sidebar" style="background:#0F172A;">
+    <div class="sidebar-logo"><div><div class="logo-text" style="color:var(--accent-cyan);">ASCENDIFY</div><div class="logo-sub">Employee Operations</div></div></div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Core Ops</div>
+      <nav class="sidebar-nav">
+        <a href="/admin/dashboard" class="sidebar-link"><span class="nav-icon">📊</span> Overview</a>
+        <a href="/admin/colleges" class="sidebar-link"><span class="nav-icon">🏛️</span> College Approvals</a>
+        <a href="/admin/companies" class="sidebar-link active"><span class="nav-icon">🏢</span> Company Verification</a>
+      </nav>
+    </div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Content & Trust</div>
+      <nav class="sidebar-nav">
+        <a href="/admin/content" class="sidebar-link"><span class="nav-icon">📝</span> Content Moderation</a>
+        <a href="/admin/fraud" class="sidebar-link"><span class="nav-icon">🛡️</span> Fraud Reports</a>
+        <a href="/admin/support" class="sidebar-link"><span class="nav-icon">🎫</span> Support Tickets</a>
+      </nav>
+    </div>
+    <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">EO</div><div class="user-info"><div class="user-name">Riya Singh</div><div class="user-role">Operations Lead</div></div></div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left"><h1 class="topbar-title">Company Verification</h1></div>
+      <div class="topbar-right">
+        <div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="card" style="padding:0;">
+        <div style="padding:16px 20px;border-bottom:1px solid var(--border-default);display:flex;gap:16px;align-items:center;">
+          <div class="topbar-search" style="flex:1;"><span class="search-icon">🔍</span><input placeholder="Search companies..."></div>
+          <select class="form-select" style="width:auto;"><option>Status: Pending (28)</option><option>Status: Verified</option><option>Status: Rejected</option></select>
+        </div>
+        
+        <table class="data-table">
+          <thead>
+            <tr><th>Company Name</th><th>Industry</th><th>HR Contact</th><th>KYC Status</th><th>Actions</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div style="font-weight:600;">TechWave Solutions</div><div style="font-size:12px;color:var(--text-secondary);">ID: CMP-1022</div></td>
+              <td>Software / IT</td>
+              <td>Priya Sharma<br><span style="font-size:12px;color:var(--text-muted);">priya@techwave.com</span></td>
+              <td><span class="badge badge-amber">GST Pending Review</span></td>
+              <td>
+                <button class="btn btn-outline btn-sm">Verify KYC</button>
+              </td>
+            </tr>
+            <tr>
+              <td><div style="font-weight:600;">Global FinTech Inc</div><div style="font-size:12px;color:var(--text-secondary);">ID: CMP-1025</div></td>
+              <td>Finance</td>
+              <td>Rahul Desai<br><span style="font-size:12px;color:var(--text-muted);">r.desai@globalfin.co</span></td>
+              <td><span class="badge badge-red">Domain Mismatch</span></td>
+              <td>
+                <button class="btn btn-outline btn-sm">Verify KYC</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

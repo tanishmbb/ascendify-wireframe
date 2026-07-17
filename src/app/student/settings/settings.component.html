@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify — Settings</title>
+  
+  <style>
+    .settings-section { background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 16px; }
+    .setting-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(30,45,69,0.5); }
+    .setting-row:last-child { border-bottom: none; }
+    .setting-row .left { flex: 1; }
+    .setting-row h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+    .setting-row p { font-size: 12px; color: var(--text-muted); }
+    .privacy-option { padding: 16px; border-radius: var(--radius-md); border: 1px solid var(--border-default); cursor: pointer; transition: all 0.2s; margin-bottom: 8px; }
+    .privacy-option:hover { border-color: rgba(0,212,255,0.2); }
+    .privacy-option.selected { border-color: var(--accent-cyan); background: rgba(0,212,255,0.05); }
+    .connected-account { display: flex; align-items: center; gap: 14px; padding: 14px; background: var(--bg-elevated); border-radius: var(--radius-md); margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Student · S-OS</div></div></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Main</div>
+        <nav class="sidebar-nav">
+          <a href="home.html" class="sidebar-link"><span class="nav-icon">🏠</span> The Pulse</a>
+          <a href="profile.html" class="sidebar-link"><span class="nav-icon">👤</span> My Profile</a>
+          <a href="leaderboard.html" class="sidebar-link"><span class="nav-icon">🏆</span> Leaderboard</a>
+          <a href="quests.html" class="sidebar-link"><span class="nav-icon">⚡</span> Quests</a>
+          <a href="bootcamp.html" class="sidebar-link"><span class="nav-icon">🛠️</span> Bootcamp</a>
+        </nav>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Social</div><nav class="sidebar-nav"><a href="duels.html" class="sidebar-link"><span class="nav-icon">⚔️</span> Duels</a><a href="mentorship.html" class="sidebar-link"><span class="nav-icon">🤝</span> Mentorship</a></nav></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Account</div><nav class="sidebar-nav"><a href="settings.html" class="sidebar-link active"><span class="nav-icon">⚙️</span> Settings</a></nav></div>
+      <div class="sidebar-user"><div class="user-avatar">RK</div><div class="user-info"><div class="user-name">Rahul Kumar</div><div class="user-role">CSE · 3rd Year</div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><h1 class="topbar-title">Settings & Account</h1></div>
+        <div class="topbar-right"><div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div></div>
+      </header>
+
+      <div class="page-content" style="max-width:800px;">
+        <!-- ═══ PRIVACY MODE ═══ -->
+        <div class="settings-section animate-in">
+          <h3 style="margin-bottom:4px;">Privacy Mode</h3>
+          <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">Control who can see your profile identity</p>
+          <div class="privacy-option">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-size:20px;">👻</span>
+              <div>
+                <h4 style="font-size:14px;font-weight:600;">Ghost Mode</h4>
+                <p style="font-size:12px;color:var(--text-muted);">Completely invisible. Your profile doesn't appear in any search or leaderboard. Only you can see your data.</p>
+              </div>
+            </div>
+          </div>
+          <div class="privacy-option selected">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-size:20px;">🎭</span>
+              <div>
+                <h4 style="font-size:14px;font-weight:600;color:var(--accent-cyan);">Anonymous Mode <span class="badge badge-cyan" style="font-size:10px;margin-left:4px;">Active</span></h4>
+                <p style="font-size:12px;color:var(--text-muted);">Your tier and domain rank are visible to recruiters, but your name, photo, and identity are hidden until you accept an interest request.</p>
+              </div>
+            </div>
+          </div>
+          <div class="privacy-option">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-size:20px;">🌍</span>
+              <div>
+                <h4 style="font-size:14px;font-weight:600;">Full Public</h4>
+                <p style="font-size:12px;color:var(--text-muted);">Your full profile is visible to all recruiters. Maximum visibility for job opportunities.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ CONNECTED ACCOUNTS ═══ -->
+        <div class="settings-section animate-in" style="animation-delay:50ms;">
+          <h3 style="margin-bottom:4px;">Connected Accounts</h3>
+          <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">Platforms syncing data to your profile</p>
+          <div class="connected-account">
+            <span style="font-size:22px;">🐙</span>
+            <div style="flex:1;">
+              <div style="font-size:14px;font-weight:600;">GitHub</div>
+              <div style="font-size:12px;color:var(--text-muted);">&#64;rahulk21 · Last sync: 2 min ago</div>
+            </div>
+            <span class="status-dot online"></span>
+            <button class="btn btn-ghost btn-sm" style="font-size:12px;color:var(--accent-red);">Disconnect</button>
+          </div>
+          <div class="connected-account">
+            <span style="font-size:22px;">🧩</span>
+            <div style="flex:1;">
+              <div style="font-size:14px;font-weight:600;">LeetCode</div>
+              <div style="font-size:12px;color:var(--text-muted);">&#64;rahul_kumar · Last sync: 3 hours ago</div>
+            </div>
+            <span class="status-dot online"></span>
+            <button class="btn btn-ghost btn-sm" style="font-size:12px;color:var(--accent-red);">Disconnect</button>
+          </div>
+          <div class="connected-account">
+            <span style="font-size:22px;">🍽️</span>
+            <div style="flex:1;">
+              <div style="font-size:14px;font-weight:600;">CodeChef</div>
+              <div style="font-size:12px;color:var(--text-muted);">Not connected</div>
+            </div>
+            <button class="btn btn-outline btn-sm" style="font-size:12px;">Connect</button>
+          </div>
+          <div class="connected-account">
+            <span style="font-size:22px;">🏆</span>
+            <div style="flex:1;">
+              <div style="font-size:14px;font-weight:600;">Codeforces</div>
+              <div style="font-size:12px;color:var(--text-muted);">Not connected</div>
+            </div>
+            <button class="btn btn-outline btn-sm" style="font-size:12px;">Connect</button>
+          </div>
+          <div class="connected-account">
+            <span style="font-size:22px;">📊</span>
+            <div style="flex:1;">
+              <div style="font-size:14px;font-weight:600;">Kaggle</div>
+              <div style="font-size:12px;color:var(--text-muted);">Not connected</div>
+            </div>
+            <button class="btn btn-outline btn-sm" style="font-size:12px;">Connect</button>
+          </div>
+          <div class="connected-account">
+            <span style="font-size:22px;">💼</span>
+            <div style="flex:1;">
+              <div style="font-size:14px;font-weight:600;">LinkedIn</div>
+              <div style="font-size:12px;color:var(--text-muted);">Not connected</div>
+            </div>
+            <button class="btn btn-outline btn-sm" style="font-size:12px;">Connect</button>
+          </div>
+        </div>
+
+        <!-- ═══ NOTIFICATION PREFERENCES ═══ -->
+        <div class="settings-section animate-in" style="animation-delay:100ms;">
+          <h3 style="margin-bottom:16px;">Notification Preferences</h3>
+          <div class="setting-row">
+            <div class="left"><h4>XP Earned</h4><p>Get notified when you earn XP from any source</p></div>
+            <div class="toggle-switch active"></div>
+          </div>
+          <div class="setting-row">
+            <div class="left"><h4>Rank Change</h4><p>Alert when your position changes on any leaderboard</p></div>
+            <div class="toggle-switch active"></div>
+          </div>
+          <div class="setting-row">
+            <div class="left"><h4>Duel Requests</h4><p>Incoming challenge notifications</p></div>
+            <div class="toggle-switch active"></div>
+          </div>
+          <div class="setting-row">
+            <div class="left"><h4>Bootcamp Reminders</h4><p>Problem release, registration deadline, evaluation day</p></div>
+            <div class="toggle-switch active"></div>
+          </div>
+          <div class="setting-row">
+            <div class="left"><h4>Company Interest</h4><p>When a recruiter shows interest in your profile</p></div>
+            <div class="toggle-switch active"></div>
+          </div>
+          <div class="setting-row">
+            <div class="left"><h4>Weekly Digest</h4><p>Summary email of your progress and campus activity</p></div>
+            <div class="toggle-switch"></div>
+          </div>
+        </div>
+
+        <!-- ═══ EXAM MODE ═══ -->
+        <div class="settings-section animate-in" style="animation-delay:150ms;">
+          <h3 style="margin-bottom:4px;">Exam Mode</h3>
+          <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">Freeze rank decay during exams. Requires 1 micro-contribution per week.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px;background:var(--bg-elevated);border-radius:var(--radius-md);">
+            <div>
+              <div style="font-size:14px;font-weight:600;">Rank Freeze</div>
+              <div style="font-size:12px;color:var(--text-muted);">Not active · 3 activations remaining this semester</div>
+            </div>
+            <button class="btn btn-outline btn-sm">Activate (2 weeks)</button>
+          </div>
+        </div>
+
+        <!-- ═══ THEME ═══ -->
+        <div class="settings-section animate-in" style="animation-delay:200ms;">
+          <h3 style="margin-bottom:16px;">Appearance</h3>
+          <div class="setting-row">
+            <div class="left"><h4>Dark Mode</h4><p>Default theme. Recommended for extended use.</p></div>
+            <div class="toggle-switch active"></div>
+          </div>
+          <div class="setting-row">
+            <div class="left"><h4>Language</h4><p>English · Telugu and Hindi coming in Phase 2</p></div>
+            <select class="form-select" style="width:140px;padding:7px 32px 7px 12px;font-size:13px;">
+              <option>English</option>
+              <option disabled>Telugu (Phase 2)</option>
+              <option disabled>Hindi (Phase 2)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- ═══ DATA & DELETION ═══ -->
+        <div class="settings-section animate-in" style="animation-delay:250ms;border-color:rgba(239,68,68,0.2);">
+          <h3 style="margin-bottom:4px;color:var(--accent-red);">Danger Zone</h3>
+          <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">Irreversible actions. Handle with care.</p>
+          <div class="setting-row">
+            <div class="left"><h4>Export My Data</h4><p>Download all your personal data as a JSON file (DPDP compliant)</p></div>
+            <button class="btn btn-outline btn-sm">📥 Download</button>
+          </div>
+          <div class="setting-row">
+            <div class="left"><h4>Delete My Account</h4><p>Permanently delete your account and all data. 72-hour grace period before permanent erasure.</p></div>
+            <button class="btn btn-danger btn-sm">🗑️ Delete Account</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

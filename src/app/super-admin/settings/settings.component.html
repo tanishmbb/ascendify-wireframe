@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify — Super Admin Settings</title>
+  
+  <style>
+    .admin-sidebar { background: #070B14; border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
+    .stat-card.admin { background: linear-gradient(135deg, rgba(30,45,69,0.5), rgba(15,23,42,0.8)); border-color: rgba(30,45,69,0.8); }
+  </style>
+</head>
+<body>
+<div class="dashboard-layout">
+  <aside class="admin-sidebar" style="background:#070B14;">
+    <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Super Admin (S-OS)</div></div></div>
+    <div class="sidebar-section"><div class="sidebar-section-title">Platform</div>
+      <nav class="sidebar-nav">
+        <a href="/super-admin/dashboard" class="sidebar-link"><span class="nav-icon">🌐</span> Global Metrics</a>
+        <a href="/super-admin/finance" class="sidebar-link"><span class="nav-icon">💰</span> Financial Control</a>
+        <a href="/super-admin/settings" class="sidebar-link active"><span class="nav-icon">⚙️</span> System Config</a>
+      </nav>
+    </div>
+    <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-purple);">SA</div><div class="user-info"><div class="user-name">System Admin</div><div class="user-role">God Mode</div></div></div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-left"><h1 class="topbar-title">System Configuration</h1></div>
+      <div class="topbar-right">
+        <button class="btn btn-primary btn-sm">Save Changes</button>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        
+        <!-- Algorithm Tuning -->
+        <div class="card animate-in">
+          <h3 style="margin-bottom: 16px;">Algorithm Tuning</h3>
+          <p style="font-size:13px; color:var(--text-secondary); margin-bottom:24px;">Adjust weights for the Pathfinder/Trailblazer placement ranking algorithm.</p>
+          
+          <div class="form-group">
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+              <label class="form-label" style="margin:0;">XP Weight</label>
+              <span style="font-size:12px; font-family:monospace;">40%</span>
+            </div>
+            <input type="range" class="w-full" min="0" max="100" value="40">
+          </div>
+          
+          <div class="form-group">
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+              <label class="form-label" style="margin:0;">Duel Win Rate Weight</label>
+              <span style="font-size:12px; font-family:monospace;">35%</span>
+            </div>
+            <input type="range" class="w-full" min="0" max="100" value="35">
+          </div>
+
+          <div class="form-group">
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+              <label class="form-label" style="margin:0;">Screening Conversion Weight</label>
+              <span style="font-size:12px; font-family:monospace;">25%</span>
+            </div>
+            <input type="range" class="w-full" min="0" max="100" value="25">
+          </div>
+        </div>
+
+        <!-- Emergency Controls -->
+        <div class="card animate-in" style="animation-delay: 50ms; border-color:var(--accent-red);">
+          <h3 style="margin-bottom: 16px; color:var(--accent-red);">Emergency Controls</h3>
+          <p style="font-size:13px; color:var(--text-secondary); margin-bottom:24px;">Use extreme caution. These actions immediately affect live users.</p>
+          
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:16px; border:1px solid var(--accent-red); border-radius:var(--radius-md); margin-bottom:16px;">
+            <div>
+              <div style="font-weight:600; color:var(--text-primary);">Maintenance Mode</div>
+              <div style="font-size:12px; color:var(--text-secondary);">Disable student and company logins.</div>
+            </div>
+            <button class="btn btn-outline btn-sm" style="color:var(--accent-red); border-color:var(--accent-red);">Enable</button>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:16px; border:1px solid var(--accent-red); border-radius:var(--radius-md);">
+            <div>
+              <div style="font-weight:600; color:var(--text-primary);">Kill Ongoing Assessments</div>
+              <div style="font-size:12px; color:var(--text-secondary);">Force-end all active screening tests.</div>
+            </div>
+            <button class="btn btn-outline btn-sm" style="color:var(--accent-red); border-color:var(--accent-red);">Kill</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>

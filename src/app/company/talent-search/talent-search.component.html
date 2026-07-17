@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ascendify Hire — Talent Search</title>
+  
+  <style>
+    .filter-panel { background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 24px; }
+    .result-card { background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-lg); padding: 20px; transition: all 0.3s; cursor: pointer; }
+    .result-card:hover { border-color: rgba(0,212,255,0.2); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Hire · Recruiter Portal</div></div></div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Recruiting</div>
+        <nav class="sidebar-nav">
+          <a href="talent-search.html" class="sidebar-link active"><span class="nav-icon">🔍</span> Search Talent</a>
+          <a href="spotlight.html" class="sidebar-link"><span class="nav-icon">⭐</span> Talent Spotlight</a>
+          <a href="bounty.html" class="sidebar-link"><span class="nav-icon">💰</span> Bounty Board</a>
+          <a href="screening-setup.html" class="sidebar-link"><span class="nav-icon">📝</span> Screening</a>
+          <a href="screening-results.html" class="sidebar-link"><span class="nav-icon">📊</span> Results</a>
+        </nav>
+      </div>
+      <div class="sidebar-section"><div class="sidebar-section-title">Management</div>
+        <nav class="sidebar-nav">
+          <a href="/company/watchlist" class="sidebar-link"><span class="nav-icon">📋</span> Watchlist</a>
+          <a class="sidebar-link" (click)="toggleSavedSearches()" style="cursor: pointer;"><span class="nav-icon">💾</span> Saved Searches</a>
+          <a href="analytics.html" class="sidebar-link"><span class="nav-icon">📈</span> Analytics</a>
+          <a href="#" class="sidebar-link"><span class="nav-icon">⚙️</span> Account & Billing</a>
+        </nav>
+      </div>
+      <div class="sidebar-user"><div class="user-avatar" style="background:var(--gradient-pathfinder);">TC</div><div class="user-info"><div class="user-name">TechCorp India</div><div class="user-role">Pro Plan · 5 seats</div></div></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><h1 class="topbar-title">Search Talent</h1><span style="font-size:13px;color:var(--text-muted);">248 students enrolled</span></div>
+        <div class="topbar-right">
+          <button class="btn btn-outline btn-sm" (click)="toggleSavedSearches()">💾 View Saved Searches</button>
+          <div class="topbar-icon-btn">🔔</div>
+        </div>
+      </header>
+
+      <div class="page-content-wide">
+        <div style="display:grid;grid-template-columns:300px 1fr;gap:24px;">
+          <!-- ═══ FILTER PANEL ═══ -->
+          <div class="filter-panel">
+            <h4 style="margin-bottom:16px;">Multi-Axis Filters</h4>
+
+            <div class="form-group">
+              <label class="form-label">Domain</label>
+              <select class="form-select"><option>All Domains</option><option>💻 Tech Dev</option><option>🧠 Logic & DS</option><option>🤖 AI/DS</option><option>🔧 Hardware</option><option>📐 Eng. Design</option><option>🎤 Soft Skills</option><option>🤲 Volunteering</option><option>🎨 UI/UX</option></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Minimum Tier</label>
+              <select class="form-select"><option>Any Tier</option><option>⭐ Pathfinder (Top 5%)</option><option>⭐ Trailblazer (Top 20%)</option><option>⬡ Builder (Middle 50%)</option></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Percentile Range</label>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <input type="range" class="range-slider" min="0" max="100" value="15">
+                <span class="font-mono" style="font-size:14px;color:var(--accent-cyan);min-width:45px;">Top 15%</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Velocity</label>
+              <select class="form-select"><option>Any</option><option>🚀 High Growth</option><option>→ Stable</option><option>↓ Declining</option></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Branch</label>
+              <select class="form-select"><option>All Branches</option><option>CSE</option><option>ECE</option><option>IT</option><option>MECH</option><option>CIVIL</option></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Year</label>
+              <select class="form-select"><option>All Years</option><option>1st Year</option><option>2nd Year</option><option>3rd Year</option><option>4th Year</option></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Min Streak</label>
+              <input type="number" class="form-input" placeholder="e.g. 30" value="7">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Min Bootcamp Score</label>
+              <input type="number" class="form-input" placeholder="0-100" value="70">
+            </div>
+
+            <button class="btn btn-primary w-full">Apply Filters</button>
+            <button class="btn btn-ghost w-full" style="margin-top:8px;">Clear All</button>
+          </div>
+
+          <!-- ═══ RESULTS ═══ -->
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+              <span style="font-size:14px;color:var(--text-secondary);"><span class="font-mono text-cyan">37</span> students match your filters</span>
+              <select class="form-select" style="width:auto;padding:7px 32px 7px 12px;font-size:13px;min-width:160px;">
+                <option>Sort: Score (High → Low)</option><option>Sort: Velocity</option><option>Sort: Streak</option><option>Sort: Bootcamp Avg</option>
+              </select>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+              <!-- Result Card 1 -->
+              <div class="result-card animate-in">
+                <div style="display:flex;gap:14px;margin-bottom:14px;">
+                  <div class="avatar avatar-lg" style="border-color:var(--accent-pathfinder);">AK</div>
+                  <div style="flex:1;">
+                    <div style="font-size:16px;font-weight:600;">Anika Kapoor</div>
+                    <div style="font-size:12px;color:var(--text-muted);">CSE · 3rd Year</div>
+                    <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
+                      <span class="tier-badge tier-pathfinder" style="font-size:10px;">⭐ Pathfinder</span>
+                      <span class="badge badge-purple" style="font-size:10px;">🧬 Polymath</span>
+                    </div>
+                  </div>
+                  <div style="text-align:right;">
+                    <div class="font-mono" style="font-size:22px;color:var(--accent-cyan);">2,487</div>
+                    <span class="velocity-arrow up" style="font-size:11px;">↑ 5.3%</span>
+                  </div>
+                </div>
+                <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+                  <span class="domain-tag" style="font-size:11px;">🤖 AI/DS #1</span>
+                  <span class="domain-tag" style="font-size:11px;">💻 Tech Dev #3</span>
+                  <span class="streak-flame" style="font-size:12px;">🔥 45d</span>
+                </div>
+                <div style="display:flex;gap:8px;">
+                  <a href="student-profile.html" class="btn btn-primary btn-sm" style="flex:1;">View Profile</a>
+                  <button class="btn btn-pathfinder btn-sm" style="flex:1;">Send Interest ✨</button>
+                </div>
+              </div>
+
+              <!-- Result Card 2 -->
+              <div class="result-card animate-in" style="animation-delay:50ms;">
+                <div style="display:flex;gap:14px;margin-bottom:14px;">
+                  <div class="avatar avatar-lg" style="border-color:var(--accent-pathfinder);">SP</div>
+                  <div style="flex:1;">
+                    <div style="font-size:16px;font-weight:600;">Siddharth Patel</div>
+                    <div style="font-size:12px;color:var(--text-muted);">CSE · 4th Year</div>
+                    <div style="margin-top:6px;"><span class="tier-badge tier-pathfinder" style="font-size:10px;">⭐ Pathfinder</span></div>
+                  </div>
+                  <div style="text-align:right;">
+                    <div class="font-mono" style="font-size:22px;color:var(--accent-cyan);">2,341</div>
+                    <span class="velocity-arrow up" style="font-size:11px;">↑ 3.1%</span>
+                  </div>
+                </div>
+                <div style="display:flex;gap:8px;margin-bottom:12px;">
+                  <span class="domain-tag" style="font-size:11px;">💻 Tech Dev #2</span>
+                  <span class="domain-tag" style="font-size:11px;">🧠 Logic #5</span>
+                  <span class="streak-flame" style="font-size:12px;">🔥 31d</span>
+                </div>
+                <div style="display:flex;gap:8px;">
+                  <a href="student-profile.html" class="btn btn-primary btn-sm" style="flex:1;">View Profile</a>
+                  <button class="btn btn-pathfinder btn-sm" style="flex:1;">Send Interest ✨</button>
+                </div>
+              </div>
+
+              <!-- Result Card 3 — Anonymous -->
+              <div class="result-card animate-in" style="animation-delay:100ms;">
+                <div style="display:flex;gap:14px;margin-bottom:14px;">
+                  <div class="avatar avatar-lg" style="border-color:var(--accent-trailblazer);background:var(--bg-elevated);">🎭</div>
+                  <div style="flex:1;">
+                    <div style="font-size:16px;font-weight:600;color:var(--text-muted);">Anonymous Student</div>
+                    <div style="font-size:12px;color:var(--text-muted);">IT · 4th Year</div>
+                    <div style="margin-top:6px;"><span class="tier-badge tier-pathfinder" style="font-size:10px;">⭐ Pathfinder</span> <span class="badge badge-trailblazer" style="font-size:10px;">🎭 Anonymous Mode</span></div>
+                  </div>
+                  <div style="text-align:right;">
+                    <div class="font-mono" style="font-size:22px;color:var(--accent-cyan);">2,298</div>
+                    <span class="velocity-arrow stable" style="font-size:11px;">→ 0.8%</span>
+                  </div>
+                </div>
+                <div style="display:flex;gap:8px;margin-bottom:12px;">
+                  <span class="domain-tag" style="font-size:11px;">🤖 AI/DS #4</span>
+                  <span class="domain-tag" style="font-size:11px;">🎨 UI/UX #6</span>
+                  <span class="streak-flame" style="font-size:12px;">🔥 18d</span>
+                </div>
+                <div style="display:flex;gap:8px;">
+                  <button class="btn btn-outline btn-sm" style="flex:1;" disabled>Profile Hidden</button>
+                  <button class="btn btn-pathfinder btn-sm" style="flex:1;">Request Reveal ✨</button>
+                </div>
+              </div>
+
+              <!-- Result Card 4 -->
+              <div class="result-card animate-in" style="animation-delay:150ms;">
+                <div style="display:flex;gap:14px;margin-bottom:14px;">
+                  <div class="avatar avatar-lg">NR</div>
+                  <div style="flex:1;">
+                    <div style="font-size:16px;font-weight:600;">Neha Rao</div>
+                    <div style="font-size:12px;color:var(--text-muted);">CSE · 2nd Year</div>
+                    <div style="margin-top:6px;"><span class="tier-badge tier-trailblazer" style="font-size:10px;">⭐ Trailblazer</span></div>
+                  </div>
+                  <div style="text-align:right;">
+                    <div class="font-mono" style="font-size:22px;color:var(--accent-cyan);">1,978</div>
+                    <span class="velocity-arrow up" style="font-size:11px;">↑ 9.2%</span>
+                  </div>
+                </div>
+                <div style="display:flex;gap:8px;margin-bottom:12px;">
+                  <span class="domain-tag" style="font-size:11px;">🎨 UI/UX #2</span>
+                  <span class="domain-tag" style="font-size:11px;">💻 Tech Dev #14</span>
+                  <span class="streak-flame" style="font-size:12px;">🔥 14d</span>
+                  <span class="badge badge-amber" style="font-size:10px;">Rising Star ↑</span>
+                </div>
+                <div style="display:flex;gap:8px;">
+                  <a href="student-profile.html" class="btn btn-primary btn-sm" style="flex:1;">View Profile</a>
+                  <button class="btn btn-pathfinder btn-sm" style="flex:1;">Send Interest ✨</button>
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align:center;margin-top:24px;">
+              <button class="btn btn-outline">Load More Results</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ═══ SAVED SEARCHES DRAWER ═══ -->
+  <div class="overlay" *ngIf="isSavedSearchesOpen" (click)="toggleSavedSearches()" style="position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(10,15,30,0.6); z-index:999;"></div>
+  <div class="drawer" [ngStyle]="{'right': isSavedSearchesOpen ? '0' : '-400px'}" style="position:fixed; top:0; bottom:0; width:400px; background:var(--bg-elevated); border-left:1px solid var(--border-default); z-index:1000; transition: right 0.3s ease; padding: 24px; display:flex; flex-direction:column;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+      <h3 style="margin:0;">Saved Searches</h3>
+      <button class="btn btn-ghost btn-sm" (click)="toggleSavedSearches()">✕</button>
+    </div>
+    
+    <div style="flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:16px;">
+      <!-- Search Item 1 -->
+      <div style="padding:16px; background:var(--bg-card); border:1px solid var(--border-default); border-radius:var(--radius-md);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+          <div style="font-size:14px; font-weight:600;">Frontend Engineers - Top 5%</div>
+          <span class="badge badge-pathfinder">142 Matches</span>
+        </div>
+        <div style="font-size:12px; color:var(--text-secondary); margin-bottom:16px; line-height: 1.6;">
+          <span style="background:rgba(255,255,255,0.05); padding:2px 6px; border-radius:4px; margin-right:4px;">💻 Tech Dev</span>
+          <span style="background:rgba(255,255,255,0.05); padding:2px 6px; border-radius:4px; margin-right:4px;">Pathfinder</span>
+          <span style="background:rgba(255,255,255,0.05); padding:2px 6px; border-radius:4px;">High Growth</span>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-primary btn-sm" style="flex:1;">Apply Filters</button>
+          <button class="btn btn-outline btn-sm" style="flex:1;">Set Alert</button>
+        </div>
+      </div>
+
+      <!-- Search Item 2 -->
+      <div style="padding:16px; background:var(--bg-card); border:1px solid var(--border-default); border-radius:var(--radius-md);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+          <div style="font-size:14px; font-weight:600;">Data Scientists - 2026 Batch</div>
+          <span class="badge badge-green">89 Matches</span>
+        </div>
+        <div style="font-size:12px; color:var(--text-secondary); margin-bottom:16px; line-height: 1.6;">
+          <span style="background:rgba(255,255,255,0.05); padding:2px 6px; border-radius:4px; margin-right:4px;">🤖 AI/DS</span>
+          <span style="background:rgba(255,255,255,0.05); padding:2px 6px; border-radius:4px; margin-right:4px;">3rd Year</span>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-primary btn-sm" style="flex:1;">Apply Filters</button>
+          <button class="btn btn-outline btn-sm" style="flex:1;">Set Alert</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
