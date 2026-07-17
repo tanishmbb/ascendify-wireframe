@@ -1,9 +1,10 @@
+import { RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-colleges',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './colleges.component.html',
   styleUrl: './colleges.component.css'
 })
