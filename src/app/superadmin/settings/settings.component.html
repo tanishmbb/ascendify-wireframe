@@ -28,6 +28,30 @@
           <input type="range" class="w-full" min="0" max="100" value="40">
         </div>
       </div>
+
+      <div class="card animate-in" style="margin-top: 24px; border-color: rgba(239, 68, 68, 0.3);">
+        <h3 style="margin-bottom: 16px; color: #ef4444;">Emergency Controls</h3>
+        <p style="font-size:13px; color:var(--text-secondary); margin-bottom:24px;">Critical system toggles for immediate intervention.</p>
+        
+        <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom: 16px; border-bottom: 1px solid var(--border-default); margin-bottom: 16px;">
+          <div>
+            <h4 style="margin-bottom: 4px;">Global Maintenance Mode</h4>
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Locks out all non-admin users and displays a maintenance banner.</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h4 style="margin-bottom: 4px;">Kill All Live Assessments</h4>
+            <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Immediately aborts all active screening sessions in the event of an exploit.</p>
+          </div>
+          <button class="btn" style="background-color: #ef4444; color: white; border: none;">Execute Kill Switch</button>
+        </div>
+      </div>
     </div>
   </main>
 </div>

@@ -1981,3 +1981,44 @@ h6 { font-size: 16px; }
   .main-content { margin-left: 0 !important; }
   body { background: white; color: black; }
 }
+
+/* ============================================================
+   Portal-Scoped Styles (Phase 7 Requirement)
+   ============================================================ */
+
+/* ── College & Bootcamp Scoping ── */
+.college-portal .sidebar {
+  border-right-color: rgba(245, 166, 35, 0.2); /* Pathfinder accent */
+}
+.college-portal .topbar-title {
+  color: var(--tier-pathfinder);
+}
+
+.bootcamp-portal .sidebar {
+  border-right-color: rgba(148, 163, 184, 0.2); /* Trailblazer accent */
+}
+
+/* ── Evaluator Scoping ── */
+.evaluator-portal .sidebar {
+  border-right-color: rgba(16, 185, 129, 0.2); /* Green accent for review */
+}
+.evaluator-portal .card-header {
+  border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+/* ── Admin & Superadmin Scoping ── */
+.admin-portal .sidebar {
+  border-right-color: rgba(239, 68, 68, 0.2); /* Red/Operations accent */
+}
+.admin-portal .card {
+  border-color: rgba(239, 68, 68, 0.1);
+}
+
+.superadmin-portal .sidebar {
+  background: #050810;
+  border-right-color: var(--accent-cyan);
+}
+.superadmin-portal .topbar {
+  background: rgba(5,8,16,0.9);
+  border-bottom-color: var(--accent-cyan);
+}
