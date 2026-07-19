@@ -1,5 +1,6 @@
+import { SidebarService } from '../../services/sidebar.service';
 import { RouterModule } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component , inject } from '@angular/core';
 
 @Component({
   selector: 'app-panels',
@@ -9,5 +10,7 @@ import { Component } from '@angular/core';
   styleUrl: './panels.component.css'
 })
 export class PanelsComponent {
+  sidebarService = inject(SidebarService);
+
 
 }

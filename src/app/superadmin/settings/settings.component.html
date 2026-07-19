@@ -1,5 +1,5 @@
-<div class="dashboard-layout">
-  <aside class="sidebar">
+<div class="dashboard-layout superadmin-portal">
+  <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
     <div class="sidebar-logo">
       <div class="logo-icon"></div>
       <div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Super Admin (S-OS)</div></div>
@@ -12,7 +12,11 @@
         <a routerLink="/superadmin/settings" class="sidebar-link active"><span class="nav-icon">⚙️</span> System Config</a>
       </nav>
     </div>
-  </aside>
+  
+      <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
+        <span class="nav-icon">⇋</span>
+      </button>
+    </aside>
 
   <main class="main-content">
     <header class="topbar">

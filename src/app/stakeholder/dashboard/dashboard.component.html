@@ -5,14 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ascendify — Stakeholder Dashboard</title>
   
-  <style>
-    .admin-sidebar { background: #070B14; border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
-    .stat-card.stakeholder { background: var(--bg-card); border-top: 3px solid var(--accent-pathfinder); }
+  <style>.stat-card.stakeholder { background: var(--bg-card); border-top: 3px solid var(--accent-pathfinder); }
   </style>
 </head>
 <body>
-<div class="dashboard-layout">
-  <aside class="admin-sidebar" style="background:#070B14;">
+<div class="dashboard-layout stakeholder-portal">
+  <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
     <div class="sidebar-logo"><div><div class="logo-text" style="color:var(--accent-pathfinder);">ASCENDIFY</div><div class="logo-sub">Stakeholder / Investor</div></div></div>
     <div class="sidebar-section"><div class="sidebar-section-title">Overview</div>
       <nav class="sidebar-nav">
@@ -20,7 +18,11 @@
       </nav>
     </div>
     <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-pathfinder);">INV</div><div class="user-info"><div class="user-name">Venture Partners</div><div class="user-role">Read-Only</div></div></div>
-  </aside>
+  
+      <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
+        <span class="nav-icon">⇋</span>
+      </button>
+    </aside>
 
   <main class="main-content">
     <header class="topbar">
@@ -39,7 +41,7 @@
         <div class="stat-card stakeholder animate-in" style="animation-delay:150ms;"><div class="stat-label">Total Student Base</div><div class="stat-value text-cyan">42.8k</div><div class="stat-trend up">↑ 8% MoM</div></div>
       </div>
 
-      <div style="display:grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+      <div class="grid-dash-2-1">
         
         <!-- Revenue Chart -->
         <div class="card animate-in">

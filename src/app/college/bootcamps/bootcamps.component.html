@@ -5,17 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ascendify College — Bootcamps</title>
   
-  <style>
-    .college-sidebar { background: var(--bg-card); border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
-    .status-badge { padding: 4px 10px; border-radius: var(--radius-full); font-size: 11px; font-weight: 600; }
+  <style>.status-badge { padding: 4px 10px; border-radius: var(--radius-full); font-size: 11px; font-weight: 600; }
     .status-badge.active { background: rgba(16,185,129,0.15); color: var(--accent-green); }
     .status-badge.eval { background: rgba(245,158,11,0.15); color: var(--accent-amber); }
     .status-badge.completed { background: rgba(0,212,255,0.15); color: var(--accent-cyan); }
   </style>
 </head>
 <body>
-  <div class="dashboard-layout">
-    <aside class="college-sidebar">
+  <div class="dashboard-layout college-portal">
+    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
       <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">College / Placement OS</div></div></div>
       <div class="sidebar-section"><div class="sidebar-section-title">Overview</div>
         <nav class="sidebar-nav">
@@ -32,6 +30,10 @@
         </nav>
       </div>
       <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">MR</div><div class="user-info"><div class="user-name">Malla Reddy Univ</div><div class="user-role">Placement Cell</div></div></div>
+    
+      <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
+        <span class="nav-icon">⇋</span>
+      </button>
     </aside>
 
     <main class="main-content">
@@ -44,7 +46,7 @@
       </header>
 
       <div class="page-content">
-        <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;">
+        <div class="grid-dash-main-side">
           <!-- Active Bootcamp Stats -->
           <div>
             <div class="card" style="margin-bottom:var(--space-xl);background:linear-gradient(135deg,rgba(0,212,255,0.04),rgba(139,92,246,0.03));border-color:rgba(0,212,255,0.15);">

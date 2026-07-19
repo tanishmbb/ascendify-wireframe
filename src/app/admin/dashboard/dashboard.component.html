@@ -5,15 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ascendify Admin — Employee Operations</title>
   
-  <style>
-    .admin-sidebar { background: #0F172A; border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
-    .stat-card.admin { background: linear-gradient(135deg, rgba(30,45,69,0.5), rgba(15,23,42,0.8)); border-color: rgba(30,45,69,0.8); }
+  <style>.stat-card.admin { background: linear-gradient(135deg, rgba(30,45,69,0.5), rgba(15,23,42,0.8)); border-color: rgba(30,45,69,0.8); }
     .heatmap-cell { width: 100%; height: 24px; border-radius: 2px; }
   </style>
 </head>
 <body>
-<div class="dashboard-layout">
-  <aside class="admin-sidebar" style="background:#0F172A;">
+<div class="dashboard-layout admin-portal">
+  <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
     <div class="sidebar-logo"><div><div class="logo-text" style="color:var(--accent-cyan);">ASCENDIFY</div><div class="logo-sub">Employee Operations</div></div></div>
     <div class="sidebar-section"><div class="sidebar-section-title">Core Ops</div>
       <nav class="sidebar-nav">
@@ -30,7 +28,11 @@
       </nav>
     </div>
     <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">EO</div><div class="user-info"><div class="user-name">Riya Singh</div><div class="user-role">Operations Lead</div></div></div>
-  </aside>
+  
+      <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
+        <span class="nav-icon">⇋</span>
+      </button>
+    </aside>
 
   <main class="main-content">
     <header class="topbar">
@@ -50,7 +52,7 @@
         <div class="stat-card"><div class="stat-label">Fraud Flags</div><div class="stat-value text-red">34</div><div class="stat-trend up">↑ 2 High Priority</div></div>
       </div>
 
-      <div style="display:grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+      <div class="grid-dash-2-1">
         
         <!-- Recent Activity Feed -->
         <div class="card animate-in">

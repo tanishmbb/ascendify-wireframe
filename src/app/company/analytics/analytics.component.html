@@ -10,8 +10,8 @@
   </style>
 </head>
 <body>
-  <div class="dashboard-layout">
-    <aside class="sidebar">
+  <div class="dashboard-layout company-portal">
+    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
       <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Hire · Recruiter Portal</div></div></div>
       <div class="sidebar-section"><div class="sidebar-section-title">Recruiting</div>
         <nav class="sidebar-nav">
@@ -31,6 +31,10 @@
         </nav>
       </div>
       <div class="sidebar-user"><div class="user-avatar" style="background:var(--gradient-pathfinder);">TC</div><div class="user-info"><div class="user-name">TechCorp India</div><div class="user-role">Pro Plan</div></div></div>
+    
+      <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
+        <span class="nav-icon">⇋</span>
+      </button>
     </aside>
 
     <main class="main-content">

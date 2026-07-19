@@ -1,5 +1,6 @@
+import { SidebarService } from '../../services/sidebar.service';
 import { RouterModule } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component , inject } from '@angular/core';
 
 @Component({
   selector: 'app-screening-setup',
@@ -9,5 +10,7 @@ import { Component } from '@angular/core';
   styleUrl: './screening-setup.component.css'
 })
 export class ScreeningSetupComponent {
+  sidebarService = inject(SidebarService);
+
 
 }

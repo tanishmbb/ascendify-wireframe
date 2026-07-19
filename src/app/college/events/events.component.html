@@ -5,15 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ascendify College — Events & QR</title>
   
-  <style>
-    .college-sidebar { background: var(--bg-card); border-right: 1px solid var(--border-default); width: 260px; height: 100vh; position: sticky; top: 0; padding: 24px; display: flex; flex-direction: column; }
-    .qr-card { background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-xl); padding: 32px; text-align: center; }
+  <style>.qr-card { background: var(--bg-card); border: 1px solid var(--border-default); border-radius: var(--radius-xl); padding: 32px; text-align: center; }
     .qr-image { width: 200px; height: 200px; background: white; padding: 16px; border-radius: var(--radius-md); margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; }
   </style>
 </head>
 <body>
-  <div class="dashboard-layout">
-    <aside class="college-sidebar">
+  <div class="dashboard-layout college-portal">
+    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
       <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">College / Placement OS</div></div></div>
       <div class="sidebar-section"><div class="sidebar-section-title">Overview</div>
         <nav class="sidebar-nav">
@@ -30,6 +28,10 @@
         </nav>
       </div>
       <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">MR</div><div class="user-info"><div class="user-name">Malla Reddy Univ</div><div class="user-role">Placement Cell</div></div></div>
+    
+      <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
+        <span class="nav-icon">⇋</span>
+      </button>
     </aside>
 
     <main class="main-content">

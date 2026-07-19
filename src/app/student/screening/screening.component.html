@@ -1,4 +1,4 @@
-<div class="dashboard-layout" style="display:flex; flex-direction:column; min-height:100vh;">
+<div class="dashboard-layout student-portal" style="display:flex; flex-direction:column; min-height:100vh;">
   
   <!-- Topbar Minimal -->
   <header style="padding: 16px 24px; border-bottom: 1px solid var(--border-default); display:flex; justify-content: space-between; align-items: center;">
@@ -38,7 +38,7 @@
     </div>
 
     <!-- State 2: Assessment (Code Editor Mock) -->
-    <div class="animate-in" *ngIf="state === 'assessment'" style="width:100%; display:grid; grid-template-columns: 350px 1fr; gap:20px; height: calc(100vh - 150px);">
+    <div class="animate-in" *ngIf="state === 'assessment'" class="grid-dash-side-main" style="width:100%; height:calc(100vh - 150px);">
       
       <!-- Problem Description -->
       <div class="card" style="padding:24px; overflow-y:auto;">

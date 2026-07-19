@@ -1,5 +1,5 @@
-<div class="dashboard-layout">
-  <aside class="sidebar">
+<div class="dashboard-layout college-portal">
+  <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
     <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">College Portal</div></div></div>
     <div class="sidebar-section"><div class="sidebar-section-title">Main</div>
       <nav class="sidebar-nav">
@@ -16,7 +16,11 @@
       </nav>
     </div>
     <div class="sidebar-user"><div class="user-avatar">DTU</div><div class="user-info"><div class="user-name">Delhi Tech Univ.</div><div class="user-role">Premium Partner</div></div></div>
-  </aside>
+  
+      <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
+        <span class="nav-icon">⇋</span>
+      </button>
+    </aside>
 
   <main class="main-content">
     <header class="topbar">
@@ -26,7 +30,7 @@
 
     <div class="page-content">
       
-      <div style="display:grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+      <div class="grid-dash-2-1">
         
         <!-- Main Charts -->
         <div>

@@ -1,5 +1,6 @@
+import { SidebarService } from '../../services/sidebar.service';
 import { RouterModule } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component , inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,6 +11,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './talent-search.component.css'
 })
 export class TalentSearchComponent {
+  sidebarService = inject(SidebarService);
+
   isSavedSearchesOpen = false;
 
   toggleSavedSearches() {

@@ -104,9 +104,9 @@
 </head>
 <body>
 
-  <div class="dashboard-layout">
+  <div class="dashboard-layout student-portal">
     <!-- ═══════════════ SIDEBAR ═══════════════ -->
-    <aside class="sidebar" id="student-sidebar">
+    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()" id="student-sidebar">
       <div class="sidebar-logo">
         <div>
           <div class="logo-text">ASCENDIFY</div>
@@ -165,6 +165,10 @@
           <div class="user-role">CSE · 3rd Year</div>
         </div>
       </div>
+    
+      <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
+        <span class="nav-icon">⇋</span>
+      </button>
     </aside>
 
     <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
@@ -220,7 +224,7 @@
           </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;">
+        <div class="grid-dash-main-side">
           <!-- ═══ LEFT COLUMN — Feed ═══ -->
           <div>
             <!-- Daily Quest Card (Pinned) -->

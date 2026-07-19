@@ -34,8 +34,8 @@
   </style>
 </head>
 <body>
-  <div class="dashboard-layout">
-    <aside class="sidebar">
+  <div class="dashboard-layout student-portal">
+    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
       <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Student · S-OS</div></div></div>
       <div class="sidebar-section"><div class="sidebar-section-title">Main</div>
         <nav class="sidebar-nav">
@@ -49,6 +49,10 @@
       <div class="sidebar-section"><div class="sidebar-section-title">Social</div><nav class="sidebar-nav"><a routerLink="/student/duels" class="sidebar-link active"><span class="nav-icon">⚔️</span> Duels<span class="nav-badge">1</span></a><a routerLink="/student/mentorship" class="sidebar-link"><span class="nav-icon">🤝</span> Mentorship</a></nav></div>
       <div class="sidebar-section"><div class="sidebar-section-title">Account</div><nav class="sidebar-nav"><a routerLink="/student/settings" class="sidebar-link"><span class="nav-icon">⚙️</span> Settings</a></nav></div>
       <div class="sidebar-user"><div class="user-avatar">RK</div><div class="user-info"><div class="user-name">Rahul Kumar</div><div class="user-role">CSE · 3rd Year</div></div></div>
+    
+      <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
+        <span class="nav-icon">⇋</span>
+      </button>
     </aside>
 
     <main class="main-content">
@@ -71,7 +75,7 @@
           </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 380px;gap:24px;">
+        <div class="grid-dash-main-side">
           <div>
             <!-- ═══ ACTIVE DUEL ═══ -->
             <h3 style="margin-bottom:16px;">Active Duel</h3>
