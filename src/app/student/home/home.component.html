@@ -106,7 +106,7 @@
 
   <div class="dashboard-layout student-portal">
     <!-- ═══════════════ SIDEBAR ═══════════════ -->
-    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()" id="student-sidebar">
+    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()" [class.mobile-open]="sidebarService.isMobileOpen()" id="student-sidebar">
       <div class="sidebar-logo">
         <div>
           <div class="logo-text">ASCENDIFY</div>
@@ -158,6 +158,16 @@
         </nav>
       </div>
 
+      
+      <div class="sidebar-section portal-nav">
+        <div class="sidebar-section-title">Portals</div>
+        <nav class="sidebar-nav">
+          <a routerLink="/company/talent-search" class="sidebar-link"><span class="nav-icon">🏢</span> <span>Company</span></a>
+          <a routerLink="/college/dashboard" class="sidebar-link"><span class="nav-icon">🎓</span> <span>College</span></a>
+          <a routerLink="/admin/dashboard" class="sidebar-link"><span class="nav-icon">🛡️</span> <span>Admin</span></a>
+          <a routerLink="/evaluator/dashboard" class="sidebar-link"><span class="nav-icon">📋</span> <span>Evaluator</span></a>
+        </nav>
+      </div>
       <div class="sidebar-user">
         <div class="user-avatar">RK</div>
         <div class="user-info">
@@ -170,12 +180,13 @@
         <span class="nav-icon">⇋</span>
       </button>
     </aside>
+    <div class="sidebar-overlay" (click)="sidebarService.closeMobile()"></div>
 
     <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
     <main class="main-content">
       <!-- ═══ TOP BAR ═══ -->
       <header class="topbar">
-        <div class="topbar-left">
+        <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button>
           <h1 class="topbar-title">The Pulse</h1>
           <span class="badge badge-green">Live</span>
         </div>

@@ -51,7 +51,7 @@
 </head>
 <body>
   <div class="dashboard-layout student-portal">
-    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
+    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()" [class.mobile-open]="sidebarService.isMobileOpen()">
       <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Student · S-OS</div></div></div>
       <div class="sidebar-section"><div class="sidebar-section-title">Main</div>
         <nav class="sidebar-nav">
@@ -69,16 +69,27 @@
         </nav>
       </div>
       <div class="sidebar-section"><div class="sidebar-section-title">Account</div><nav class="sidebar-nav"><a routerLink="/student/settings" class="sidebar-link"><span class="nav-icon">⚙️</span> Settings</a></nav></div>
+      
+      <div class="sidebar-section portal-nav">
+        <div class="sidebar-section-title">Portals</div>
+        <nav class="sidebar-nav">
+          <a routerLink="/company/talent-search" class="sidebar-link"><span class="nav-icon">🏢</span> <span>Company</span></a>
+          <a routerLink="/college/dashboard" class="sidebar-link"><span class="nav-icon">🎓</span> <span>College</span></a>
+          <a routerLink="/admin/dashboard" class="sidebar-link"><span class="nav-icon">🛡️</span> <span>Admin</span></a>
+          <a routerLink="/evaluator/dashboard" class="sidebar-link"><span class="nav-icon">📋</span> <span>Evaluator</span></a>
+        </nav>
+      </div>
       <div class="sidebar-user"><div class="user-avatar">RK</div><div class="user-info"><div class="user-name">Rahul Kumar</div><div class="user-role">CSE · 3rd Year</div></div></div>
     
       <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
         <span class="nav-icon">⇋</span>
       </button>
     </aside>
+    <div class="sidebar-overlay" (click)="sidebarService.closeMobile()"></div>
 
     <main class="main-content">
       <header class="topbar">
-        <div class="topbar-left"><h1 class="topbar-title">Leaderboard</h1></div>
+        <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button><h1 class="topbar-title">Leaderboard</h1></div>
         <div class="topbar-right">
           <div class="topbar-search"><span class="search-icon">🔍</span><input type="text" placeholder="Search students..."></div>
           <div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div>
@@ -133,7 +144,7 @@
             <h3 style="font-size:16px;">High Growth Talent ↑</h3>
             <span class="badge badge-amber">Top 3 by Velocity</span>
           </div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+          <div class="grid-3" style="gap:16px;">
             <div class="rising-star-card">
               <div class="avatar" style="margin:0 auto 10px;border-color:var(--accent-amber);">PD</div>
               <div style="font-size:14px;font-weight:600;">Priya Desai</div>
@@ -159,7 +170,7 @@
         </div>
 
         <!-- ═══ TOP 3 PODIUM ═══ -->
-        <div style="display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:16px;align-items:end;margin-bottom:var(--space-xl);">
+        <div class="grid-3" style="gap:16px;align-items:end;margin-bottom:var(--space-xl);">
           <div class="podium-card trailblazer animate-in" style="animation-delay:100ms;">
             <div class="podium-number">2</div>
             <div class="avatar avatar-lg" style="margin:8px auto 10px;border-color:var(--accent-trailblazer);">SP</div>

@@ -10,7 +10,7 @@
 </head>
 <body>
   <div class="dashboard-layout college-portal">
-    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
+    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()" [class.mobile-open]="sidebarService.isMobileOpen()">
       <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">College / Placement OS</div></div></div>
       <div class="sidebar-section"><div class="sidebar-section-title">Overview</div>
         <nav class="sidebar-nav">
@@ -26,16 +26,27 @@
           <a routerLink="/college/panels" class="sidebar-link"><span class="nav-icon">⚖️</span> Panel Config</a>
         </nav>
       </div>
+      
+      <div class="sidebar-section portal-nav">
+        <div class="sidebar-section-title">Portals</div>
+        <nav class="sidebar-nav">
+          <a routerLink="/student/home" class="sidebar-link"><span class="nav-icon">🎒</span> <span>Student</span></a>
+          <a routerLink="/company/talent-search" class="sidebar-link"><span class="nav-icon">🏢</span> <span>Company</span></a>
+          <a routerLink="/admin/dashboard" class="sidebar-link"><span class="nav-icon">🛡️</span> <span>Admin</span></a>
+          <a routerLink="/evaluator/dashboard" class="sidebar-link"><span class="nav-icon">📋</span> <span>Evaluator</span></a>
+        </nav>
+      </div>
       <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">MR</div><div class="user-info"><div class="user-name">Malla Reddy Univ</div><div class="user-role">Placement Cell</div></div></div>
     
       <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
         <span class="nav-icon">⇋</span>
       </button>
     </aside>
+    <div class="sidebar-overlay" (click)="sidebarService.closeMobile()"></div>
 
     <main class="main-content">
       <header class="topbar">
-        <div class="topbar-left"><h1 class="topbar-title">College Dashboard</h1></div>
+        <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button><h1 class="topbar-title">College Dashboard</h1></div>
         <div class="topbar-right">
           <button class="btn btn-primary btn-sm">Generate Export Report</button>
           <div class="topbar-icon-btn">🔔</div>
@@ -44,14 +55,14 @@
 
       <div class="page-content">
         <!-- Key Metrics -->
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:var(--space-xl);">
+        <div class="grid-4" style="gap:20px;margin-bottom:var(--space-xl);">
           <div class="stat-card animate-in"><div class="stat-label">Active Students</div><div class="stat-value text-cyan">2,481</div><div class="stat-trend up">92% adoption rate</div></div>
           <div class="stat-card animate-in" style="animation-delay:50ms;"><div class="stat-label">Avg Skill Score</div><div class="stat-value">1,245</div><div class="stat-trend up">↑ 4.2% this month</div></div>
           <div class="stat-card animate-in" style="animation-delay:100ms;"><div class="stat-label">Verified Actions</div><div class="stat-value">18.4K</div><div class="stat-trend">Last 30 days</div></div>
           <div class="stat-card animate-in" style="animation-delay:150ms;"><div class="stat-label">Recruiter Views</div><div class="stat-value text-pathfinder">1,142</div><div class="stat-trend up">↑ 12% vs last month</div></div>
         </div>
 
-        <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:var(--space-xl);">
+        <div class="grid-dash-2-1" style="gap:24px;margin-bottom:var(--space-xl);">
           <!-- Skill Heatmap by Branch -->
           <div class="card animate-in">
             <div class="card-header"><div class="card-title">Skill Heatmap by Branch</div><span style="font-size:12px;color:var(--text-muted);">Avg Elo per domain</span></div>
@@ -125,7 +136,7 @@
             <div class="card-title">Placement & Internship Reports</div>
             <button class="btn btn-outline btn-sm">View All Data</button>
           </div>
-          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:16px;">
+          <div class="grid-3" style="gap:16px;">
             <div style="padding:16px; background:var(--bg-elevated); border-radius:var(--radius-md);">
               <div style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">Offers This Month</div>
               <div style="font-size:32px; font-weight:800; color:var(--text-primary); font-family:monospace;">142</div>

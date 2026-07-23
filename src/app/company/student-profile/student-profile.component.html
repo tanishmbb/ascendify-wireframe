@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="dashboard-layout company-portal">
-    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
+    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()" [class.mobile-open]="sidebarService.isMobileOpen()">
       <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Hire · Recruiter Portal</div></div></div>
       <div class="sidebar-section"><div class="sidebar-section-title">Recruiting</div>
         <nav class="sidebar-nav">
@@ -22,16 +22,27 @@
       <div class="sidebar-section"><div class="sidebar-section-title">Management</div>
         <nav class="sidebar-nav"><a href="#" class="sidebar-link"><span class="nav-icon">📋</span> Watchlist</a><a href="#" class="sidebar-link"><span class="nav-icon">💾</span> Saved Searches</a><a routerLink="/company/analytics" class="sidebar-link"><span class="nav-icon">📈</span> Analytics</a></nav>
       </div>
+      
+      <div class="sidebar-section portal-nav">
+        <div class="sidebar-section-title">Portals</div>
+        <nav class="sidebar-nav">
+          <a routerLink="/student/home" class="sidebar-link"><span class="nav-icon">🎒</span> <span>Student</span></a>
+          <a routerLink="/college/dashboard" class="sidebar-link"><span class="nav-icon">🎓</span> <span>College</span></a>
+          <a routerLink="/admin/dashboard" class="sidebar-link"><span class="nav-icon">🛡️</span> <span>Admin</span></a>
+          <a routerLink="/evaluator/dashboard" class="sidebar-link"><span class="nav-icon">📋</span> <span>Evaluator</span></a>
+        </nav>
+      </div>
       <div class="sidebar-user"><div class="user-avatar" style="background:var(--gradient-pathfinder);">TC</div><div class="user-info"><div class="user-name">TechCorp India</div><div class="user-role">Pro Plan · 5 seats</div></div></div>
     
       <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
         <span class="nav-icon">⇋</span>
       </button>
     </aside>
+    <div class="sidebar-overlay" (click)="sidebarService.closeMobile()"></div>
 
     <main class="main-content">
       <header class="topbar">
-        <div class="topbar-left">
+        <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button>
           <div class="topbar-breadcrumb"><a routerLink="/company/talent-search">Search</a><span class="separator">›</span><span class="current">Student Profile</span></div>
         </div>
         <div class="topbar-right">
@@ -61,7 +72,7 @@
           </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:var(--space-xl);">
+        <div class="grid-2" style="gap:24px;margin-bottom:var(--space-xl);">
           <!-- Radar Chart -->
           <div class="card" style="text-align:center;">
             <h3 style="margin-bottom:16px;">Domain Performance</h3>

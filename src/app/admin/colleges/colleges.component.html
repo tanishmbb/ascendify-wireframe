@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="dashboard-layout admin-portal">
-  <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
+  <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()" [class.mobile-open]="sidebarService.isMobileOpen()">
     <div class="sidebar-logo"><div><div class="logo-text" style="color:var(--accent-cyan);">ASCENDIFY</div><div class="logo-sub">Employee Operations</div></div></div>
     <div class="sidebar-section"><div class="sidebar-section-title">Core Ops</div>
       <nav class="sidebar-nav">
@@ -23,16 +23,27 @@
         <a routerLink="/admin/support" class="sidebar-link"><span class="nav-icon">🎫</span> Support Tickets</a>
       </nav>
     </div>
-    <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">EO</div><div class="user-info"><div class="user-name">Riya Singh</div><div class="user-role">Operations Lead</div></div></div>
+    
+      <div class="sidebar-section portal-nav">
+        <div class="sidebar-section-title">Portals</div>
+        <nav class="sidebar-nav">
+          <a routerLink="/student/home" class="sidebar-link"><span class="nav-icon">🎒</span> <span>Student</span></a>
+          <a routerLink="/company/talent-search" class="sidebar-link"><span class="nav-icon">🏢</span> <span>Company</span></a>
+          <a routerLink="/college/dashboard" class="sidebar-link"><span class="nav-icon">🎓</span> <span>College</span></a>
+          <a routerLink="/evaluator/dashboard" class="sidebar-link"><span class="nav-icon">📋</span> <span>Evaluator</span></a>
+        </nav>
+      </div>
+      <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">EO</div><div class="user-info"><div class="user-name">Riya Singh</div><div class="user-role">Operations Lead</div></div></div>
   
       <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
         <span class="nav-icon">⇋</span>
       </button>
     </aside>
+    <div class="sidebar-overlay" (click)="sidebarService.closeMobile()"></div>
 
   <main class="main-content">
     <header class="topbar">
-      <div class="topbar-left"><h1 class="topbar-title">College Approvals</h1></div>
+      <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button><h1 class="topbar-title">College Approvals</h1></div>
       <div class="topbar-right">
         <div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div>
       </div>

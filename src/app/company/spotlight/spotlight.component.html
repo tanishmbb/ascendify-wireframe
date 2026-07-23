@@ -13,7 +13,7 @@
 </head>
 <body>
   <div class="dashboard-layout company-portal">
-    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
+    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()" [class.mobile-open]="sidebarService.isMobileOpen()">
       <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Hire · Recruiter Portal</div></div></div>
       <div class="sidebar-section"><div class="sidebar-section-title">Recruiting</div>
         <nav class="sidebar-nav">
@@ -25,16 +25,27 @@
         </nav>
       </div>
       <div class="sidebar-section"><div class="sidebar-section-title">Management</div><nav class="sidebar-nav"><a href="#" class="sidebar-link"><span class="nav-icon">📋</span> Watchlist</a><a routerLink="/company/analytics" class="sidebar-link"><span class="nav-icon">📈</span> Analytics</a></nav></div>
+      
+      <div class="sidebar-section portal-nav">
+        <div class="sidebar-section-title">Portals</div>
+        <nav class="sidebar-nav">
+          <a routerLink="/student/home" class="sidebar-link"><span class="nav-icon">🎒</span> <span>Student</span></a>
+          <a routerLink="/college/dashboard" class="sidebar-link"><span class="nav-icon">🎓</span> <span>College</span></a>
+          <a routerLink="/admin/dashboard" class="sidebar-link"><span class="nav-icon">🛡️</span> <span>Admin</span></a>
+          <a routerLink="/evaluator/dashboard" class="sidebar-link"><span class="nav-icon">📋</span> <span>Evaluator</span></a>
+        </nav>
+      </div>
       <div class="sidebar-user"><div class="user-avatar" style="background:var(--gradient-pathfinder);">TC</div><div class="user-info"><div class="user-name">TechCorp India</div><div class="user-role">Pro Plan</div></div></div>
     
       <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
         <span class="nav-icon">⇋</span>
       </button>
     </aside>
+    <div class="sidebar-overlay" (click)="sidebarService.closeMobile()"></div>
 
     <main class="main-content">
       <header class="topbar">
-        <div class="topbar-left"><h1 class="topbar-title">Talent Spotlight</h1><span class="badge badge-pathfinder">Refreshed Weekly</span></div>
+        <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button><h1 class="topbar-title">Talent Spotlight</h1><span class="badge badge-pathfinder">Refreshed Weekly</span></div>
         <div class="topbar-right"><span style="font-size:13px;color:var(--text-muted);">Last updated: July 14, 2026</span></div>
       </header>
 
@@ -44,7 +55,7 @@
         <!-- Spotlight by Domain -->
         <div style="margin-bottom:var(--space-2xl);">
           <h3 style="margin-bottom:16px;display:flex;align-items:center;gap:8px;">💻 Tech Dev — Top 3</h3>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+          <div class="grid-3" style="gap:16px;">
             <div class="spotlight-card animate-in">
               <div style="display:flex;gap:14px;align-items:center;margin-bottom:12px;">
                 <div class="avatar avatar-lg" style="border-color:var(--accent-pathfinder);">AK</div>
@@ -92,7 +103,7 @@
 
         <div style="margin-bottom:var(--space-2xl);">
           <h3 style="margin-bottom:16px;display:flex;align-items:center;gap:8px;">🧠 Logic & DS — Top 3</h3>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+          <div class="grid-3" style="gap:16px;">
             <div class="spotlight-card animate-in">
               <div style="display:flex;gap:14px;align-items:center;margin-bottom:12px;">
                 <div class="avatar avatar-lg" style="border-color:var(--accent-pathfinder);">RJ</div>
@@ -148,7 +159,7 @@
 
         <div style="margin-bottom:var(--space-2xl);">
           <h3 style="margin-bottom:16px;display:flex;align-items:center;gap:8px;">🤖 AI/DS — Top 3</h3>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+          <div class="grid-3" style="gap:16px;">
             <div class="spotlight-card animate-in">
               <div style="display:flex;gap:14px;align-items:center;margin-bottom:12px;">
                 <div class="avatar avatar-lg" style="border-color:var(--accent-pathfinder);">AK</div>

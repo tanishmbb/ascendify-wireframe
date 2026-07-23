@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="dashboard-layout company-portal">
-    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
+    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()" [class.mobile-open]="sidebarService.isMobileOpen()">
       <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Hire · Recruiter Portal</div></div></div>
       <div class="sidebar-section"><div class="sidebar-section-title">Recruiting</div>
         <nav class="sidebar-nav">
@@ -19,16 +19,27 @@
           <a routerLink="/company/screening-results" class="sidebar-link"><span class="nav-icon">📊</span> Results</a>
         </nav>
       </div>
+      
+      <div class="sidebar-section portal-nav">
+        <div class="sidebar-section-title">Portals</div>
+        <nav class="sidebar-nav">
+          <a routerLink="/student/home" class="sidebar-link"><span class="nav-icon">🎒</span> <span>Student</span></a>
+          <a routerLink="/college/dashboard" class="sidebar-link"><span class="nav-icon">🎓</span> <span>College</span></a>
+          <a routerLink="/admin/dashboard" class="sidebar-link"><span class="nav-icon">🛡️</span> <span>Admin</span></a>
+          <a routerLink="/evaluator/dashboard" class="sidebar-link"><span class="nav-icon">📋</span> <span>Evaluator</span></a>
+        </nav>
+      </div>
       <div class="sidebar-user"><div class="user-avatar" style="background:var(--gradient-pathfinder);">TC</div><div class="user-info"><div class="user-name">TechCorp India</div><div class="user-role">Pro Plan</div></div></div>
     
       <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
         <span class="nav-icon">⇋</span>
       </button>
     </aside>
+    <div class="sidebar-overlay" (click)="sidebarService.closeMobile()"></div>
 
     <main class="main-content">
       <header class="topbar">
-        <div class="topbar-left"><h1 class="topbar-title">Screening Round Setup</h1></div>
+        <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button><h1 class="topbar-title">Screening Round Setup</h1></div>
         <div class="topbar-right"><button class="btn btn-outline btn-sm">📋 My Rounds (4)</button></div>
       </header>
 
@@ -38,18 +49,18 @@
           <div class="card">
             <h3 style="margin-bottom:20px;">Create New Screening Round</h3>
             <div class="form-group"><label class="form-label">Round Title</label><input class="form-input" placeholder="e.g. SDE Intern Round 1 — Backend" value="SDE Intern Round 1 — Backend"></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="grid-2" style="gap:16px;">
               <div class="form-group"><label class="form-label">Domain</label><select class="form-select"><option>Logic & DS</option><option selected>Tech Dev</option><option>AI/DS</option><option>Multi-domain</option></select></div>
               <div class="form-group"><label class="form-label">Problem Type</label><select class="form-select"><option>Coding (multi-language)</option><option>MCQ</option><option>Short Answer</option><option>Mixed</option></select></div>
             </div>
             <div class="form-group">
               <label class="form-label">Problem Source</label>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div class="grid-2" style="gap:8px;">
                 <div style="padding:14px;text-align:center;border-radius:var(--radius-md);background:rgba(0,212,255,0.08);border:1px solid var(--accent-cyan);font-size:13px;font-weight:600;color:var(--accent-cyan);cursor:pointer;">Ascendify Problem Bank</div>
                 <div style="padding:14px;text-align:center;border-radius:var(--radius-md);background:var(--bg-input);border:1px solid var(--border-default);font-size:13px;color:var(--text-secondary);cursor:pointer;">Upload Own Problems</div>
               </div>
             </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="grid-2" style="gap:16px;">
               <div class="form-group"><label class="form-label">Time Limit</label><select class="form-select"><option>15 min</option><option selected>30 min</option><option>60 min</option><option>90 min</option><option>Custom</option></select></div>
               <div class="form-group"><label class="form-label">Pass Threshold</label><input class="form-input" type="number" value="70" placeholder="0-100"></div>
             </div>
@@ -59,7 +70,7 @@
             </div>
             <div class="form-group">
               <label class="form-label">Proctoring Level</label>
-              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;">
+              <div class="grid-3" style="gap:8px;margin-bottom:12px;">
                 <div style="padding:12px;text-align:center;border-radius:var(--radius-md);background:var(--bg-input);border:1px solid var(--border-default);font-size:12px;color:var(--text-secondary);cursor:pointer;">None</div>
                 <div style="padding:12px;text-align:center;border-radius:var(--radius-md);background:rgba(0,212,255,0.08);border:1px solid var(--accent-cyan);font-size:12px;font-weight:600;color:var(--accent-cyan);cursor:pointer;">Tab Detection</div>
                 <div style="padding:12px;text-align:center;border-radius:var(--radius-md);background:var(--bg-input);border:1px solid var(--border-default);font-size:12px;color:var(--text-secondary);cursor:pointer;">Camera-On</div>

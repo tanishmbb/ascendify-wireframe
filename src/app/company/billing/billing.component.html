@@ -1,5 +1,5 @@
 <div class="dashboard-layout company-portal">
-  <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
+  <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()" [class.mobile-open]="sidebarService.isMobileOpen()">
     <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Hire · Recruiter Portal</div></div></div>
     <div class="sidebar-section"><div class="sidebar-section-title">Recruiting</div>
       <nav class="sidebar-nav">
@@ -18,16 +18,27 @@
         <a routerLink="/company/billing" class="sidebar-link active"><span class="nav-icon">⚙️</span> Account & Billing</a>
       </nav>
     </div>
-    <div class="sidebar-user"><div class="user-avatar" style="background:var(--gradient-pathfinder);">TC</div><div class="user-info"><div class="user-name">TechCorp India</div><div class="user-role">Pro Plan · 5 seats</div></div></div>
+    
+      <div class="sidebar-section portal-nav">
+        <div class="sidebar-section-title">Portals</div>
+        <nav class="sidebar-nav">
+          <a routerLink="/student/home" class="sidebar-link"><span class="nav-icon">🎒</span> <span>Student</span></a>
+          <a routerLink="/college/dashboard" class="sidebar-link"><span class="nav-icon">🎓</span> <span>College</span></a>
+          <a routerLink="/admin/dashboard" class="sidebar-link"><span class="nav-icon">🛡️</span> <span>Admin</span></a>
+          <a routerLink="/evaluator/dashboard" class="sidebar-link"><span class="nav-icon">📋</span> <span>Evaluator</span></a>
+        </nav>
+      </div>
+      <div class="sidebar-user"><div class="user-avatar" style="background:var(--gradient-pathfinder);">TC</div><div class="user-info"><div class="user-name">TechCorp India</div><div class="user-role">Pro Plan · 5 seats</div></div></div>
   
       <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
         <span class="nav-icon">⇋</span>
       </button>
     </aside>
+    <div class="sidebar-overlay" (click)="sidebarService.closeMobile()"></div>
 
   <main class="main-content">
     <header class="topbar">
-      <div class="topbar-left">
+      <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button>
         <h1 class="topbar-title">Account & Billing</h1>
         <span style="font-size:13px;color:var(--text-muted);">Manage your subscription and credits</span>
       </div>
@@ -55,7 +66,7 @@
       </div>
 
       <!-- Credits -->
-      <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 24px;">
+      <div class="grid-2" style="gap: 24px; margin-bottom: 24px;">
         
         <!-- API Credits -->
         <div class="card animate-in" style="animation-delay:50ms;">

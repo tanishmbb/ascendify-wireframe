@@ -11,7 +11,7 @@
 </head>
 <body>
   <div class="dashboard-layout college-portal">
-    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
+    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()" [class.mobile-open]="sidebarService.isMobileOpen()">
       <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">College / Placement OS</div></div></div>
       <div class="sidebar-section"><div class="sidebar-section-title">Overview</div>
         <nav class="sidebar-nav">
@@ -27,23 +27,34 @@
           <a routerLink="/college/panels" class="sidebar-link"><span class="nav-icon">⚖️</span> Panel Config</a>
         </nav>
       </div>
+      
+      <div class="sidebar-section portal-nav">
+        <div class="sidebar-section-title">Portals</div>
+        <nav class="sidebar-nav">
+          <a routerLink="/student/home" class="sidebar-link"><span class="nav-icon">🎒</span> <span>Student</span></a>
+          <a routerLink="/company/talent-search" class="sidebar-link"><span class="nav-icon">🏢</span> <span>Company</span></a>
+          <a routerLink="/admin/dashboard" class="sidebar-link"><span class="nav-icon">🛡️</span> <span>Admin</span></a>
+          <a routerLink="/evaluator/dashboard" class="sidebar-link"><span class="nav-icon">📋</span> <span>Evaluator</span></a>
+        </nav>
+      </div>
       <div class="sidebar-user" style="margin-top:auto;"><div class="user-avatar" style="background:var(--gradient-cyan);">MR</div><div class="user-info"><div class="user-name">Malla Reddy Univ</div><div class="user-role">Placement Cell</div></div></div>
     
       <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
         <span class="nav-icon">⇋</span>
       </button>
     </aside>
+    <div class="sidebar-overlay" (click)="sidebarService.closeMobile()"></div>
 
     <main class="main-content">
       <header class="topbar">
-        <div class="topbar-left"><h1 class="topbar-title">Events & QR Attendance</h1></div>
+        <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button><h1 class="topbar-title">Events & QR Attendance</h1></div>
         <div class="topbar-right">
           <button class="btn btn-primary btn-sm">+ Create Event</button>
         </div>
       </header>
 
       <div class="page-content">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+        <div class="grid-2" style="gap:24px;">
           <!-- Active Event -->
           <div class="qr-card animate-in">
             <h3 style="margin-bottom:8px;">Live Event Registration</h3>
@@ -76,7 +87,7 @@
           <div class="card animate-in" style="animation-delay:50ms;">
             <h3 style="margin-bottom:20px;">Create New Event</h3>
             <div class="form-group"><label class="form-label">Event Title</label><input class="form-input" placeholder="e.g. Hackathon Kickoff"></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div class="grid-2" style="gap:16px;">
               <div class="form-group"><label class="form-label">Date</label><input class="form-input" type="date"></div>
               <div class="form-group"><label class="form-label">Time</label><input class="form-input" type="time"></div>
             </div>

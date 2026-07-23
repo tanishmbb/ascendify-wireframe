@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="dashboard-layout company-portal">
-    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()">
+    <aside class="sidebar" [class.collapsed]="sidebarService.isCollapsed()" [class.mobile-open]="sidebarService.isMobileOpen()">
       <div class="sidebar-logo"><div><div class="logo-text">ASCENDIFY</div><div class="logo-sub">Hire · Recruiter Portal</div></div></div>
       <div class="sidebar-section"><div class="sidebar-section-title">Recruiting</div>
         <nav class="sidebar-nav">
@@ -19,16 +19,27 @@
           <a routerLink="/company/screening-results" class="sidebar-link active"><span class="nav-icon">📊</span> Results</a>
         </nav>
       </div>
+      
+      <div class="sidebar-section portal-nav">
+        <div class="sidebar-section-title">Portals</div>
+        <nav class="sidebar-nav">
+          <a routerLink="/student/home" class="sidebar-link"><span class="nav-icon">🎒</span> <span>Student</span></a>
+          <a routerLink="/college/dashboard" class="sidebar-link"><span class="nav-icon">🎓</span> <span>College</span></a>
+          <a routerLink="/admin/dashboard" class="sidebar-link"><span class="nav-icon">🛡️</span> <span>Admin</span></a>
+          <a routerLink="/evaluator/dashboard" class="sidebar-link"><span class="nav-icon">📋</span> <span>Evaluator</span></a>
+        </nav>
+      </div>
       <div class="sidebar-user"><div class="user-avatar" style="background:var(--gradient-pathfinder);">TC</div><div class="user-info"><div class="user-name">TechCorp India</div><div class="user-role">Pro Plan</div></div></div>
     
       <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
         <span class="nav-icon">⇋</span>
       </button>
     </aside>
+    <div class="sidebar-overlay" (click)="sidebarService.closeMobile()"></div>
 
     <main class="main-content">
       <header class="topbar">
-        <div class="topbar-left"><h1 class="topbar-title">Screening Results</h1></div>
+        <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button><h1 class="topbar-title">Screening Results</h1></div>
         <div class="topbar-right">
           <select class="form-select" style="width:auto;font-size:13px;padding:7px 32px 7px 12px;">
             <option>SDE Intern Round 1 — Backend</option>
@@ -41,7 +52,7 @@
 
       <div class="page-content">
         <!-- Summary Stats -->
-        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:var(--space-xl);">
+        <div class="grid-5" style="gap:16px;margin-bottom:var(--space-xl);">
           <div class="stat-card animate-in"><div class="stat-label">Invited</div><div class="stat-value">24</div></div>
           <div class="stat-card animate-in" style="animation-delay:50ms;"><div class="stat-label">Attempted</div><div class="stat-value">21</div></div>
           <div class="stat-card animate-in" style="animation-delay:100ms;"><div class="stat-label">Passed</div><div class="stat-value" style="color:var(--accent-green);">14</div></div>
