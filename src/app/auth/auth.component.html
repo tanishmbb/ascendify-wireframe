@@ -79,6 +79,19 @@
     .connect-account .ca-icon { font-size: 20px; }
     .connect-account .ca-name { font-size: 14px; font-weight: 500; }
     .connect-account .ca-desc { font-size: 11px; color: var(--text-muted); }
+  
+    /* Auth Page Responsive Overrides */
+    @media (max-width: 768px) {
+      .auth-container { flex-direction: column; }
+      .auth-sidebar { width: 100%; padding: 40px 24px; border-right: none; border-bottom: 1px solid var(--border-default); display: none; }
+      .auth-main { padding: 40px 24px; }
+      .auth-card { padding: 24px; margin-top: 24px; }
+      .branch-grid { grid-template-columns: 1fr 1fr; }
+      .auth-steps { flex-wrap: wrap; }
+    }
+    @media (max-width: 480px) {
+      .branch-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
