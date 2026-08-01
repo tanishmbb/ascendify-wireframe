@@ -51,9 +51,9 @@
 
     <div class="page-content">
       <div class="tabs" style="margin-bottom: 24px;">
-        <div class="tab active">Reported Posts</div>
-        <div class="tab">Problem Bank Review</div>
-        <div class="tab">Arena Comments</div>
+        <div class="tab" [class.active]="activeTab === 'reported'" (click)="selectTab('reported')">Reported Posts</div>
+        <div class="tab" [class.active]="activeTab === 'problemBank'" (click)="selectTab('problemBank')">Problem Bank Review</div>
+        <div class="tab" [class.active]="activeTab === 'arena'" (click)="selectTab('arena')">Arena Comments</div>
       </div>
 
       <div class="card" style="padding:0;">
@@ -71,7 +71,7 @@
               <td>Academic Dishonesty (Auto-flagged)</td>
               <td><span class="badge badge-red">High</span></td>
               <td>
-                <button class="btn btn-outline btn-sm">Take Action</button>
+                <button class="btn btn-outline btn-sm" (click)="takeAction('post1')">Take Action</button>
               </td>
             </tr>
             <tr>
@@ -83,11 +83,29 @@
               <td>User Reported (Spam)</td>
               <td><span class="badge badge-amber">Medium</span></td>
               <td>
-                <button class="btn btn-outline btn-sm">Take Action</button>
+                <button class="btn btn-outline btn-sm" (click)="takeAction('post2')">Take Action</button>
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div *ngIf="isActionModalOpen" style="margin-top:24px; padding:24px; background:var(--bg-elevated); border:1px solid var(--accent-cyan); border-radius:var(--radius-md);">
+        <h3 style="margin-bottom:16px;">Moderation Action: {{ selectedContentId }}</h3>
+        <div class="form-group">
+          <label class="form-label">Action</label>
+          <select class="form-select" [(ngModel)]="selectedAction">
+            <option value="">Select Action</option>
+            <option value="delete">Delete Content</option>
+            <option value="warn">Warn User</option>
+            <option value="ban">Ban User</option>
+            <option value="ignore">Dismiss Report</option>
+          </select>
+        </div>
+        <div style="display:flex; gap:12px; margin-top:16px;">
+          <button class="btn btn-primary" (click)="executeAction()" [disabled]="!selectedAction">Apply Action</button>
+          <button class="btn btn-ghost" (click)="closeActionModal()">Cancel</button>
+        </div>
       </div>
     </div>
   </main>

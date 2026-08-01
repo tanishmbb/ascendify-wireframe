@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-onboarding',
@@ -10,8 +10,17 @@ import { RouterModule } from '@angular/router';
   styleUrl: './onboarding.component.css'
 })
 export class OnboardingComponent {
+  private router = inject(Router);
+
   currentStep = 1;
   totalSteps = 5;
+
+  // Consent state — defaults to unchecked (opt-in per DPDP)
+  consentToS = false;
+  consentDataProcessing = false;
+
+  // Shadow mode
+  shadowModeEnabled = true;
 
   nextStep() {
     if (this.currentStep < this.totalSteps) {
@@ -26,7 +35,6 @@ export class OnboardingComponent {
   }
 
   finish() {
-    // Navigate to student dashboard (mock)
-    window.location.href = '/student/dashboard';
+    this.router.navigate(['/student/home']);
   }
 }

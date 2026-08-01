@@ -5,12 +5,24 @@ import { Component , inject } from '@angular/core';
 @Component({
   selector: 'app-panels',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, FormsModule],
   templateUrl: './panels.component.html',
   styleUrl: './panels.component.css'
 })
 export class PanelsComponent {
   sidebarService = inject(SidebarService);
 
+  assignmentStrategy = 'Strict Domain Match';
+  isAutoAssigning = false;
+  isMagicLinkGenerated = false;
 
+  autoAssign() {
+    this.isAutoAssigning = true;
+    setTimeout(() => this.isAutoAssigning = false, 1500);
+  }
+
+  generateMagicLink() {
+    this.isMagicLinkGenerated = true;
+    setTimeout(() => this.isMagicLinkGenerated = false, 2000);
+  }
 }

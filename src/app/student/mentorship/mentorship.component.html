@@ -49,7 +49,7 @@
     <main class="main-content">
       <header class="topbar">
         <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button><h1 class="topbar-title">Mentorship & Collaboration</h1></div>
-        <div class="topbar-right"><button class="btn btn-primary btn-sm">📢 Post Help Request</button><div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div></div>
+        <div class="topbar-right"><button class="btn btn-primary btn-sm" (click)="toggleHelpRequestModal()">📢 Post Help Request</button><div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div></div>
       </header>
 
       <div class="page-content">
@@ -78,18 +78,14 @@
                   <div style="font-size:12px;color:var(--accent-red);">Weak: 💻 Tech Dev</div>
                 </div>
               </div>
-              <div style="text-align:center;"><button class="btn btn-primary btn-sm">Send Skill-Swap Request →</button></div>
+              <div style="text-align:center;"><button class="btn btn-primary btn-sm" (click)="sendSkillSwap()" [disabled]="isSkillSwapSent">{{ isSkillSwapSent ? '✓ Request Sent' : 'Send Skill-Swap Request →' }}</button></div>
             </div>
 
             <!-- ═══ HELP REQUESTS ═══ -->
             <h3 style="margin-bottom:16px;">Help Requests <span style="font-size:13px;color:var(--text-muted);">— visible to higher-tier students in each domain</span></h3>
 
             <div class="tabs" style="margin-bottom:16px;">
-              <div class="tab active">All Domains</div>
-              <div class="tab">💻 Tech Dev</div>
-              <div class="tab">🧠 Logic & DS</div>
-              <div class="tab">🤖 AI/DS</div>
-              <div class="tab">🎨 UI/UX</div>
+              <div *ngFor="let tab of tabs" class="tab" [class.active]="activeTab === tab" (click)="selectTab(tab)">{{ tab }}</div>
             </div>
 
             <div class="help-request animate-in">
@@ -105,7 +101,7 @@
               </div>
               <p style="font-size:14px;margin-bottom:10px;">How do I connect a React frontend to an Express API? Getting CORS errors and can't figure out the proxy setup.</p>
               <div style="display:flex;align-items:center;gap:12px;">
-                <button class="btn btn-primary btn-sm">Help This Student</button>
+                <button class="btn btn-primary btn-sm" (click)="helpStudent(0)" [disabled]="helpedStudents.has(0)">{{ helpedStudents.has(0) ? '✓ Offered Help' : 'Help This Student' }}</button>
                 <span style="font-size:12px;color:var(--text-muted);">Posted 30 min ago · 0 responses</span>
               </div>
             </div>
@@ -123,7 +119,7 @@
               </div>
               <p style="font-size:14px;margin-bottom:10px;">Can someone explain gradient descent intuitively? The math makes sense but I'm struggling with the concept.</p>
               <div style="display:flex;align-items:center;gap:12px;">
-                <button class="btn btn-outline btn-sm">Help This Student</button>
+                <button class="btn btn-outline btn-sm" (click)="helpStudent(1)" [disabled]="helpedStudents.has(1)">{{ helpedStudents.has(1) ? '✓ Offered Help' : 'Help This Student' }}</button>
                 <span style="font-size:12px;color:var(--text-muted);">Posted 1 hour ago · 2 responses</span>
               </div>
             </div>
@@ -141,7 +137,7 @@
               </div>
               <p style="font-size:14px;margin-bottom:10px;">Working on an Arduino-based smart irrigation system for the bootcamp. Need help with moisture sensor calibration — anyone done this before?</p>
               <div style="display:flex;align-items:center;gap:12px;">
-                <button class="btn btn-outline btn-sm">Help This Student</button>
+                <button class="btn btn-outline btn-sm" (click)="helpStudent(2)" [disabled]="helpedStudents.has(2)">{{ helpedStudents.has(2) ? '✓ Offered Help' : 'Help This Student' }}</button>
                 <span style="font-size:12px;color:var(--text-muted);">Posted 3 hours ago · 1 response</span>
                 <span class="badge badge-green" style="font-size:10px;">✓ Resolved</span>
               </div>
@@ -215,7 +211,7 @@
                 <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">By Siddharth Patel · Saturday 3:00 PM · 💻 Tech Dev</div>
                 <div style="display:flex;justify-content:space-between;align-items:center;">
                   <span style="font-size:12px;color:var(--text-secondary);">12 attending</span>
-                  <button class="btn btn-outline btn-sm" style="font-size:11px;padding:4px 10px;">Register</button>
+                  <button class="btn btn-outline btn-sm" style="font-size:11px;padding:4px 10px;" (click)="registerWorkshop('api-design')" [disabled]="isRegistered('api-design')">{{ isRegistered('api-design') ? '✓ Registered' : 'Register' }}</button>
                 </div>
               </div>
               <div style="padding:16px;background:var(--bg-elevated);border-radius:var(--radius-md);">
@@ -223,10 +219,10 @@
                 <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">By Neha Rao · Next Wednesday · 🎨 UI/UX</div>
                 <div style="display:flex;justify-content:space-between;align-items:center;">
                   <span style="font-size:12px;color:var(--text-secondary);">8 attending</span>
-                  <button class="btn btn-outline btn-sm" style="font-size:11px;padding:4px 10px;">Register</button>
+                  <button class="btn btn-outline btn-sm" style="font-size:11px;padding:4px 10px;" (click)="registerWorkshop('figma-intro')" [disabled]="isRegistered('figma-intro')">{{ isRegistered('figma-intro') ? '✓ Registered' : 'Register' }}</button>
                 </div>
               </div>
-              <button class="btn btn-outline btn-sm w-full" style="margin-top:12px;">+ Host a Workshop</button>
+              <button class="btn btn-outline btn-sm w-full" style="margin-top:12px;" (click)="hostWorkshop()">+ Host a Workshop</button>
             </div>
           </div>
         </div>

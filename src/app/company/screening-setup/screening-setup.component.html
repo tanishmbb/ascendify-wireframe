@@ -56,8 +56,8 @@
             <div class="form-group">
               <label class="form-label">Problem Source</label>
               <div class="grid-2" style="gap:8px;">
-                <div style="padding:14px;text-align:center;border-radius:var(--radius-md);background:rgba(0,212,255,0.08);border:1px solid var(--accent-cyan);font-size:13px;font-weight:600;color:var(--accent-cyan);cursor:pointer;">Ascendify Problem Bank</div>
-                <div style="padding:14px;text-align:center;border-radius:var(--radius-md);background:var(--bg-input);border:1px solid var(--border-default);font-size:13px;color:var(--text-secondary);cursor:pointer;">Upload Own Problems</div>
+                <div style="padding:14px;text-align:center;border-radius:var(--radius-md);font-size:13px;cursor:pointer;" [style.background]="selectedProblemSource === 'bank' ? 'rgba(0,212,255,0.08)' : 'var(--bg-input)'" [style.border]="selectedProblemSource === 'bank' ? '1px solid var(--accent-cyan)' : '1px solid var(--border-default)'" [style.color]="selectedProblemSource === 'bank' ? 'var(--accent-cyan)' : 'var(--text-secondary)'" [style.font-weight]="selectedProblemSource === 'bank' ? '600' : '400'" (click)="selectProblemSource('bank')">Ascendify Problem Bank</div>
+                <div style="padding:14px;text-align:center;border-radius:var(--radius-md);font-size:13px;cursor:pointer;" [style.background]="selectedProblemSource === 'own' ? 'rgba(0,212,255,0.08)' : 'var(--bg-input)'" [style.border]="selectedProblemSource === 'own' ? '1px solid var(--accent-cyan)' : '1px solid var(--border-default)'" [style.color]="selectedProblemSource === 'own' ? 'var(--accent-cyan)' : 'var(--text-secondary)'" [style.font-weight]="selectedProblemSource === 'own' ? '600' : '400'" (click)="selectProblemSource('own')">Upload Own Problems</div>
               </div>
             </div>
             <div class="grid-2" style="gap:16px;">
@@ -71,9 +71,7 @@
             <div class="form-group">
               <label class="form-label">Proctoring Level</label>
               <div class="grid-3" style="gap:8px;margin-bottom:12px;">
-                <div style="padding:12px;text-align:center;border-radius:var(--radius-md);background:var(--bg-input);border:1px solid var(--border-default);font-size:12px;color:var(--text-secondary);cursor:pointer;">None</div>
-                <div style="padding:12px;text-align:center;border-radius:var(--radius-md);background:rgba(0,212,255,0.08);border:1px solid var(--accent-cyan);font-size:12px;font-weight:600;color:var(--accent-cyan);cursor:pointer;">Tab Detection</div>
-                <div style="padding:12px;text-align:center;border-radius:var(--radius-md);background:var(--bg-input);border:1px solid var(--border-default);font-size:12px;color:var(--text-secondary);cursor:pointer;">Camera-On</div>
+                <div *ngFor="let level of proctoringLevels" style="padding:12px;text-align:center;border-radius:var(--radius-md);font-size:12px;cursor:pointer;" [style.background]="selectedProctoringLevel === level.id ? 'rgba(0,212,255,0.08)' : 'var(--bg-input)'" [style.border]="selectedProctoringLevel === level.id ? '1px solid var(--accent-cyan)' : '1px solid var(--border-default)'" [style.color]="selectedProctoringLevel === level.id ? 'var(--accent-cyan)' : 'var(--text-secondary)'" [style.font-weight]="selectedProctoringLevel === level.id ? '600' : '400'" (click)="selectProctoringLevel(level.id)">{{ level.label }}</div>
               </div>
 
               <!-- Advanced Anti-Cheat -->
@@ -81,15 +79,15 @@
                 <div style="font-size:13px; font-weight:600; margin-bottom:12px; color:var(--text-primary);">Advanced Anti-Cheat (Pro)</div>
                 <div style="display:flex; flex-direction:column; gap:12px;">
                   <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
-                    <input type="checkbox" checked>
+                    <input type="checkbox" [(ngModel)]="antiCheatPlagiarism">
                     <span style="font-size:13px; color:var(--text-secondary);">AI Code Plagiarism Check (Cross-reference Ascendify DB)</span>
                   </label>
                   <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
-                    <input type="checkbox" checked>
+                    <input type="checkbox" [(ngModel)]="antiCheatCopyPaste">
                     <span style="font-size:13px; color:var(--text-secondary);">Disable Copy-Paste in Editor</span>
                   </label>
                   <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
-                    <input type="checkbox">
+                    <input type="checkbox" [(ngModel)]="antiCheatAudioRecording" [disabled]="selectedProctoringLevel !== 'camera'">
                     <span style="font-size:13px; color:var(--text-secondary);">Audio/Environment Recording (Requires Camera-On)</span>
                   </label>
                 </div>
@@ -100,10 +98,10 @@
               <select class="form-select"><option>Immediate to student</option><option>Delayed</option><option>Company-only</option></select>
             </div>
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
-              <div class="toggle-switch active"></div>
+              <div class="toggle-switch" [class.active]="isLinkToXpEnabled" (click)="toggleLinkToXp()"></div>
               <div><div style="font-size:13px;font-weight:600;">Link to XP</div><div style="font-size:11px;color:var(--text-muted);">Passing score contributes to student's domain XP</div></div>
             </div>
-            <button class="btn btn-primary btn-lg w-full">Create Screening Round →</button>
+            <button class="btn btn-primary btn-lg w-full" (click)="createScreeningRound()" [disabled]="isRoundCreated">{{ isRoundCreated ? '✓ Round Created!' : 'Create Screening Round →' }}</button>
           </div>
 
           <!-- Problem Bank Preview -->

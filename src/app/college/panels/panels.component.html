@@ -16,7 +16,7 @@
         <nav class="sidebar-nav">
           <a routerLink="/college/dashboard" class="sidebar-link"><span class="nav-icon">📊</span> Dashboard</a>
           <a routerLink="/college/students" class="sidebar-link"><span class="nav-icon">🎓</span> Students</a>
-          <a routerLink="/college/college-analytics" class="sidebar-link"><span class="nav-icon">📈</span> Analytics</a>
+          <a routerLink="/college/analytics" class="sidebar-link"><span class="nav-icon">📈</span> Analytics</a>
         </nav>
       </div>
       <div class="sidebar-section"><div class="sidebar-section-title">Operations</div>
@@ -110,20 +110,20 @@
 
               <div class="form-group">
                 <label class="form-label">Assignment Strategy</label>
-                <select class="form-select">
+                <select class="form-select" [(ngModel)]="assignmentStrategy">
                   <option>Strict Domain Match</option>
                   <option>Load Balanced (Even distribution)</option>
                   <option>Randomized</option>
                 </select>
               </div>
 
-              <button class="btn btn-primary w-full">Run Auto-Assign</button>
+              <button class="btn btn-primary w-full" (click)="autoAssign()" [disabled]="isAutoAssigning">{{ isAutoAssigning ? 'Running algorithm...' : 'Run Auto-Assign' }}</button>
             </div>
             
             <div class="card" style="margin-top:24px;">
               <h3 style="margin-bottom:16px;">Evaluator Access Links</h3>
               <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">Send these links to external panel members (industry experts/alumni) so they can access the scoring rubric without creating an account.</p>
-              <button class="btn btn-outline w-full" style="margin-bottom:8px;">Generate Magic Link (Valid 48h)</button>
+              <button class="btn btn-outline w-full" style="margin-bottom:8px;" (click)="generateMagicLink()">{{ isMagicLinkGenerated ? '✓ Link Copied to Clipboard' : 'Generate Magic Link (Valid 48h)' }}</button>
               <button class="btn btn-ghost w-full">View Evaluator Portal Demo</button>
             </div>
           </div>

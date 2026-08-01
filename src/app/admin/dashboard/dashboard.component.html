@@ -49,7 +49,7 @@
     <header class="topbar">
       <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button><h1 class="topbar-title">Operations Overview</h1></div>
       <div class="topbar-right">
-        <button class="btn btn-primary btn-sm">Generate Shift Report</button>
+        <button class="btn btn-primary btn-sm" (click)="generateReport()" [disabled]="isGeneratingReport">{{ isGeneratingReport ? 'Generating...' : 'Generate Shift Report' }}</button>
         <div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div>
       </div>
     </header>
@@ -75,7 +75,7 @@
                 <div style="font-size:13px; font-weight:600;">College Verification: VIT Pune</div>
                 <div style="font-size:12px; color:var(--text-secondary);">Submitted 2 hours ago. Needs MOU review.</div>
               </div>
-              <button class="btn btn-outline btn-sm">Review</button>
+              <button class="btn btn-outline btn-sm" (click)="reviewItem('col-vit')">Review</button>
             </div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:var(--bg-elevated); border-radius:var(--radius-md); border-left:3px solid var(--accent-red);">
@@ -83,7 +83,7 @@
                 <div style="font-size:13px; font-weight:600;">Content Moderation: Inappropriate Forum Post</div>
                 <div style="font-size:12px; color:var(--text-secondary);">Flagged by 5 students in Tech Dev domain.</div>
               </div>
-              <button class="btn btn-outline btn-sm">Review</button>
+              <button class="btn btn-outline btn-sm" (click)="reviewItem('mod-post')">Review</button>
             </div>
 
             <div style="display:flex; justify-content:space-between; align-items:center; padding:12px; background:var(--bg-elevated); border-radius:var(--radius-md); border-left:3px solid var(--accent-amber);">
@@ -91,7 +91,7 @@
                 <div style="font-size:13px; font-weight:600;">Support Ticket #4892</div>
                 <div style="font-size:12px; color:var(--text-secondary);">Company unable to access watchlist. SLA breaches in 4 hours.</div>
               </div>
-              <button class="btn btn-outline btn-sm">Review</button>
+              <button class="btn btn-outline btn-sm" (click)="reviewItem('sup-4892')">Review</button>
             </div>
           </div>
         </div>

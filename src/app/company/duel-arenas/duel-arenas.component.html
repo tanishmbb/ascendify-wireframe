@@ -43,12 +43,21 @@
         <span style="font-size:13px;color:var(--text-muted);">Sponsor or host your own 1v1 arenas</span>
       </div>
       <div class="topbar-right">
-        <button class="btn btn-primary btn-sm">+ Create Arena</button>
+        <button class="btn btn-primary btn-sm" (click)="createArena()">+ Create Arena</button>
         <div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div>
       </div>
     </header>
 
     <div class="page-content">
+      
+      <div *ngIf="isCreateArenaOpen" style="margin-bottom:24px; padding:24px; background:var(--bg-elevated); border:1px solid var(--border-default); border-radius:var(--radius-md);">
+        <h3 style="margin-bottom:16px;">Create New Arena</h3>
+        <input type="text" class="form-input" style="margin-bottom:12px;" placeholder="Arena Name">
+        <div style="display:flex; gap:12px;">
+          <button class="btn btn-primary" (click)="closeCreateArena()">Create</button>
+          <button class="btn btn-ghost" (click)="closeCreateArena()">Cancel</button>
+        </div>
+      </div>
       
       <div class="grid-2" style="gap: 24px;">
         
@@ -77,7 +86,13 @@
             </div>
           </div>
           
-          <button class="btn btn-outline" style="width:100%;">View Leaderboard</button>
+          <button class="btn btn-outline" style="width:100%;" (click)="viewLeaderboard()">View Leaderboard</button>
+          
+          <div *ngIf="isViewingLeaderboard" style="margin-top:16px; padding:12px; background:rgba(0,212,255,0.05); border:1px solid var(--accent-cyan); border-radius:var(--radius-md);">
+            <div style="font-size:13px; font-weight:600; margin-bottom:8px;">Leaderboard Data</div>
+            <div style="font-size:12px; color:var(--text-secondary); margin-bottom:12px;">Loading top 45 performers...</div>
+            <button class="btn btn-ghost btn-sm" (click)="closeLeaderboard()">Close</button>
+          </div>
         </div>
 
         <!-- Upcoming Arena -->
@@ -87,7 +102,7 @@
               <h3 style="margin-bottom:4px;">System Design Sprint</h3>
               <div style="font-size:12px; color:var(--text-secondary);">Custom Challenge · 🧠 Logic & DS</div>
             </div>
-            <span class="badge badge-amber">Upcoming</span>
+            <span class="badge" [class.badge-amber]="!isArenaPublished" [class.badge-green]="isArenaPublished">{{ isArenaPublished ? 'Live Now' : 'Upcoming' }}</span>
           </div>
           
           <div style="background:var(--bg-elevated); padding:16px; border-radius:var(--radius-md); margin-bottom:20px;">
@@ -105,9 +120,9 @@
             </div>
           </div>
           
-          <div style="display:flex; gap:12px;">
-            <button class="btn btn-outline" style="flex:1;">Edit Details</button>
-            <button class="btn btn-primary" style="flex:1;">Publish</button>
+          <div style="display:flex; gap:12px;" *ngIf="!isArenaPublished">
+            <button class="btn btn-outline" style="flex:1;" (click)="editArena()">{{ isEditingArena ? 'Save Details' : 'Edit Details' }}</button>
+            <button class="btn btn-primary" style="flex:1;" (click)="publishArena()">Publish</button>
           </div>
         </div>
 

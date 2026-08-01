@@ -39,8 +39,12 @@
     <header class="topbar">
       <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button><h1 class="topbar-title">Business Metrics & Health</h1></div>
       <div class="topbar-right">
-        <select class="form-select" style="width:auto;"><option>Q3 2026</option><option>Q2 2026</option><option>YTD 2026</option></select>
-        <button class="btn btn-outline btn-sm">↓ Download PDF</button>
+        <select class="form-select" style="width:auto;" [(ngModel)]="selectedQuarter">
+          <option value="Q3 2026">Q3 2026</option>
+          <option value="Q2 2026">Q2 2026</option>
+          <option value="YTD 2026">YTD 2026</option>
+        </select>
+        <button class="btn btn-outline btn-sm" (click)="downloadReport()">{{ isDownloading ? '↓ Downloading...' : '↓ Download PDF' }}</button>
       </div>
     </header>
 

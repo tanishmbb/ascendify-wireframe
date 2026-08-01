@@ -40,10 +40,24 @@
               <td>₹4,50,000</td>
               <td>Oct 15, 2026</td>
               <td><span class="badge badge-amber">Overdue</span></td>
-              <td><button class="btn btn-sm" style="border: 1px solid var(--border-default); background: transparent;">Manual Override (Mark Paid)</button></td>
+              <td><button class="btn btn-sm" style="border: 1px solid var(--border-default); background: transparent;" (click)="markAsPaid('INV-2026-089')" *ngIf="!isPaid">Manual Override (Mark Paid)</button>
+              <span class="badge badge-green" *ngIf="isPaid">Paid</span></td>
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div *ngIf="isOverrideConfirmOpen" style="margin-top:24px; padding:24px; background:var(--bg-elevated); border:1px solid var(--accent-amber); border-radius:var(--radius-md);">
+        <h3 style="margin-bottom:16px;">Manual Invoice Override</h3>
+        <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">You are about to force-mark this invoice as Paid without a payment gateway hook. Please provide a reason.</p>
+        <div class="form-group">
+          <label class="form-label">Override Reason / Reference No.</label>
+          <input type="text" class="form-input" [(ngModel)]="overrideReason" placeholder="e.g. Bank Transfer TXN-82918">
+        </div>
+        <div style="display:flex; gap:12px; margin-top:16px;">
+          <button class="btn btn-primary" (click)="confirmOverride()">Confirm Override</button>
+          <button class="btn btn-ghost" (click)="cancelOverride()">Cancel</button>
+        </div>
       </div>
     </div>
   </main>

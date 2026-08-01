@@ -22,6 +22,12 @@
   <main class="main-content">
     <header class="topbar">
       <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button><h1 class="topbar-title">Global Control Center</h1></div>
+      <div class="topbar-right">
+        <span style="font-size: 12px; color: var(--text-muted);">{{ lastRefreshed }}</span>
+        <button class="btn btn-outline btn-sm" (click)="refreshMetrics()" [disabled]="isRefreshing">
+          {{ isRefreshing ? 'Refreshing...' : 'Refresh Metrics' }}
+        </button>
+      </div>
     </header>
 
     <div class="page-content">

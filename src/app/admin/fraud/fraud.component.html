@@ -61,12 +61,14 @@
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
             <h3 style="display:flex;align-items:center;gap:8px;">Open Incidents <span class="badge badge-red">2 High Priority</span></h3>
             <div class="pill-tabs">
-              <div class="pill-tab active">All (12)</div><div class="pill-tab">Cert Duplication</div><div class="pill-tab">XP Farming</div>
+              <div class="pill-tab" [class.active]="activeFilter === 'all'" (click)="selectFilter('all')">All (12)</div>
+              <div class="pill-tab" [class.active]="activeFilter === 'cert'" (click)="selectFilter('cert')">Cert Duplication</div>
+              <div class="pill-tab" [class.active]="activeFilter === 'xp'" (click)="selectFilter('xp')">XP Farming</div>
             </div>
           </div>
 
           <!-- Incident 1 -->
-          <div class="flag-card animate-in">
+          <div class="flag-card animate-in" *ngIf="!resolvedIncidents.has(1)">
             <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
               <div style="display:flex;align-items:center;gap:8px;"><span class="badge badge-red" style="font-size:10px;">High Priority</span><span style="font-weight:600;font-size:14px;">Certificate Hash Collision</span></div>
               <span style="font-size:12px;color:var(--text-muted);">2 hours ago</span>
@@ -77,13 +79,13 @@
               <button class="btn btn-ghost btn-sm" style="font-size:11px;">👤 View Profile</button>
             </div>
             <div style="display:flex;gap:8px;">
-              <button class="btn btn-outline btn-sm">Reject Certificate & Deduct XP</button>
-              <button class="btn btn-ghost btn-sm" style="color:var(--text-secondary);">Dismiss False Positive</button>
+              <button class="btn btn-outline btn-sm" (click)="rejectCertificate(1)">Reject Certificate & Deduct XP</button>
+              <button class="btn btn-ghost btn-sm" style="color:var(--text-secondary);" (click)="dismissFalsePositive(1)">Dismiss False Positive</button>
             </div>
           </div>
 
           <!-- Incident 2 -->
-          <div class="flag-card amber animate-in" style="animation-delay:50ms;">
+          <div class="flag-card amber animate-in" style="animation-delay:50ms;" *ngIf="!resolvedIncidents.has(2)">
             <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
               <div style="display:flex;align-items:center;gap:8px;"><span class="badge badge-amber" style="font-size:10px;">Medium Priority</span><span style="font-weight:600;font-size:14px;">Suspicious XP Farming Velocity</span></div>
               <span style="font-size:12px;color:var(--text-muted);">5 hours ago</span>
@@ -91,7 +93,7 @@
             <p style="font-size:13px;margin-bottom:12px;">User <strong>Rohit T.</strong> (DTU) gained 450 XP in Logic & DS in under 20 minutes across 15 separate automated quiz submissions.</p>
             <div style="display:flex;gap:8px;">
               <button class="btn btn-outline btn-sm">Adjust XP Manually</button>
-              <button class="btn btn-ghost btn-sm" style="color:var(--accent-red);">Ban User</button>
+              <button class="btn btn-ghost btn-sm" style="color:var(--accent-red);" (click)="banUser(2)">Ban User</button>
             </div>
           </div>
 
@@ -104,8 +106,8 @@
             <div class="form-group" style="margin-bottom:16px;">
               <label class="form-label">Lookup User by Email or ID</label>
               <div style="display:flex; gap:8px;">
-                <input class="form-input" placeholder="e.g. rohit.t@dtu.ac.in" style="flex:1;">
-                <button class="btn btn-outline">Search</button>
+                <input class="form-input" placeholder="e.g. rohit.t@dtu.ac.in" style="flex:1;" [(ngModel)]="searchQuery">
+                <button class="btn btn-outline" (click)="searchUser()">Search</button>
               </div>
             </div>
           </div>
@@ -125,15 +127,15 @@
             
             <div class="form-group">
               <label class="form-label">Adjustment Amount</label>
-              <input class="form-input" type="number" placeholder="-450" value="-450">
+              <input class="form-input" type="number" placeholder="-450" [(ngModel)]="adjustmentAmount">
             </div>
 
             <div class="form-group">
               <label class="form-label">Reason</label>
-              <textarea class="form-input" style="height:60px;">Reversal of illegitimate quiz submissions detected by rate limiter.</textarea>
+              <textarea class="form-input" style="height:60px;" [(ngModel)]="adjustmentReason"></textarea>
             </div>
 
-            <button class="btn btn-primary w-full">Apply XP Adjustment</button>
+            <button class="btn btn-primary w-full" (click)="applyXpAdjustment()">Apply XP Adjustment</button>
           </div>
         </div>
 

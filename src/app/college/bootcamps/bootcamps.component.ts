@@ -12,5 +12,23 @@ import { Component , inject } from '@angular/core';
 export class BootcampsComponent {
   sidebarService = inject(SidebarService);
 
+  isScheduleModalOpen = false;
+  isGenerating = false;
 
+  scheduleEvaluation() {
+    this.isScheduleModalOpen = true;
+  }
+
+  closeScheduleModal() {
+    this.isScheduleModalOpen = false;
+  }
+
+  managePanels() {
+    // Logic to manage panels
+  }
+
+  generateRoster() {
+    this.isGenerating = true;
+    setTimeout(() => this.isGenerating = false, 1500);
+  }
 }

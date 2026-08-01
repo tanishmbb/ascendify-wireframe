@@ -68,7 +68,7 @@
               <td>Today, 10:30 AM</td>
               <td><span class="badge badge-amber">Pending MOU</span></td>
               <td>
-                <button class="btn btn-outline btn-sm">Review Docs</button>
+                <button class="btn btn-outline btn-sm" (click)="reviewCollege('COL-8921')">Review Docs</button>
               </td>
             </tr>
             <tr>
@@ -78,11 +78,21 @@
               <td>Yesterday</td>
               <td><span class="badge badge-red">Missing Docs</span></td>
               <td>
-                <button class="btn btn-outline btn-sm">Review Docs</button>
+                <button class="btn btn-outline btn-sm" (click)="reviewCollege('COL-8922')">Review Docs</button>
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div *ngIf="isReviewModalOpen" style="margin-top:24px; padding:24px; background:var(--bg-elevated); border:1px solid var(--accent-cyan); border-radius:var(--radius-md);">
+        <h3 style="margin-bottom:16px;">Review College: {{ selectedCollegeId }}</h3>
+        <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">MOU Document: [Preview rendering here]</p>
+        <div style="display:flex; gap:12px;">
+          <button class="btn btn-primary" (click)="approveCollege()">Approve & Generate Credentials</button>
+          <button class="btn btn-outline" style="color:var(--accent-red); border-color:var(--accent-red);" (click)="rejectCollege()">Reject</button>
+          <button class="btn btn-ghost" (click)="closeReviewModal()">Cancel</button>
+        </div>
       </div>
     </div>
   </main>

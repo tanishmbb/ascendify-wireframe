@@ -51,11 +51,11 @@
       
       <!-- Folders/Lists -->
       <div class="tabs" style="margin-bottom: 24px;">
-        <div class="tab active">All Saved</div>
-        <div class="tab">Frontend Roles</div>
-        <div class="tab">Backend Roles</div>
-        <div class="tab">Campus Ambassadors</div>
-        <div class="tab" style="color:var(--accent-cyan);">+ New Folder</div>
+        <div class="tab" [class.active]="activeFolder === 'all'" (click)="selectFolder('all')">All Saved</div>
+        <div class="tab" [class.active]="activeFolder === 'frontend'" (click)="selectFolder('frontend')">Frontend Roles</div>
+        <div class="tab" [class.active]="activeFolder === 'backend'" (click)="selectFolder('backend')">Backend Roles</div>
+        <div class="tab" [class.active]="activeFolder === 'campus'" (click)="selectFolder('campus')">Campus Ambassadors</div>
+        <div class="tab" style="color:var(--accent-cyan);" (click)="openNewFolder()">+ New Folder</div>
       </div>
 
       <div class="card animate-in">
@@ -72,7 +72,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngIf="candidates[0].visible">
                 <td>
                   <div style="display:flex; align-items:center; gap:12px;">
                     <div class="avatar avatar-sm">AK</div>
@@ -88,10 +88,10 @@
                 <td><span class="badge badge-amber">Screening Sent</span></td>
                 <td>
                   <button class="btn btn-outline btn-sm">View Profile</button>
-                  <button class="btn btn-ghost btn-sm" style="color:var(--accent-red);">✕</button>
+                  <button class="btn btn-ghost btn-sm" style="color:var(--accent-red);" (click)="removeCandidate(0)">✕</button>
                 </td>
               </tr>
-              <tr>
+              <tr *ngIf="candidates[1].visible">
                 <td>
                   <div style="display:flex; align-items:center; gap:12px;">
                     <div class="avatar avatar-sm">SV</div>
@@ -107,10 +107,10 @@
                 <td><span class="badge" style="background:rgba(255,255,255,0.05);">Saved</span></td>
                 <td>
                   <button class="btn btn-outline btn-sm">View Profile</button>
-                  <button class="btn btn-ghost btn-sm" style="color:var(--accent-red);">✕</button>
+                  <button class="btn btn-ghost btn-sm" style="color:var(--accent-red);" (click)="removeCandidate(1)">✕</button>
                 </td>
               </tr>
-              <tr>
+              <tr *ngIf="candidates[2].visible">
                 <td>
                   <div style="display:flex; align-items:center; gap:12px;">
                     <div class="avatar avatar-sm" style="background:var(--bg-card); border:1px dashed var(--accent-cyan);">?</div>
@@ -126,11 +126,21 @@
                 <td><span class="badge badge-cyan">Interest Sent</span></td>
                 <td>
                   <button class="btn btn-outline btn-sm">View Profile</button>
-                  <button class="btn btn-ghost btn-sm" style="color:var(--accent-red);">✕</button>
+                  <button class="btn btn-ghost btn-sm" style="color:var(--accent-red);" (click)="removeCandidate(2)">✕</button>
                 </td>
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+      
+      <!-- New Folder Modal Mock -->
+      <div *ngIf="isNewFolderModalOpen" style="margin-top:24px; padding:16px; background:var(--bg-elevated); border:1px solid var(--accent-cyan); border-radius:var(--radius-md);">
+        <div style="font-size:14px; font-weight:600; margin-bottom:12px;">Create New Folder</div>
+        <div style="display:flex; gap:12px;">
+          <input type="text" class="form-input" style="flex:1;" placeholder="Folder Name">
+          <button class="btn btn-primary" (click)="closeNewFolder()">Create</button>
+          <button class="btn btn-ghost" (click)="closeNewFolder()">Cancel</button>
         </div>
       </div>
 

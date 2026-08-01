@@ -27,27 +27,18 @@
         <span class="badge badge-cyan">2/16 Done</span>
       </div>
 
-      <div class="team-item done">
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:13px;font-weight:600;">Team Alpha</span><span style="font-size:11px;color:var(--accent-green);">84/100</span></div>
-        <div style="font-size:11px;color:var(--text-muted);">Completed at 10:15 AM</div>
+      <div *ngFor="let team of teams; let i = index" class="team-item" [class.done]="team.status === 'done'" [class.active]="i === selectedTeamIndex" (click)="selectTeam(i)">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+          <span style="font-size:13px;font-weight:600;" [style.color]="i === selectedTeamIndex ? 'var(--accent-cyan)' : ''">{{ team.name }}</span>
+          <span *ngIf="team.status === 'done'" style="font-size:11px;color:var(--accent-green);">{{ team.score }}/100</span>
+          <span *ngIf="team.status === 'evaluating'" class="badge badge-amber" style="font-size:10px;">Evaluating</span>
+          <span *ngIf="team.status === 'pending' && i === selectedTeamIndex + 1" style="font-size:11px;color:var(--text-muted);">Up Next</span>
+        </div>
+        <div style="font-size:11px;color:var(--text-muted);">{{ team.status === 'done' ? 'Completed at ' + team.time : (team.status === 'evaluating' ? 'Started at ' + team.time : (team.time ? 'Estimated ' + team.time : '')) }}</div>
       </div>
-      <div class="team-item done">
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:13px;font-weight:600;">CodeCrafters</span><span style="font-size:11px;color:var(--accent-green);">92/100</span></div>
-        <div style="font-size:11px;color:var(--text-muted);">Completed at 10:32 AM</div>
-      </div>
-      <div class="team-item active">
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:13px;font-weight:600;color:var(--accent-cyan);">Syntax Error</span><span class="badge badge-amber" style="font-size:10px;">Evaluating</span></div>
-        <div style="font-size:11px;color:var(--text-muted);">Started at 10:35 AM</div>
-      </div>
-      <div class="team-item">
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:13px;font-weight:600;">Logic Bomb</span><span style="font-size:11px;color:var(--text-muted);">Up Next</span></div>
-        <div style="font-size:11px;color:var(--text-muted);">Estimated 10:50 AM</div>
-      </div>
-      <div class="team-item"><div style="font-size:13px;font-weight:600;margin-bottom:4px;">Tech Titans</div></div>
-      <div class="team-item"><div style="font-size:13px;font-weight:600;margin-bottom:4px;">Null Pointers</div></div>
 
       <div style="margin-top:auto;padding-top:20px;">
-        <button class="btn btn-outline btn-sm w-full">Request Break</button>
+        <button class="btn btn-outline btn-sm w-full" (click)="requestBreak()">{{ isBreakRequested ? 'Break Requested' : 'Request Break' }}</button>
       </div>
     
       <button class="btn btn-ghost w-full" (click)="sidebarService.toggleSidebar()" style="border-top: 1px solid var(--border-default); border-radius: 0; padding: 16px; display: flex; justify-content: center;">
@@ -59,7 +50,7 @@
     <main class="main-content" style="padding:0;">
       <header class="topbar" style="border-bottom:1px solid var(--border-default);">
         <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button>
-          <h1 class="topbar-title">Evaluating: Syntax Error</h1>
+          <h1 class="topbar-title">Evaluating: {{ teams[selectedTeamIndex].name }}</h1>
           <span style="font-size:13px;color:var(--text-muted);">Team Size: 4</span>
         </div>
         <div class="topbar-right">
@@ -80,7 +71,7 @@
                   <div style="font-size:12px;color:var(--text-secondary);">Does the code work? Is the architecture sound? Quality of sensor calibration.</div>
                 </div>
                 <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end;">
-                  <input type="number" class="form-input score-input" value="32" min="0" max="40">
+                  <input type="number" class="form-input score-input" [(ngModel)]="scores.technical" min="0" max="40">
                   <span style="font-size:14px;color:var(--text-muted);">/ 40</span>
                 </div>
               </div>
@@ -91,7 +82,7 @@
                   <div style="font-size:12px;color:var(--text-secondary);">Did they go beyond the basic requirements? Unique approach to the problem.</div>
                 </div>
                 <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end;">
-                  <input type="number" class="form-input score-input" value="18" min="0" max="25">
+                  <input type="number" class="form-input score-input" [(ngModel)]="scores.innovation" min="0" max="25">
                   <span style="font-size:14px;color:var(--text-muted);">/ 25</span>
                 </div>
               </div>
@@ -102,7 +93,7 @@
                   <div style="font-size:12px;color:var(--text-secondary);">Clarity of pitch, ability to answer Q&A, slide quality.</div>
                 </div>
                 <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end;">
-                  <input type="number" class="form-input score-input" placeholder="0" min="0" max="20">
+                  <input type="number" class="form-input score-input" placeholder="0" [(ngModel)]="scores.presentation" min="0" max="20">
                   <span style="font-size:14px;color:var(--text-muted);">/ 20</span>
                 </div>
               </div>
@@ -113,7 +104,7 @@
                   <div style="font-size:12px;color:var(--text-secondary);">Frontend dashboard aesthetics, user experience of the hardware interface.</div>
                 </div>
                 <div style="display:flex;align-items:center;gap:12px;justify-content:flex-end;">
-                  <input type="number" class="form-input score-input" placeholder="0" min="0" max="15">
+                  <input type="number" class="form-input score-input" placeholder="0" [(ngModel)]="scores.design" min="0" max="15">
                   <span style="font-size:14px;color:var(--text-muted);">/ 15</span>
                 </div>
               </div>
@@ -121,10 +112,10 @@
 
             <div class="card">
               <h3 style="margin-bottom:12px;">Jury Comments</h3>
-              <textarea class="form-textarea" style="height:120px;" placeholder="Provide constructive feedback for the team. This will be visible on their profiles."></textarea>
+              <textarea class="form-textarea" style="height:120px;" placeholder="Provide constructive feedback for the team. This will be visible on their profiles." [(ngModel)]="juryComment"></textarea>
               <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;">
-                <div style="font-size:18px;font-weight:600;">Total Score: <span class="font-mono text-cyan" style="font-size:24px;">50</span><span style="font-size:14px;color:var(--text-muted);"> / 100</span></div>
-                <button class="btn btn-primary btn-lg">Submit Score & Next Team →</button>
+                <div style="font-size:18px;font-weight:600;">Total Score: <span class="font-mono text-cyan" style="font-size:24px;">{{ totalScore }}</span><span style="font-size:14px;color:var(--text-muted);"> / 100</span></div>
+                <button class="btn btn-primary btn-lg" (click)="submitScoreAndNext()">{{ isScoreSubmitted ? '✓ Submitted!' : 'Submit Score & Next Team →' }}</button>
               </div>
             </div>
           </div>

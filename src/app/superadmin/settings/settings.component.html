@@ -29,8 +29,8 @@
         <h3 style="margin-bottom: 16px;">Algorithm Tuning</h3>
         <p style="font-size:13px; color:var(--text-secondary); margin-bottom:24px;">Adjust weights for the Pathfinder/Trailblazer placement ranking algorithm.</p>
         <div class="form-group">
-          <label class="form-label">XP Weight (40%)</label>
-          <input type="range" class="w-full" min="0" max="100" value="40">
+          <label class="form-label">XP Weight ({{ xpWeight }}%)</label>
+          <input type="range" class="w-full" min="0" max="100" [(ngModel)]="xpWeight">
         </div>
       </div>
 
@@ -44,7 +44,7 @@
             <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Locks out all non-admin users and displays a maintenance banner.</p>
           </div>
           <label class="toggle-switch">
-            <input type="checkbox">
+            <input type="checkbox" [checked]="isMaintenanceMode" (change)="toggleMaintenanceMode()">
             <span class="toggle-slider"></span>
           </label>
         </div>
@@ -54,7 +54,16 @@
             <h4 style="margin-bottom: 4px;">Kill All Live Assessments</h4>
             <p style="font-size: 13px; color: var(--text-secondary); margin: 0;">Immediately aborts all active screening sessions in the event of an exploit.</p>
           </div>
-          <button class="btn" style="background-color: #ef4444; color: white; border: none;">Execute Kill Switch</button>
+          <button class="btn" style="background-color: #ef4444; color: white; border: none;" (click)="executeKillSwitch()" [disabled]="isKillSwitchExecuted">{{ isKillSwitchExecuted ? 'System Offline' : 'Execute Kill Switch' }}</button>
+        </div>
+      </div>
+
+      <div *ngIf="isKillSwitchConfirmOpen" style="margin-top:24px; padding:24px; background:var(--bg-elevated); border:2px solid #ef4444; border-radius:var(--radius-md);">
+        <h3 style="margin-bottom:16px; color:#ef4444;">⚠ WARNING: SYSTEM KILL SWITCH ⚠</h3>
+        <p style="font-size:13px; color:var(--text-secondary); margin-bottom:16px;">This action will immediately terminate all active screening sessions. Data loss may occur. Are you absolutely sure?</p>
+        <div style="display:flex; gap:12px;">
+          <button class="btn" style="background-color: #ef4444; color: white; border: none;" (click)="confirmKillSwitch()">I CONFIRM, KILL ALL SESSIONS</button>
+          <button class="btn btn-ghost" (click)="cancelKillSwitch()">Cancel & Abort</button>
         </div>
       </div>
     </div>

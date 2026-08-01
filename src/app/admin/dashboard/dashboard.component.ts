@@ -12,5 +12,14 @@ import { Component , inject } from '@angular/core';
 export class DashboardComponent {
   sidebarService = inject(SidebarService);
 
+  isGeneratingReport = false;
 
+  generateReport() {
+    this.isGeneratingReport = true;
+    setTimeout(() => this.isGeneratingReport = false, 1500);
+  }
+
+  reviewItem(id: string) {
+    console.log('Reviewing item:', id);
+  }
 }
