@@ -1,6 +1,7 @@
 import { SidebarService } from '../../services/sidebar.service';
 import { RouterModule } from '@angular/router';
-import { Component , inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-panels',

@@ -1,11 +1,13 @@
 import { SidebarService } from '../../services/sidebar.service';
 import { RouterModule } from '@angular/router';
-import { Component , inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-events',
   standalone: true,
-  imports: [RouterModule, FormsModule],
+  imports: [RouterModule, FormsModule, CommonModule],
   templateUrl: './events.component.html',
   styleUrl: './events.component.css'
 })

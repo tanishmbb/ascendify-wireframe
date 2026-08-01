@@ -2,11 +2,12 @@ import { SidebarService } from '../../services/sidebar.service';
 import { RouterModule } from '@angular/router';
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-analytics',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './analytics.component.html',
   styleUrl: './analytics.component.css'
 })
