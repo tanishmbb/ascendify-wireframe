@@ -19,4 +19,19 @@ export class ScreeningComponent {
   submitAssessment() {
     this.state = 'finished';
   }
+
+  isNotificationDrawerOpen = false;
+  isAchievementModalOpen = false;
+
+  toggleNotifications() {
+    this.isNotificationDrawerOpen = !this.isNotificationDrawerOpen;
+  }
+
+  openAchievementModal() {
+    this.isAchievementModalOpen = true;
+  }
+
+  closeAchievementModal() {
+    this.isAchievementModalOpen = false;
+  }
 }

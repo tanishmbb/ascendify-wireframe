@@ -84,4 +84,19 @@ export class SettingsComponent {
   cancelDelete() {
     this.isDeleteConfirmOpen = false;
   }
+
+  isNotificationDrawerOpen = false;
+  isAchievementModalOpen = false;
+
+  toggleNotifications() {
+    this.isNotificationDrawerOpen = !this.isNotificationDrawerOpen;
+  }
+
+  openAchievementModal() {
+    this.isAchievementModalOpen = true;
+  }
+
+  closeAchievementModal() {
+    this.isAchievementModalOpen = false;
+  }
 }

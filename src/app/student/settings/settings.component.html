@@ -54,7 +54,7 @@
     <main class="main-content">
       <header class="topbar">
         <div class="topbar-left"><button class="mobile-hamburger" (click)="sidebarService.toggleMobile()">☰</button><h1 class="topbar-title">Settings & Account</h1></div>
-        <div class="topbar-right"><div class="topbar-icon-btn">🔔<span class="notif-badge"></span></div></div>
+        <div class="topbar-right"><div class="topbar-icon-btn" (click)="toggleNotifications()" style="cursor: pointer;">🔔<span class="notif-badge"></span></div></div>
       </header>
 
       <div class="page-content" style="max-width:800px;">
@@ -226,6 +226,51 @@
           </div>
         </div>
       </div>
+    
+      <!-- ═══ NOTIFICATION DRAWER ═══ -->
+      <div class="overlay" *ngIf="isNotificationDrawerOpen" (click)="toggleNotifications()" style="position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(10,15,30,0.6); z-index:999;"></div>
+      <div class="drawer" [ngStyle]="{'right': isNotificationDrawerOpen ? '0' : '-400px'}" style="position:fixed; top:0; bottom:0; width:380px; background:var(--bg-elevated); border-left:1px solid var(--border-default); z-index:1000; transition: right 0.3s ease; padding: 24px; display:flex; flex-direction:column;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+          <h3 style="margin:0;">Notifications</h3>
+          <button class="btn btn-ghost btn-sm" (click)="toggleNotifications()">✕</button>
+        </div>
+        
+        <div style="flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:16px;">
+          <div style="padding:16px; background:rgba(0,212,255,0.05); border:1px solid rgba(0,212,255,0.2); border-radius:var(--radius-md);">
+            <div style="font-size:12px; color:var(--accent-cyan); font-weight:600; margin-bottom:4px;">Achievement Unlocked!</div>
+            <div style="font-size:14px; font-weight:600; margin-bottom:4px;">10-Day Streak 🔥</div>
+            <div style="font-size:12px; color:var(--text-secondary); margin-bottom:8px;">You consistently logged in and coded. +150 XP.</div>
+            <button class="btn btn-outline btn-sm" (click)="openAchievementModal(); toggleNotifications()">View Reward</button>
+          </div>
+
+          <div style="padding:16px; background:var(--bg-card); border:1px solid var(--border-default); border-radius:var(--radius-md);">
+            <div style="font-size:12px; color:var(--accent-pathfinder); font-weight:600; margin-bottom:4px;">Duel Challenge</div>
+            <div style="font-size:14px; font-weight:600; margin-bottom:4px;">Anika K. challenged you! ⚔️</div>
+            <div style="font-size:12px; color:var(--text-secondary); margin-bottom:8px;">Domain: Logic & DS. Wager: 50 XP.</div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-primary btn-sm">Accept</button>
+              <button class="btn btn-outline btn-sm">Decline</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ ACHIEVEMENT MODAL ═══ -->
+      <div class="overlay" *ngIf="isAchievementModalOpen" style="position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(10,15,30,0.85); z-index:1000; display:flex; align-items:center; justify-content:center;">
+        <div class="modal animate-in" style="background:var(--bg-card); border:1px solid var(--accent-pathfinder); border-radius:var(--radius-xl); padding:40px; text-align:center; max-width:400px; width:100%; box-shadow:0 0 40px rgba(245,166,35,0.15);">
+          <div style="font-size:64px; margin-bottom:16px;">🏆</div>
+          <h2 style="color:var(--accent-pathfinder); margin-bottom:8px;">Rank Up!</h2>
+          <p style="font-size:14px; color:var(--text-secondary); margin-bottom:24px;">You have successfully reached the <strong>Trailblazer</strong> tier in Logic & DS.</p>
+          
+          <div style="background:rgba(245,166,35,0.1); border-radius:var(--radius-md); padding:16px; margin-bottom:24px;">
+            <div style="font-size:24px; font-weight:800; color:var(--accent-pathfinder); font-family:monospace;">+500 XP</div>
+            <div style="font-size:12px; color:var(--text-muted);">Bonus Awarded</div>
+          </div>
+
+          <button class="btn btn-pathfinder" style="width:100%;" (click)="closeAchievementModal()">Awesome!</button>
+        </div>
+      </div>
+
     </main>
   </div>
 </body>

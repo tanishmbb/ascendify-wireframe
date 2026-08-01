@@ -56,4 +56,19 @@ export class MentorshipComponent {
   hostWorkshop() {
     // Mock: would open a workshop creation modal
   }
+
+  isNotificationDrawerOpen = false;
+  isAchievementModalOpen = false;
+
+  toggleNotifications() {
+    this.isNotificationDrawerOpen = !this.isNotificationDrawerOpen;
+  }
+
+  openAchievementModal() {
+    this.isAchievementModalOpen = true;
+  }
+
+  closeAchievementModal() {
+    this.isAchievementModalOpen = false;
+  }
 }

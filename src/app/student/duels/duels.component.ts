@@ -49,4 +49,19 @@ export class DuelsComponent {
   challengePeer() {
     this.isChallengeFormVisible = true;
   }
+
+  isNotificationDrawerOpen = false;
+  isAchievementModalOpen = false;
+
+  toggleNotifications() {
+    this.isNotificationDrawerOpen = !this.isNotificationDrawerOpen;
+  }
+
+  openAchievementModal() {
+    this.isAchievementModalOpen = true;
+  }
+
+  closeAchievementModal() {
+    this.isAchievementModalOpen = false;
+  }
 }
